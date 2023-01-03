@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.unlocking_user_accounts.html 
+summary: Guía paso a paso para desbloquear cuentas de usuario 
+keywords:  
+---
+= Desbloqueo de cuentas de usuario
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Desbloquear una cuenta bloqueada para un usuario final es un proceso sencillo que resuelve un problema moderadamente común al que informan los usuarios finales.
+
+Tras cuatro intentos fallidos de inicio de sesión, el usuario quedará bloqueado. La duración es de 30 minutos a menos que la cuenta del cliente tenga activada la complejidad de la contraseña, en cuyo caso el bloqueo sólo se puede realizar manualmente.
+
+La cuenta de usuario se puede desbloquear en la lista de usuarios de la página usuarios y grupos de Workspaces o en la página Detalles de usuario.
+
+
+
+== Página usuarios y grupos
+
+image:unlock_user_accounts1.png[""]
+image:unlock_user_accounts2.png[""]
+
+
+
+== Página de detalles del usuario
+
+image:unlock_user_accounts3.png[""]

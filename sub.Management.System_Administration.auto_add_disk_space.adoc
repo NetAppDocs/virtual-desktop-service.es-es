@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.auto_add_disk_space.html 
+summary: Función de aumento automático del tamaño del disco 
+keywords:  
+---
+= Función de aumento automático del espacio en disco
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+NetApp reconoce la necesidad de proporcionar a los administradores un método sencillo para asegurarse de que los usuarios siempre tienen espacio para acceder a los documentos y guardarlos. Esto también garantiza que las máquinas virtuales tengan suficiente espacio libre para completar los backups correctamente, lo que permite a los administradores y sus planes de recuperación ante desastres y continuidad del negocio. Teniendo esto en cuenta, creamos una función que amplía automáticamente el disco gestionado en uso hasta el siguiente nivel cuando una unidad se queda sin espacio.
+
+Se trata de un valor que se aplica de forma predeterminada en todas las nuevas implementaciones de VDS en Azure, lo que garantiza que todas las implementaciones protejan a los usuarios y las copias de seguridad del inquilino de forma predeterminada.
+
+Los administradores pueden validar que esto está en su sitio navegando a la ficha implementaciones y, a continuación, seleccionando una implementación y, a continuación, conectando con su servidor CWMGR1 desde allí. A continuación, abra el acceso directo DCConfig en el escritorio y haga clic en Avanzado y desplácese hacia abajo hasta la parte inferior.
+
+image:increase_disk1.png[""]
+
+Los administradores pueden cambiar la cantidad de espacio libre que se desea en GB libre o el porcentaje de la unidad que debe estar libre antes de pasar al siguiente nivel de discos administrados en la misma sección Avanzado de DCConfig.
+
+image:increase_disk2.png[""]
+
+Algunos ejemplos prácticos de aplicación:
+
+* Si desea asegurarse de que hay al menos 50 GB disponibles en su unidad, establezca MinFreeSpaceGB en 50
+* Si desea asegurarse de que al menos el 15% de su unidad es gratuita, establezca MinFreeSpacePercent de 10 a 15.
+
+
+Esta acción tiene lugar a medianoche en la zona horaria del servidor.

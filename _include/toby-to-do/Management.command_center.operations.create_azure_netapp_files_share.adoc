@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.create_azure_netapp_files_share-90774.png[Management.command Center.Operations.create Azure NetApp Files share 90774]

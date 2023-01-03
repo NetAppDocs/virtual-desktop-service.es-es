@@ -1,0 +1,37 @@
+= Proceso de actualización del host de sesión RDS
+:allow-uri-read: 
+
+
+
+
+=== Proceso de actualización del host de sesión RDS
+
+VDS proporciona una forma sencilla de actualizar los hosts de sesión en un entorno RDS mediante Provisioning Collections y la funcionalidad *Add Server*. Este proceso se puede realizar sin afectar a los usuarios finales y se puede repetir una y otra vez con las actualizaciones de imagen subsiguientes, basándose en las iteraciones de imagen anteriores.
+
+.El proceso de actualización del host de sesión de RDS es el siguiente:
+. Cree una nueva colección de aprovisionamiento VDI, personalice y valide la colección siguiendo las instrucciones anteriores.
++
+.. Por lo general, esta recopilación de aprovisionamiento se realizará en la plantilla de equipo virtual anterior, emulando un proceso "abierto, guardado como".
+
+
+. Una vez que la colección de aprovisionamiento se ha validado, vaya a la página _Workspace > Servers_, haga clic en *+ Add Server*
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png[Management.Deployments.provisioning recolecciones.hosts de sesión rds e8204]
+
+. Seleccione *TS* como *función de servidor*
+. Seleccione la última *plantilla VM*. Realice las selecciones *Tamaño de máquina* y *Tipo de almacenamiento* adecuadas en función de sus requisitos. Deje *Unidad de datos* sin marcar.
+. Repita esto para el número total de hosts de sesión necesarios para el entorno.
+. Haga clic en *Agregar servidor*, los hosts de sesión se construirán en función de la plantilla de VM seleccionada y comenzarán a conectarse en tan sólo 10-15 minutos (dependiendo del hipervisor).
++
+.. Tenga en cuenta que los hosts de sesión que se encuentran actualmente en el entorno se retirará en última instancia después de que estos nuevos hosts se encuentren en línea. Planifique la creación de suficientes hosts nuevos para ser suficientes para admitir toda la carga de trabajo en este entorno.
+
+
+. Cuando un nuevo host se conecta, la configuración predeterminada es permanecer en *no permitir nuevas sesiones*. Para cada host de sesión, se puede utilizar el conmutador *permitir nuevas sesiones* para administrar qué hosts pueden recibir nuevas sesiones de usuario. Para acceder a esta configuración, edite la configuración de cada servidor host de sesión individual. Una vez que se han creado suficientes hosts nuevos y se ha confirmado la funcionalidad, este ajuste se puede gestionar tanto en los hosts nuevos como antiguos para enrutar todas las sesiones nuevas a los hosts nuevos. Los hosts antiguos, con *permitir nuevas sesiones* establecido en *desactivado*, pueden seguir ejecutándose y alojar sesiones de usuario existentes.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png[Management.Deployments.provisioning Colecciones.hosts de sesión rds 726d1]
+
+. A medida que los usuarios cierran la sesión del host antiguo y sin nuevas sesiones de usuario que se unan a los hosts antiguos, se pueden eliminar los hosts antiguos donde *sesiones = 0* haciendo clic en el icono *acciones* y seleccionando *borrar*.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png[Management.Deployments.provisioning Colecciones.host de sesión rds 45d32]
+
+

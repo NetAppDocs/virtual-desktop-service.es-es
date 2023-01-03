@@ -1,0 +1,595 @@
+---
+sidebar: sidebar 
+permalink: Reference.Release_Notes.vds_windows_client_release_notes.html 
+summary: NetApp VDS Notas de la versión Windows Client 
+keywords:  
+---
+= Notas de la versión del cliente VDS para Windows
+:allow-uri-read: 
+
+
+
+
+== Versión de V6 de VDS: Jueves 17 de noviembre de 2020 a las 23:00 este
+
+_Impact:_ los usuarios verán la actualización del cliente VDS para Windows la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Corrija un problema de sintaxis con el parámetro 'usar el nombre del servidor de redirección' al crear archivos de conexión de cliente. Actualice el certificado de firma de código utilizado para el cliente VDS
+
+
+
+
+== Fecha: Jueves 29 de julio de 2020 a las 11pm este
+
+_Impact:_ los usuarios verán la actualización del cliente VDS para Windows la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Simplifique el proceso de instalación: Los nuevos usuarios finales ya no tendrán que aceptar los términos y condiciones al instalar el cliente VDS para Windows
+* Agregue una confirmación durante el proceso de instalación para confirmar que el dispositivo del usuario final puede acceder a la ubicación en la que se originan las actualizaciones automáticas
+
+
+
+
+== Fecha: Jueves 27 de mayo de 2020 a las 23.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Solución de errores
+
+* Se muestra una mayor claridad en el mensaje de error si la contraseña proporcionada no es lo suficientemente larga
+
+
+
+
+== Fecha: Jueves 13 de mayo de 2020 a las 23.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Automatización adicional para garantizar la disponibilidad de recursos para los usuarios finales
+
+
+
+
+=== Actualizaciones
+
+* La dirección URL necesaria para acceder a las actualizaciones automáticas está cambiando. Si usted no está safelisting activamente tráfico entrante no necesitará hacer ningún cambio.
++
+** Todos los usuarios finales seguirán teniendo acceso a sus escritorios incluso si no se han realizado cambios
+** Las organizaciones que se safelirán activamente el tráfico entrante tendrán que garantizar que los dispositivos de usuario final tengan acceso a las nuevas direcciones URL anteriores para garantizar el acceso a las actualizaciones automáticas
+** Las fuentes actuales para actualizaciones son:
++
+*** Primario: cwc.cloudworkspace.com
+*** Secundario: cloudjumper.com
+
+
+** Las nuevas fuentes de actualizaciones serán:
++
+*** Primario: Bin.vdsclient.app
+*** Secundario: cwc.cloudworkspace.com
+
+
+** Los nuevos usuarios que instalen el cliente de Cloud Workspace para Windows seguirán necesitando acceso a las direcciones URL que se muestran link:https://docs.netapp.com/us-en/virtual-desktop-service/Reference.end_user_access.html#remote-desktop-services["aquí"]
+
+
+
+
+
+
+== Fecha: Jueves 29 de abril de 2020 a las 11.00 h. este
+
+Impacto: Los usuarios verán la actualización del cliente RDP la próxima vez que la inicien
+
+(No hay actualizaciones en esta versión)
+
+
+
+== Fecha: Jueves 15 de abril de 2020 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Solución de errores
+
+* Resolver un problema en el que los resultados de las pruebas de red no se enviarían según lo previsto
+
+
+
+
+== Fecha: Jueves 1 de abril de 2020 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Actualizar a aplicaciones RemoteApp: Ya no se solicita una solicitud de credenciales cuando los usuarios inician aplicaciones individuales
+* Actualice para permitir a los usuarios finales alternar entre utilizar ThinPrint y la redirección de impresora de Windows para su impresión
+* Actualice para permitir que los usuarios del cliente VDS para Windows Designer excluyan los servicios de redirección de impresión
+
+
+
+
+== Versión de VDS 5.4: Thurs, 21 de enero de 2021
+
+_Componentes:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 21 de enero de 2021 a las 10pm - 11pm Eastern _Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Experiencia mejorada para los usuarios finales: Mejor manejo de los usuarios importados desde dominios externos
+
+
+
+
+== Fecha: Jueves 11 de junio de 2020 a las 23.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Actualice el cliente AVD RDP más reciente disponible para su instalación
+
+
+
+
+== Fecha: Jueves 28 de mayo de 2020 a las 23.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Actualizaciones para reflejar las expresiones/marcas de NetApp. Nota: Esta nueva Marca se aplicará a:
++
+** Nuevas descargas del cliente VDS
+** Instalaciones existentes y no editadas de VDS Client para Windows
+** Los clientes existentes de Marca/edición personalizada solo recibirán una nueva imagen de banner si nunca se ha personalizado. Si la imagen del banner se ha personalizado, permanecerá tal cual. Todos los demás colores y frases seguirán siendo los mismos.
+
+
+
+
+
+
+== Fecha: Jueves 14 de mayo de 2020 a las 23.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves 30 de abril de 2020 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Solución de errores
+
+* Corrección de errores para un subconjunto de situaciones en las que no se presentó el restablecimiento automático de contraseñas
+
+
+
+
+== Fecha: Jueves 16 de abril de 2020 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves 2 de abril de 2020 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves 19 de marzo de 2020 a las 11pm este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves 5 de marzo de 2020 a las 22.00 este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* El tratamiento correcto de un error marginal con el protocolo RDP en el que los tipos de credenciales heredadas mezclados con los parches más actuales en una puerta de enlace RDS resulta en una incapacidad para conectarse a los hosts de sesión
++
+** Si la estación de trabajo del usuario final está configurada (ya sea por un administrador externo, un administrador interno del cliente o a través de la configuración predeterminada de la estación de trabajo) para utilizar tipos de credenciales heredadas, existe una escasa posibilidad de que esto pueda haber afectado a los usuarios antes de esta versión
+
+
+* Coloque el botón Info en el Diseñador de clientes de Cloud Workspace en un origen de documentación actualizado
+* Proceso de actualización automática mejorado para el Diseñador de clientes de Cloud Workspace
+
+
+
+
+== Fecha: Jueves, 20 de febrero de 2020 a las 22.00 hora este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Mejoras proactivas en seguridad, estabilidad y escalabilidad
+
+
+
+
+=== Consideraciones
+
+* El cliente de área de trabajo en la nube para Windows continuará la actualización automática siempre que un usuario la inicie antes de 4/2. Si un usuario no inicia Cloud Workspace Client para Windows antes de 4/2, su conexión a su escritorio seguirá funcionando, pero deberá desinstalar y reinstalar Cloud Workspace Client para Windows para reanudar la funcionalidad de actualización automática.
+* Si su organización utiliza filtrado web, acceda a cwc.cloudworkspace.com y cwc-cloud.cloudworkspace.com para que la funcionalidad de actualización automática permanezca en su lugar
+
+
+
+
+== Fecha: Jueves 9 de enero de 2020 a las 11pm este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves 19 de diciembre de 2019 a las 11pm este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Lunes 2 de diciembre de 2019 a las 11pm este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves, 14 de noviembre de 2019 a las 11.00 horas del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Mayor claridad por el motivo por el que un usuario vería un mensaje de ‘sus servicios están desconectados en este momento’. Las posibles causas de que aparezca un mensaje son:
++
+** El servidor host de sesión está programado para estar sin conexión y el usuario no tiene permisos de activación a petición.
++
+*** Si el usuario utiliza Cloud Workspace Client, verá: “Actualmente, sus servicios están programados para estar sin conexión, póngase en contacto con su administrador si necesita acceso.”
+*** Si el usuario estaba utilizando el portal de inicio de sesión HTML5, verá: “Sus servicios están programados para estar sin conexión. Póngase en contacto con el administrador si necesita acceso.”
+
+
+** El servidor host de sesión está programado para estar en línea y el usuario no tiene permisos de activación a petición.
++
+*** Si el usuario estaba utilizando Cloud Workspace Client, vería: “Sus servicios están actualmente sin conexión, póngase en contacto con su administrador si necesita acceso.”
+*** Si el usuario estaba utilizando el portal de inicio de sesión HTML5, verá: “Sus servicios están desconectados en estos momentos. Póngase en contacto con el administrador si necesita acceso.”
+
+
+** El servidor host de sesión está programado para estar sin conexión y el usuario tiene permisos de activación a petición.
++
+*** Si el usuario estaba utilizando Cloud Workspace Client, vería: “Sus servicios están actualmente sin conexión, póngase en contacto con su administrador si necesita acceso.”
+*** Si el usuario estaba utilizando el portal de inicio de sesión HTML5, verá: “Sus servicios están programados para estar sin conexión. Haga clic en INICIO para conectar y conectar.”
+
+
+** El servidor host de sesión está programado para estar en línea y el usuario tiene permisos de activación a petición.
++
+*** Si el usuario utilizaba Cloud Workspace Client, vería lo siguiente: “Espere 2-5 minutos para que se inicie el área de trabajo”.
+*** Si el usuario estaba utilizando el portal de inicio de sesión HTML5, verá: “Sus servicios están desconectados en estos momentos. Haga clic en INICIO para conectar y conectar.”
+
+
+
+
+
+
+
+
+== Fecha: Jueves, 31 de octubre de 2019 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves, 17 de noviembre de 2019 a las 11.00 horas del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Agregar elementos AVD:
+
+
+
+
+== Fecha: Jueves 3 de octubre de 2019 a las 23.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Tratamiento mejorado de certificados de firma de código
+
+
+Solución de errores
+
+* Corregir un problema en el que los usuarios que acceden a RemoteApp y no tenían ninguna aplicación asignada a ellos vieron un error
+* Resolver un problema en el que un usuario pierde su conexión a Internet mientras inicia sesión en su escritorio virtual
+
+
+
+
+== Fecha: Jueves 19 de septiembre de 2019 a las 23.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Agregar elementos AVD:
++
+** Si el usuario final tiene acceso a los recursos de AVD, presente una ficha de AVD
+** La ficha AVD ofrece opciones para:
++
+*** Instale el cliente AVD RD, si aún no está instalado
+*** Si el cliente AVD RD está instalado, inicie el cliente RD
+*** Inicie Web Client para llevar al usuario a la página de inicio de sesión HTML5 AVD
+*** Haga clic en Listo para volver a la página anterior
+
+
+
+
+
+
+
+
+== Fecha: Jueves, 5 de septiembre de 2019 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves, 22 de agosto de 2019 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves, 8 de agosto de 2019 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves, 25 de julio de 2019 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Jueves, 11 de julio de 2019 a las 11.00 h. este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Viernes, 21 de junio de 2019 a las 4am del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+* No hay actualizaciones en este ciclo de versión.
+
+
+
+
+== Fecha: Viernes, 7 de junio de 2019 a las 4am del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Habilite Cloud Workspace Client para que inicie automáticamente las conexiones RDP independientemente de en qué esté establecida la asociación de tipo de archivo para los archivos .RdP
+
+
+
+
+== Fecha: Viernes, 24 de mayo de 2019 a las 4am del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Rendimiento mejorado durante el proceso de inicio de sesión
+* Tiempo de carga reducido en el lanzamiento
+
+
+
+
+== Fecha: Viernes, 10 de mayo de 2019 a las 4am del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Rendimiento mejorado durante el proceso de inicio de sesión
+* Tiempo de carga reducido en el lanzamiento
+
+
+
+
+== Fecha: Viernes, 12 de abril de 2019 a las 4am del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Velocidad de inicio de sesión mejorada para Wake on Demand
+* Tras el correcto lanzamiento del cliente de Cloud Workspace para Windows, vamos a eliminar el botón Comentarios para liberar espacio en la interfaz de usuario
+
+
+Solución de errores
+
+* Resuelva un problema en el que el botón de inicio de sesión no responde tras una acción de activación a petición incorrecta
+
+
+
+
+== Fecha: Viernes, 15 de marzo de 2019 a las 4am del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* Permitir que los administradores que utilicen Cloud Workspace Client para Windows proporcionen una dirección de correo electrónico o un número de teléfono de Soporte, sin requerir ambos
+* Asegúrese de que la URL HTML5 proporcionada en Cloud Workspace Client sea una URL válida; si no es así, se tomará de forma predeterminada https;//login.cloudjumper.com
+* Simplificación del proceso de aplicación de actualizaciones para usuarios finales
+
+
+
+
+== Fecha: Viernes, 29 de febrero de 2019 a las 4am del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP la próxima vez que lo inicien
+
+
+
+=== Mejoras
+
+* La carpeta AppData se ha movido para mayor claridad de c:\users\<username>\appdata\local\RDPClient a c:\Users\<username>\appdata\local\Cloud Workspace
+* Implementó un mecanismo para agilizar las rutas de actualización si un Usuario no ha actualizado su cliente en varias versiones
+* Se han habilitado detalles de registro mejorados para usuarios que trabajan con la versión Beta del cliente
+
+
+Solución de errores
+
+* No se mostrarán más varias líneas durante el proceso de actualización
+
+
+
+
+== Fecha: Viernes, 15 de febrero de 2019 a las 4am del este
+
+_Impact:_ los usuarios verán la actualización del cliente RDP cuando la inicien
+
+
+
+=== Mejoras
+
+* Active las opciones de instalación silenciosa/silenciosa para instalaciones remotas
++
+** Los indicadores de instalación son los siguientes:
++
+*** /s o /silent o /q o /quiet
++
+**** Estos indicadores instalarán el cliente de forma silenciosa y en segundo plano. El cliente no se iniciará una vez completada la instalación
+
+
+*** /p o /pasivo
++
+**** Cualquiera de estas opciones mostrará el proceso de instalación, pero no necesitará ninguna entrada y el cliente se iniciará una vez completada la instalación
+
+
+*** /nothinprint
++
+**** Excluye ThinPrint del proceso de instalación
+
+
+
+
+
+
+* Se han agregado entradas de registro a HKLM\Software\CloudJumper\Cloud Workspace Client\Branding:
++
+** ClipboardSharingEnabled: True/False – permite o evita la redirección al portapapeles
+** RemoteAppEnabled: True/False: Permite o desautoriza el acceso a la funcionalidad RemoteApp
+** ShowCompanyNameInTitle: True/False – indica si se muestra o no el nombre de la empresa
+
+
+* Se pueden agregar los siguientes elementos a c:\Archivos de programa (x86)\Cloud Workspace:
++
+** banner.jpg, banner.png, banner.gif o banner.bmp y esto se mostrará en la ventana del cliente.
+** Estas imágenes deben estar en la proporción 21:9
+
+
+
+
+
+
+=== Solución de errores
+
+* Se ha ajustado el símbolo registrado
+* Se han solucionado las entradas de teléfono y correo electrónico vacías de la página Ayuda
+

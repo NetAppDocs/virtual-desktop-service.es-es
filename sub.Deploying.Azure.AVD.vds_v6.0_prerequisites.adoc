@@ -1,0 +1,455 @@
+---
+sidebar: sidebar 
+permalink: Deploying.Azure.AVD.vds_v6.0_prerequisites.html 
+summary: Requisitos previos de AVD y VDS 
+---
+= Requisitos previos de AVD y VDS v6.0
+:allow-uri-read: 
+
+
+
+
+== Requisitos y notas del AVD y VDS
+
+Este documento describe los elementos necesarios para poner en marcha Azure Virtual Desktop (AVD) mediante Virtual Desktop Service (VDS) de NetApp. La “Lista de comprobación rápida” proporciona una breve lista de los componentes necesarios y los pasos previos a la implementación que se deben llevar a cabo para garantizar una implementación eficiente. El resto de la guía ofrece mayor detalle para cada elemento, dependiendo de las opciones de configuración que se tomen.
+
+
+
+== Lista de comprobación rápida
+
+
+
+=== Requisitos de Azure
+
+* Azure AD inquilino
+* Licencia de Microsoft 365 para admitir AVD
+* Suscripción a Azure
+* Cuota de Azure disponible para máquinas virtuales de Azure
+* Cuenta de administrador de Azure con roles de administración global y propiedad de la suscripción
+* Cuenta de administrador de dominio con la función "Enterprise Admin" para la configuración de AD Connect
+
+
+
+
+=== Información previa a la implementación
+
+* Determinar el número total de usuarios
+* Determine la región de Azure
+* Determinar el tipo de Active Directory
+* Determinar el tipo de almacenamiento
+* Identifique los requisitos o la imagen del equipo virtual del host de sesión
+* Evaluar la configuración de redes existente de Azure y en las instalaciones
+
+
+
+
+== Requisitos detallados de la implementación de VDS
+
+
+
+=== Requisitos de conexión de usuario final
+
+.Los siguientes clientes de Escritorio remoto son compatibles con Azure Virtual Desktop:
+* Escritorio de Windows
+* Web
+* MacOS
+* IOS
+* Cliente IGEL Think (Linux)
+* Android (Vista previa)
+
+
+
+NOTE: Azure Virtual Desktop no es compatible con el cliente RADC (RemoteApp y Desktop Connections) ni con el cliente MSTSC (Remote Desktop Connection).
+
+
+IMPORTANT: En la actualidad, Azure Virtual Desktop no es compatible con el cliente de Escritorio remoto desde el almacén de Windows. La compatibilidad con este cliente se añadirá en una futura versión.
+
+*Los clientes de Escritorio remoto deben tener acceso a las siguientes direcciones URL:*
+
+[cols="25,25,25,25"]
+|===
+| Dirección | Puerto TCP de salida | Específico | Cliente(s) 
+
+
+| *.wvd.microsoft.com | 443 | Tráfico de servicios | Todo 
+
+
+| *.servicebus.windows.net | 443 | Datos de resolución de problemas | Todo 
+
+
+| go.microsoft.com | 443 | Microsoft FWLinks | Todo 
+
+
+| aka.ms | 443 | Reducción de URL de Microsoft | Todo 
+
+
+| docs.microsoft.com | 443 | Documentación | Todo 
+
+
+| privacy.microsoft.com | 443 | Declaración de privacidad | Todo 
+
+
+| query.prod.cms.rt.microsoft.com | 443 | Actualizaciones del cliente | Escritorio de Windows 
+|===
+
+NOTE: Abrir estas URL es esencial para una experiencia de cliente fiable. El bloqueo del acceso a estas URL no es compatible y afectará a la funcionalidad del servicio. Estas direcciones URL solo se corresponden con los sitios y recursos del cliente, y no incluyen direcciones URL para otros servicios como Azure Active Directory.
+
+
+
+=== Punto de inicio del asistente de configuración de VDS
+
+El asistente de configuración de VDS puede gestionar gran parte de la configuración de requisitos previos necesaria para una implementación de AVD correcta. El asistente de configuración (link:https://cwasetup.cloudworkspace.com[""]) crea o utiliza los siguientes componentes.
+
+
+
+==== Inquilino de Azure
+
+*Necesario:* un inquilino de Azure y Azure Active Directory
+
+La activación de AVD en Azure es una configuración para todo el cliente. VDS admite la ejecución de una instancia AVD por inquilino.
+
+
+
+==== Suscripción a Azure
+
+*Requerido:* una suscripción a Azure (tenga en cuenta el ID de suscripción que desea utilizar)
+
+Todos los recursos de Azure puestos en marcha deben configurarse en una suscripción dedicada. Esto facilita en gran medida el seguimiento de costes de AVD y simplifica el proceso de puesta en marcha. NOTA: Las pruebas gratuitas de Azure no son compatibles, ya que no tienen suficientes créditos para poner en marcha una puesta en marcha de AVD funcional.
+
+
+
+==== Cuota central de Azure
+
+Cuota suficiente para las familias de equipos virtuales que utilizará; concretamente, 10 núcleos de la familia DS v3 para la puesta en marcha de la plataforma inicial (pueden usarse solo 2 núcleos, pero 10 cubren todas las posibilidades de la puesta en marcha inicial).
+
+
+
+==== Cuenta de administrador de Azure
+
+*Necesario:* una cuenta de administrador global de Azure.
+
+El asistente de configuración de VDS solicita que el administrador de Azure conceda permisos delegados al principal del servicio VDS e instale la aplicación VDS Azure Enterprise. El administrador debe tener asignados los siguientes roles de Azure:
+
+* Administrador global en el inquilino
+* Función de propietario en la suscripción
+
+
+
+
+==== Imagen de máquina virtual
+
+*Requerido:* una imagen de Azure que admite Windows 10 con varias sesiones.
+
+Azure Marketplace proporciona las versiones más recientes de su imagen básica de Windows 10 y todas las suscripciones de Azure tienen acceso a ellas automáticamente. Si desea utilizar otra imagen o una imagen personalizada, quiere que el equipo de VDS le proporcione asesoramiento sobre la creación o modificación de otras imágenes o que tenga preguntas generales sobre las imágenes de Azure que nos lo comenten y podemos programar una conversación.
+
+
+
+==== Active Directory
+
+AVD requiere que la identidad del usuario forme parte de Azure AD y que las VM se unen a un dominio de Active Directory que se sincroniza con la misma instancia de Azure AD. Los equipos virtuales no se pueden conectar directamente a la instancia de Azure AD, por lo que es necesario configurar y sincronizar una controladora de dominio con Azure AD.
+
+.Estas opciones admitidas incluyen:
+* Generación automatizada de una instancia de Active Directory dentro de la suscripción. La instancia de AD suele crearse por VDS en la máquina virtual de control de VDS (CWMGR1) para implementaciones de Azure Virtual Desktop que utilizan esta opción. AD Connect debe estar instalado y configurado para sincronizarse con Azure AD como parte del proceso de configuración.
++
+image:AD Options New.png[""]
+
+* Integración en un dominio de Active Directory existente al que se puede acceder desde la suscripción de Azure (normalmente mediante VPN de Azure o Express Route) y con su lista de usuarios sincronizada con Azure AD mediante AD Connect o un producto de terceros.
++
+image:AD Options Existing.png[""]
+
+
+
+
+
+==== Capa de almacenamiento
+
+En AVD, la estrategia de almacenamiento se ha diseñado de modo que no haya datos persistentes de usuarios o empresas en los equipos virtuales de sesión de AVD. Los datos persistentes de perfiles de usuario, archivos y carpetas de usuario, y datos de aplicación/empresa se alojan en uno o más volúmenes de datos alojados en una capa de datos independiente.
+
+FSLogix es una tecnología de agrupación en contenedores de perfiles que resuelve muchos problemas de perfil de usuario (como la dispersión de datos y los inicios de sesión lentos) mediante el montaje de un contenedor de perfiles de usuario (formato VHD o VHDX) en el host de sesión durante la inicialización de la sesión.
+
+Gracias a esta arquitectura, es necesaria una función de almacenamiento de datos. Esta función debe ser capaz de gestionar la transferencia de datos necesaria cada mañana/tarde cuando una parte significativa del inicio de sesión/cierre de sesión de los usuarios al mismo tiempo. Incluso los entornos de tamaño moderado pueden tener requisitos significativos de transferencia de datos. El rendimiento de disco de la capa de almacenamiento de datos es una de las variables de rendimiento del usuario final principal y se debe tener cuidado en cuenta para ajustar el tamaño del rendimiento de este almacenamiento, no solo la cantidad de almacenamiento. Por lo general, se debe ajustar el tamaño de la capa de almacenamiento para que admita 5-15 IOPS por usuario.
+
+.El asistente de configuración de VDS admite las siguientes configuraciones:
+* Instalación y configuración de Azure NetApp Files (ANF) (recomendado). El nivel de servicio estándar de _ANF admite hasta 150 usuarios, mientras que se recomienda el uso de entornos de 150-500 usuarios ANF Premium. Para más de 500 usuarios, se recomienda ANF Ultra._
++
+image:Storage Layer 1.png[""]
+
+* Instalación y configuración de un equipo virtual del servidor de archivos
++
+image:Storage Layer 3.png[""]
+
+
+
+
+
+==== Redes
+
+*Requerido:* un inventario de todas las subredes de red existentes, incluyendo todas las subredes visibles para la suscripción a Azure a través de una ruta de Azure Express o VPN. La implementación debe evitar que se solapen las subredes.
+
+El asistente de configuración de VDS permite definir el ámbito de red en caso de que sea necesario o necesario evitarlo, como parte de la integración planificada con las redes existentes.
+
+Determine un rango de IP para el usuario durante la implementación. Según las prácticas recomendadas de Azure, solo se admiten direcciones IP en un rango privado.
+
+.Las opciones admitidas incluyen las siguientes, pero por defecto, en un intervalo de /20:
+* 192.168.0.0 hasta 192.168.255.255
+* 172.16.0.0 hasta 172.31.255.255
+* 10.0.0.0 hasta 10.255.255.255
+
+
+
+
+==== CWMGR1
+
+Algunas de las funciones exclusivas de VDS, como la programación de cargas de trabajo de ahorro de costes y la función de escalado en tiempo real, requieren una presencia administrativa dentro del inquilino y la suscripción. Por lo tanto, se implementa una VM administrativa denominada CWMGR1 como parte de la automatización del asistente de configuración de VDS. Además de las tareas de automatización VDS, esta máquina virtual también contiene la configuración VDS en una base de datos SQL Express, archivos de registro local y una utilidad de configuración avanzada denominada DCConfig.
+
+.En función de las selecciones realizadas en el asistente de configuración de VDS, esta máquina virtual se puede usar para alojar funcionalidades adicionales como:
+* Una puerta de enlace RDS (solo utilizada en las puestas en marcha de RDS)
+* Una puerta de enlace HTML 5 (solo se utiliza en las implementaciones RDS)
+* Un servidor de licencia RDS (utilizado solo en las implementaciones RDS)
+* Un controlador de dominio (si se ha elegido)
+
+
+
+
+=== Árbol de decisiones en el Asistente para implementación
+
+Como parte de la implementación inicial, se responden una serie de preguntas para personalizar la configuración del nuevo entorno. A continuación se presenta un resumen de las principales decisiones que se deben tomar.
+
+
+
+==== Región de Azure
+
+Decida qué región o regiones de Azure alojarán sus máquinas virtuales AVD. Tenga en cuenta que Azure NetApp Files y ciertas familias de equipos virtuales (VM habilitadas para GPU, por ejemplo) tienen una lista definida de soporte de región de Azure, mientras que AVD está disponible en la mayoría de las regiones.
+
+* Este enlace se puede utilizar para identificar link:https://azure.microsoft.com/en-us/global-infrastructure/services/["Disponibilidad de productos Azure por región"]
+
+
+
+
+==== Tipo de Active Directory
+
+Decida qué tipo de Active Directory desea utilizar:
+
+* Active Directory en las instalaciones existente
+* Consulte la link:Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html["Componentes y permisos de AVD VDS"] Documentar para obtener una explicación de los permisos y los componentes necesarios tanto en Azure como en el entorno local de Active Directory
+* Nueva instancia de Active Directory basada en suscripción de Azure
+* Servicios de dominio de Azure Active Directory
+
+
+
+
+==== Almacenamiento de datos
+
+Decida dónde se colocarán los datos de perfiles de usuario, archivos individuales y recursos compartidos de la empresa. Las opciones incluyen:
+
+* Azure NetApp Files
+* Azure Files
+* Servidor de archivos tradicional (máquina virtual de Azure con disco gestionado)
+
+
+
+
+== Requisitos de implementación de VDS de NetApp para los componentes existentes
+
+
+
+=== Implementación de VDS de NetApp con controladores de dominio de Active Directory existentes
+
+Este tipo de configuración amplía un dominio de Active Directory existente para admitir la instancia de AVD. En este caso, VDS implementa un conjunto limitado de componentes en el dominio para admitir tareas de aprovisionamiento y administración automatizadas para los componentes de AVD.
+
+.Esta configuración requiere:
+* Una controladora de dominio de Active Directory existente a la que pueden acceder las máquinas virtuales en Azure vnet, normalmente a través de Azure VPN o Express Route O de una controladora de dominio creada en Azure.
+* Adición de componentes y permisos de VDS necesarios para la gestión de VDS de los pools de hosts AVD y los volúmenes de datos a medida que se unen al dominio. La guía de componentes y permisos de AVD VDS define los componentes y permisos necesarios y el proceso de implementación requiere un usuario de dominio con privilegios de dominio para ejecutar la secuencia de comandos que creará los elementos necesarios.
+* Tenga en cuenta que la implementación de VDS crea una vnet de forma predeterminada para las máquinas virtuales creadas por VDS. El vnet puede tener una relación entre iguales con los VNets de la red de Azure existente o el equipo virtual CWMGR1 se puede mover a una vnet existente con las subredes requeridas predefinidas.
+
+
+
+
+==== Credenciales y herramienta de preparación de dominios
+
+Los administradores deben proporcionar una credencial de administrador de dominio en algún momento del proceso de implementación. Se puede crear, utilizar y eliminar posteriormente una credencial temporal del Administrador de dominio (una vez completado el proceso de implementación). Como alternativa, los clientes que necesiten ayuda para crear los requisitos previos pueden aprovechar la herramienta de preparación de dominios.
+
+
+
+=== Implementación de VDS de NetApp con un sistema de archivos existente
+
+VDS crea recursos compartidos de Windows que permiten acceder a los perfiles de usuario, carpetas personales y datos corporativos desde los equipos virtuales de sesión de AVD. VDS implementará las opciones File Server o Azure NetApp File de forma predeterminada, pero si tiene un componente de almacenamiento de archivos existente VDS puede dirigir los recursos compartidos a ese componente una vez completada la implementación de VDS.
+
+.Requisitos para utilizar y el componente de almacenamiento existente:
+* El componente debe ser compatible con SMB v3
+* El componente debe estar Unido al mismo dominio de Active Directory que los hosts de sesión de AVD
+* El componente debe ser capaz de exponer una ruta UNC que se utilizará en la configuración de VDS; se puede utilizar una ruta para los tres recursos compartidos o se pueden especificar rutas independientes para cada uno de ellos. Tenga en cuenta que VDS establecerá permisos de nivel de usuario en estos recursos compartidos, por lo que consulte el documento VDS AVD Components and Permissions para asegurarse de que se han concedido los permisos correspondientes a VDS Automation Services.
+
+
+
+
+=== Implementación de VDS de NetApp con servicios de dominio de Azure AD existentes
+
+Esta configuración requiere un proceso para identificar los atributos de la instancia existente de servicios de dominio de Azure Active Directory. Póngase en contacto con su gestor de cuentas para solicitar una implementación de este tipo. Implementación de VDS de NetApp con una puesta en marcha de AVD existente este tipo de configuración asume que ya existen los componentes de Azure vnet, Active Directory y AVD necesarios. La implementación de VDS se realiza de la misma manera que la configuración “NetApp VDS Deployment with existing AD”, pero añade los siguientes requisitos:
+
+* Es necesario otorgar el rol DE PROPIETARIO AL inquilino AVD a las aplicaciones de empresa VDS en Azure
+* Las máquinas virtuales del grupo de hosts AVD y del grupo de hosts AVD deben importarse a VDS mediante la función de importación de VDS en el explorador web VDS. Este proceso recopila el pool de host de AVD y los metadatos de VM de sesión y los almacena en VDS de TI para que estos elementos se puedan gestionar mediante VDS
+* Los datos de usuario de AVD deben importarse a la sección Usuario de VDS mediante la herramienta CRA. Este proceso inserta metadatos acerca de cada usuario en el plano de control VDS para que VDS pueda gestionar su pertenencia al grupo de aplicaciones AVD e información de sesión
+
+
+
+
+== APÉNDICE A: Direcciones IP y URL del plano de control VDS
+
+Los componentes VDS de la suscripción a Azure se comunican con los componentes del plano de control global de VDS, como la aplicación web VDS y los extremos API VDS. Para el acceso, las siguientes direcciones URI base deben ser safelisted para el acceso bidireccional en el puerto 443:
+
+link:api.cloudworkspace.com[""]
+link:autoprodb.database.windows.net[""]
+link:vdctoolsapiprimary.azurewebsites.net[""]
+link:cjbootstrap3.cjautomate.net[""]
+link:https://cjdownload3.file.core.windows.net/media[""]
+
+Si su dispositivo de control de acceso sólo puede hacer una lista segura por dirección IP, se debe garantizar la siguiente lista de direcciones IP. Tenga en cuenta que VDS utiliza el servicio Azure Traffic Manager, de manera que esta lista puede cambiar con el tiempo:
+
+13.67.190.243 13.67.215.62 13.89.50.122 13.67.227.115 13.67.227.230 13.67.227.227 23.99.136.91 40.122.119.157 40.78.132.166 40.78.129.17 40.122.52.167 40.70.147.2 40.86.99.202 13.68.19.178 13.68.114.184 137.116.69.208 13.68.18.80 13.68.114.115 13.68.114.136 40.70.63.81 52.171.218.239 52.171.223.92 52.171.217.31 52.171.216.93 52.171.220.134 92.242.140.21
+
+
+
+== APÉNDICE B: Requisitos de Microsoft AVD
+
+Esta sección de requisitos de AVD de Microsoft es un resumen de los requisitos de AVD de Microsoft. Los requisitos de AVD completos y actuales se pueden encontrar aquí:
+
+https://docs.microsoft.com/en-us/azure/virtual-desktop/overview#requirements[]
+
+
+
+=== Licencias de host de sesión de Azure Virtual Desktop
+
+Azure Virtual Desktop admite los siguientes sistemas operativos, así que asegúrese de tener las licencias adecuadas para los usuarios en función del escritorio y las aplicaciones que desee implementar:
+
+[cols="50,50"]
+|===
+| SO | Licencia requerida 
+
+
+| Windows 10 Enterprise Multisession o Windows 10 Enterprise | MICROSOFT 365 E3, E5, A3, A5, F3 Business Premium Windows E3, E5, A3, A5 
+
+
+| Windows 7 Enterprise | MICROSOFT 365 E3, E5, A3, A5, F3 Business Premium Windows E3, E5, A3, A5 
+
+
+| Windows Server 2012 R2, 2016 y 2019 | Licencia de acceso de cliente (CAL) de RDS con garantía de software 
+|===
+
+
+=== Acceso a URL para máquinas AVD
+
+Las máquinas virtuales Azure que cree para Azure Virtual Desktop deben tener acceso a las siguientes direcciones URL:
+
+[cols="25,25,25,25"]
+|===
+| Dirección | Puerto TCP de salida | Específico | Etiqueta de servicio 
+
+
+| *.AVD.microsoft.com | 443 | Tráfico de servicios | WindowsVirtualDesktop 
+
+
+| mrsglobalsteus2prod.blob.core.windows.net | 443 | Actualizaciones de la pila Agent y SXS | Cloud AzureCloud 
+
+
+| *.core.windows.net | 443 | Tráfico de agentes | Cloud AzureCloud 
+
+
+| *.servicebus.windows.net | 443 | Tráfico de agentes | Cloud AzureCloud 
+
+
+| prod.warmpath.msftcloudes.com | 443 | Tráfico de agentes | Cloud AzureCloud 
+
+
+| catalogartifact.azureedge.net | 443 | Azure Marketplace | Cloud AzureCloud 
+
+
+| kms.core.windows.net | 1688 | Activación de Windows | Internet 
+
+
+| AVDportalstorageblob.blob.core.windows.net | 443 | Soporte del portal de Azure | Cloud AzureCloud 
+|===
+La tabla siguiente enumera las URL opcionales a las que pueden acceder las máquinas virtuales de Azure:
+
+[cols="25,25,25,25"]
+|===
+| Dirección | Puerto TCP de salida | Específico | Etiqueta de servicio 
+
+
+| *.microsoftonline.com | 443 | Autenticación a MS Online Services | Ninguno 
+
+
+| *.events.data.microsoft.com | 443 | Servicio de telemetría | Ninguno 
+
+
+| www.msftconnecttest.com | 443 | Detecta si el sistema operativo está conectado a Internet | Ninguno 
+
+
+| *.prod.do.dsp.mp.microsoft.com | 443 | Windows Update | Ninguno 
+
+
+| login.windows.net | 443 | Inicie sesión en MS Online Services, Office 365 | Ninguno 
+
+
+| *.sfx.ms | 443 | Actualizaciones del software del cliente de OneDrive | Ninguno 
+
+
+| *.digicert.com | 443 | Comprobación de revocación de certificados | Ninguno 
+|===
+
+
+=== Factores de rendimiento óptimos
+
+Para obtener un rendimiento óptimo, asegúrese de que la red cumple los siguientes requisitos:
+
+* La latencia de ida y vuelta (RTT) desde la red del cliente hasta la región de Azure, donde se han puesto en marcha pools de hosts, debe ser inferior a 150 ms.
+* El tráfico de red puede fluir fuera de las fronteras del país o de la región cuando las máquinas virtuales que alojan escritorios y aplicaciones se conectan al servicio de gestión.
+* Para optimizar el rendimiento de la red, recomendamos que las máquinas virtuales del host de sesión se encuentren en la misma región de Azure que el servicio de gestión.
+
+
+
+
+=== Imágenes de SO de máquina virtual admitidas
+
+Azure Virtual Desktop es compatible con las siguientes imágenes del sistema operativo x64:
+
+* Windows 10 Enterprise Multisession, versión 1809 o posterior
+* Windows 10 Enterprise, versión 1809 o posterior
+* Windows 7 Enterprise
+* Windows Server 2019
+* Windows Server 2016
+* Windows Server 2012 R2
+
+
+Azure Virtual Desktop no admite imágenes de sistemas operativos x86 (32 bits), Windows 10 Enterprise N o Windows 10 Enterprise KN. Windows 7 tampoco admite ninguna solución de perfil basada en VHD o VHDX alojada en el almacenamiento Azure gestionado debido a una limitación del tamaño del sector.
+
+Las opciones de automatización y puesta en marcha disponibles dependen del sistema operativo y la versión que elija, como se muestra en la siguiente tabla:
+
+[cols="40,15,15,15,15"]
+|===
+| Sistema operativo | Galería de imágenes de Azure | Puesta en marcha manual de máquinas virtuales | Integración de plantillas ARM | Aprovisione los pools de hosts en Azure Marketplace 
+
+
+| Múltiples sesiones de Windows 10, versión 1903 | Sí | Sí | Sí | Sí 
+
+
+| Múltiples sesiones de Windows 10, versión 1809 | Sí | Sí | No | No 
+
+
+| Windows 10 Enterprise, versión 1903 | Sí | Sí | Sí | Sí 
+
+
+| Windows 10 Enterprise, versión 1809 | Sí | Sí | No | No 
+
+
+| Windows 7 Enterprise | Sí | Sí | No | No 
+
+
+| Windows Server 2019 | Sí | Sí | No | No 
+
+
+| Windows Server 2016 | Sí | Sí | Sí | Sí 
+
+
+| Windows Server 2012 R2 | Sí | Sí | No | No 
+|===

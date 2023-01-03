@@ -1,0 +1,117 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Las tecnologías de implementación del servicio de escritorios virtuales permiten diversas opciones de almacenamiento en función de la infraestructura subyacente, esta guía aborda cómo realizar un cambio tras la puesta en marcha.
+
+El rendimiento de los escritorios virtuales depende de diversos recursos clave; el rendimiento del almacenamiento es una de las variables principales. A medida que cambian los requisitos y las cargas de trabajo evolucionan, la necesidad de cambiar la infraestructura de almacenamiento es una tarea común. En casi todos los casos esto implica la migración desde una plataforma de servidor de archivos a la tecnología de almacenamiento de NetApp (como Azure NetApp Files, Cloud Volumes Service de NetApp en Google o Cloud Volumes ONTAP de NetApp en AWS), ya que estas tecnologías suelen ofrecer el mejor perfil de rendimiento para los entornos de computación de usuario final.
+
+
+
+=== Creando la nueva capa de almacenamiento
+
+Debido a la gran variedad de servicios de almacenamiento potenciales en una amplia variedad de proveedores de infraestructuras cloud y HCI, en esta guía se supone que ya se ha establecido un nuevo servicio de almacenamiento y que se conocen las rutas para SMB.
+
+
+
+=== Cree carpetas de almacenamiento
+
+. En el nuevo servicio de almacenamiento, cree tres carpetas:
++
+** /Datos
+** /Inicio
+** /Pro
++
+image:storage1.png[""]
+
+
+
+. Establecer permisos de carpeta
++
+.. En Propiedades de carpeta, seleccione _Security, >Advanced > Disable Herencia_
++
+image:storage2.png[""]
+
+.. Ajuste el resto de la configuración para que coincida con la configuración de la capa de almacenamiento original creada originalmente por la automatización de la puesta en marcha.
+
+
+
+
+
+
+=== Mover datos
+
+Los directorios, datos, ficheros y configuraciones de seguridad se pueden mover de diferentes maneras. La siguiente sintaxis de robocopy conseguirá los cambios necesarios. Es necesario cambiar las rutas para adecuarse a su entorno.
+
+ robocopy c:\data\zucd \\uyy-1c37.deskapps.mobi\zucd-data /xd ~snapshot /MIR /CopyAll /R:1 /W:1 /tee /log:C:\temp\roboitD.txt
+
+
+=== Redirigir la ruta del SMB en la transición
+
+Cuando llegue el momento de la transición, algunos cambios redirigirán todas las funcionalidades del almacenamiento en el entorno VDS.
+
+
+
+==== Actualizar GPO
+
+. El GPO usuarios (denominado _<company-code>-users_) debe actualizarse con la nueva ruta de acceso al recurso compartido. Seleccione _Configuración de usuario > Configuración de Windows > Preferencias > Mapas de unidad_
++
+image:storage3.png[""]
+
+. Haga clic con el botón derecho del ratón en _H:_, _seleccione Propiedades > Editar > Acción: Reemplazar_ e introduzca la nueva ruta
++
+image:storage4.png[""]
+
+. Con AD clásico o híbrido, actualice el recurso compartido definido en ADUC en la unidad organizativa de la empresa. Esto se refleja en la gestión de carpetas VDS.
++
+image:storage5.png[""]
+
+
+
+
+
+==== Actualice las rutas de perfil de FSLogix
+
+. Abra Regedit en el servidor de archivos original y cualquier otro host de sesión aprovisionado.
++
+
+NOTE: Esto también se puede establecer mediante una directiva de GPO si se desea.
+
+. Edite el valor _VHDLocations_ con el nuevo valor. Debe ser la nueva ruta SMB más _pro/profilainers_ como se muestra en la captura de pantalla siguiente.
++
+image:storage6.png[""]
+
+
+
+
+
+==== Actualice la configuración de redirección de carpetas para los directorios iniciales
+
+. Open Group Policy Management, seleccione usuarios GPO vinculados a DC=dominio,DC=mobi/espacio de trabajo en la nube/Empresas de entornos de trabajo en la nube/<company-code>/usuarios de escritorios <company-code>.
+. Edite las rutas de redirección de carpetas en Configuración de usuario>Directivas>Configuración de Windows>Redirección de carpetas.
+. Sólo es necesario actualizar el escritorio y los documentos y las rutas deben coincidir con el nuevo punto de montaje de la ruta SMB para el volumen inicial
++
+image:storage7.png[""]
+
+
+
+
+
+==== Actualice la base de datos de VDS SQL con Command Center
+
+CWMGR1 contiene una utilidad auxiliar llamada Command Center que puede actualizar por lotes la base de datos VDS.
+
+.Para realizar las actualizaciones finales de la base de datos:
+. Conéctese a CWMGR1, navegue y ejecute CommandCenter.exe
++
+image:storage10.png[""]
+
+. Desplácese hasta la ficha _Operations_, haga clic en _Load Data_ para rellenar la lista desplegable Código de compañía, seleccione el código de compañía e introduzca las nuevas rutas de almacenamiento para la capa de almacenamiento y, a continuación, haga clic en _Execute Command_.
++
+image:storage11.png[""]
+
+

@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: Management.command_center.operations.copy_template_to_gallery.html 
+summary: 'Visión general de la función del Centro de comandos VDS "Copiar plantilla a galería"' 
+keywords:  
+---
+= Comando del Centro de comandos: Copiar plantilla en Galería
+:allow-uri-read: 
+
+
+
+
+== Advertencia del Centro de comandos
+
+
+CAUTION: El Centro de comandos es una aplicación que se ejecuta en el servidor de la plataforma CWMGR1 de la implementación. Esta aplicación se ha diseñado para la resolución de problemas, el diagnóstico y las funciones avanzadas de administración. Esta aplicación la utilizan principalmente los equipos de desarrollo y soporte internos de NetApp; sin embargo, algunos administradores de clientes utilizan ocasionalmente algunas funciones. Esta documentación se proporciona para admitir el uso de funciones de selección. La utilización de estos comandos debe realizarse con cuidado y en colaboración con el equipo de soporte de NetApp. Puede encontrar más información en la link:Management.command_center.overview.html["Descripción general del Centro de comandos"] artículo.
+
+
+
+== *Copiar plantilla en Galería* Descripción general
+
+image::Management.command_center.operations.copy_template_to_gallery-67ea4.png[Management.command centre.opers.copy template a la galería 67ea4]
+
+Cuando finaliza una colección de aprovisionamiento VDI, la imagen se almacena en Azure como una imagen y se puede implementar en el mismo sitio VDS. Para que la imagen esté disponible para su implementación en otra región de Azure dentro de la misma suscripción, se utiliza la función "Copiar plantilla a galería". Esta acción copiará la imagen de VM en la galería compartida y la replicará en todas las regiones seleccionadas.
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command central.opers.copy template to gallery ed821]
+
+
+
+== Disponibilidad de plantilla de equipo virtual en la lista desplegable VDS
+
+Una vez finalizada la replicación, la imagen aparecerá en VDS en el menú desplegable para seleccionar VM Templates al implementar nuevas máquinas virtuales. La imagen compartida estará disponible para su implementación en cualquier región seleccionada al copiar.
+
+image::Management.command_center.operations.copy_template_to_gallery-04bd8.png[Management.command central.opers.copy template to gallery 04bd8]
+
+Las imágenes de máquina virtual almacenadas en la Galería compartida se agregan con su versión en forma de "-x.x.x", donde la versión coincide con la versión de imagen del portal de Azure.
+
+image::Management.command_center.operations.copy_template_to_gallery-ee598.png[Management.command Center.opers.copy template to gallery ee598]
+
+
+NOTE: La replicación de la imagen puede tomar un rato (dependiendo del tamaño de la imagen) y el estado se puede ver haciendo clic en la versión (p. ej. #1.0.0#) en la columna "Nombre" como se resalta en la captura de pantalla anterior.
+
+
+
+== Disponibilidad regional
+
+Las implementaciones sólo se pueden realizar en las regiones en las que se ha replicado la imagen. Esto se puede comprobar en el portal de Azure haciendo clic en #1.x.x# y luego en _Update Replication_, como se muestra aquí:
+
+image::Management.command_center.operations.copy_template_to_gallery-9b63a.png[Management.command Center.opers.copy template to gallery 9b63a]

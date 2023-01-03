@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: Architectural.AVD_teardown_guide.html 
+summary: Guía paso a paso para quitar VDS del AVD 
+keywords:  
+---
+= Guía de Teardown AVD
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Este artículo trata la eliminación de VDS y el control de NetApp a la vez que se mantiene el acceso de los usuarios finales de AVD. La gestión futura sería con las herramientas de administración nativas de Azure/Windows. Una vez completado este proceso, se recomienda contactar con support@spotpc.netapp.com para que NetApp pueda limpiar nuestros sistemas de back-end y facturación.
+
+
+
+== Estado inicial
+
+* Implementación de AVD
+* TDS1 es FS Logix fileshare
+* TS1 es Host de sesión
+* El usuario ha iniciado sesión y se ha creado el disco FS Logix en:
++
+ \\****TSD1\****-Pro$\ProfileContainers (**** = Unique Company Code)
+
+
+
+
+== Eliminar el servicio del agente CW
+
+El agente CW se ejecuta en todas las máquinas del entorno. El servicio que inicia este proceso debe desinstalarse con el siguiente comando en cada VM del entorno. CWMGR1 se puede omitir ya que esa VM se apagará y finalmente se eliminará en la mayoría de los casos. Lo ideal sería ejecutar esta acción a través de la automatización basada en scripts. El siguiente vídeo muestra que se ha realizado manualmente.
+
+ C:\Program files\CloudWorkspace\CwAgent\CwAgent.exe -u
+
+
+=== Eliminar el vídeo del servicio del agente CW
+
+video::l9ASmM5aap0[youtube]
+
+
+== Eliminar directorio de agente CW
+
+La desinstalación anterior quitó el servicio que inicia CW Agent pero los archivos permanecen. Eliminar el directorio:
+
+ "C:\Program Files\CloudWorkspace"
+
+
+=== Eliminar vídeo del directorio del agente CW
+
+video::hMM_z4K2-iI[youtube]
+
+
+== Quitar accesos directos de inicio
+
+El directorio de elementos de inicio contiene dos accesos directos a los archivos eliminados en el paso anterior. Para evitar los mensajes de error del usuario final, estos archivos deben eliminarse.
+
+....
+"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\Pen.lnk"
+"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\CwRemoteApps.lnk"
+....
+
+
+=== Eliminar vídeo de accesos directos de inicio
+
+video::U0YLZ3Qfu9w[youtube]
+
+
+== Desenlazar los GPO de ‘usuarios’ y ‘Empresas’
+
+Hay tres GPO implementados por VDS. Recomendamos desvincular dos de ellos y revisar el contenido del tercero.
+
+Desvincular:
+
+* Usuarios de ADDC > Empresas de Cloud Workspace
+* Usuarios de ADDC > usuarios de Cloud Workspace
+
+
+Revisión:
+
+* Equipos AADDC > equipos de Cloud Workspace
+
+
+
+
+=== Desenlazar vídeo de GPO de ‘usuarios’ y ‘Empresas’
+
+video::cb68ri3HKUw[youtube]
+
+
+== Cierre CWMGR1
+
+Con los cambios de GPO aplicados, ahora podemos apagar el equipo virtual CWMGR1. Una vez confirmada la función AVD continua, esta VM se puede eliminar permanentemente.
+
+En casos extremadamente raros, es necesario mantener este equipo virtual si se está ejecutando otra función de servidor (p. ej., DC, servidor FTP…). En ese caso, se pueden deshabilitar tres servicios para deshabilitar la funcionalidad VDS en CWMGR1:
+
+* Agente CW (ver arriba)
+* CW Automation Service
+* Automatización de CW VM
+
+
+
+
+=== Vídeo de apagado de CWMGR1
+
+video::avk9HyIiC_s[youtube]
+
+
+== Elimine cuentas de servicios VDS de NetApp
+
+Es posible quitar las cuentas de servicio de Azure AD que utiliza VDS. Inicie sesión en Azure Management Portal y elimine a los usuarios:
+
+* CloudWorkspaceSVC
+* CloudWorkspaceCASVC
+
+
+Se pueden conservar otras cuentas de usuario:
+
+* Usuarios finales
+* Administrador de Azure
+* administradores de dominio .tech
+
+
+
+
+=== Elimine el vídeo de cuentas de servicio VDS de NetApp
+
+video::_VToVNp49cg[youtube]
+
+
+== Eliminar registros de aplicaciones
+
+Al implementar VDS, se realizan dos registros de aplicaciones. Se pueden eliminar:
+
+* API de espacio de trabajo en cloud
+* Área de trabajo en la nube AVD
+
+
+
+
+=== Eliminar vídeo de registros de aplicaciones
+
+video::iARz2nw1Oks[youtube]
+
+
+== Eliminar aplicaciones empresariales
+
+Al implementar VDS, se implementan dos aplicaciones empresariales. Se pueden eliminar:
+
+* Espacio de trabajo en cloud
+* API de gestión de área de trabajo en la nube
+
+
+
+
+=== Elimine el vídeo de las aplicaciones empresariales
+
+video::3eQzTPdilWk[youtube]
+
+
+== Confirme que el CWMGR1 está detenido
+
+Antes de comprobar que los usuarios finales aún pueden conectarse, confirme que el CWMGR1 está detenido para realizar una prueba realista.
+
+
+
+=== Confirme que el vídeo de CWMGR1 está detenido
+
+video::Ux9nkDk5lU4[youtube]
+
+
+== Inicio de sesión y usuario final
+
+Para confirmar que se ha realizado correctamente, inicie sesión como usuario final y confirme que se mantiene la funcionalidad.
+
+
+
+=== Inicio de sesión y vídeo para el usuario final
+
+video::SuS-OTHJz7Y[youtube]

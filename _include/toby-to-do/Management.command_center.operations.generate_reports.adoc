@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.generate_reports-9332f.png[Management.command central.opers.generate informes 9332f]

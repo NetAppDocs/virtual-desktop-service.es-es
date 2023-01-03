@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.wildcard_cert_create_new-d44ae.png[El certificado Management.command Center.opers.wildcard crea nuevas d44ae]

@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: Management.command_center.overview.html 
+summary: Información general sobre VDS Command Center 
+keywords:  
+---
+= Comando del Centro de comandos: Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+El Centro de comandos es un ejecutable que se ejecuta en el servidor de la plataforma CWMGR1 en la implementación. Se accede a él conectándose a la VM de CWMGR1 y ejecuándola localmente en esa VM.
+
+Esta aplicación se ha diseñado para la resolución de problemas, el diagnóstico y las funciones avanzadas de administración. Esta aplicación la utilizan principalmente los equipos de desarrollo y soporte internos de NetApp; sin embargo, algunos administradores de clientes utilizan ocasionalmente algunas funciones. Esta documentación se proporciona para admitir el uso de funciones de selección. La utilización de estos comandos debe realizarse con cuidado y en colaboración con el equipo de soporte de NetApp.
+
+
+
+== Ejecutando el Centro de comandos
+
+.Para ejecutar la aplicación Command Center:
+. Conéctese al servidor desde la página _VDS > Deployment > Platform Servers_, haga clic en el icono _Actions_ y seleccione "Connect".
++
+image::Management.command_center_overview-68087.png[Management.command Descripción general del centro 68087]
+
+. Cuando se le solicitan las credenciales, introduzca las credenciales de administrador del dominio
++
+.. El usuario deberá ser miembro del grupo de seguridad "CW-Infrastructure". Por razones de coherencia, recomendamos agregar esta pertenencia convirtiendo al usuario en miembro del grupo "técnicos de nivel 3" en _AD > espacio de trabajo en la nube > usuarios técnicos de área de trabajo en la nube > grupos_
++
+image::Management.command_center_overview-1c42d.png[Management.command vista general central 1c42d]
+
+
+
+. Busque el icono del escritorio de _Command Center_ y ejecútelo
++
+image::Management.command_center_overview-3c860.png[Management.command vista general central 3c860]
+
++
+.. Para activar la ficha avanzada, inicie la aplicación con el conmutador "-showadvancedtab".
+
+
+
+
+
+
+=== Operaciones
+
+image::Management.command_center_overview-b614e.png[Management.command vista general central b614e]
+
+En el menú *comando* puede seleccionar de una lista de acciones (que se muestra a continuación).
+
+Una vez seleccionado un comando, los datos se pueden rellenar con datos de despliegue desde el botón *cargar datos*. El botón Load Data también se usa para consultar al hipervisor los datos una vez que se hayan realizado las selecciones anteriores (p. ej., cargar una lista de fechas de backup disponibles después de seleccionar una máquina virtual específica de una lista desplegable)
+
+image::Management.command_center_overview-85417.png[Management.command Descripción general del centro 85417]
+
+Después de realizar selecciones en un comando, al hacer clic en *Ejecutar comando* se ejecutará el proceso seleccionado.
+
+Para revisar los registros, haga clic en el botón *Ver todos los registros*. Se abrirá el archivo de texto sin formato, con las entradas más recientes en la parte inferior.
+
+
+
+==== Lista de comandos
+
+* link:Management.command_center.operations.copy_template_to_gallery.html["Copiar plantilla en Galería"]
+

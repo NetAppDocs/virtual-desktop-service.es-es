@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.azure_key_vault.html 
+summary: Acceso a las credenciales de VDS en AZ 
+keywords:  
+---
+= Acceso a credenciales de VDS en el almacén de claves de Azure
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+CWASetup 5.4 se diferencia de los métodos de implementación anteriores de Azure. El proceso de configuración y validación se ha optimizado para reducir la cantidad de información necesaria para iniciar una puesta en marcha. Muchos de estos mensajes eliminados son para credenciales o cuentas como administrador de máquina virtual local, cuenta SMTP, cuenta técnica, SQL SA, etc. Estas cuentas ahora se generan y almacenan automáticamente en un almacén de claves de Azure. De forma predeterminada, el acceso a estas cuentas generadas automáticamente requiere un paso adicional, que se describe a continuación.
+
+* Encuentre el recurso "Key vault" y haga clic en él:
++
+image:Management.System_Administration.azure_key_vault-4d897.png["anchura = 75%"]
+
+* En ‘Configuración’, haga clic en ‘Ajustes’. Verá un mensaje que indica que no está autorizado a ver:
++
+image:Management.System_Administration.azure_key_vault-0f7b9.png["anchura = 75%"]
+
+* Agregue una ‘Directiva de acceso’ para conceder acceso a una cuenta de Azure AD (como un administrador global o un administrador del sistema) a estas claves confidenciales:
++
+image:Management.System_Administration.azure_key_vault-fe473.png["anchura = 75%"]
+
+* En este ejemplo se usa un administrador global. Después de seleccionar el principal, haga clic en ‘Seleccionar’ y, a continuación, en ‘Agregar’:
++
+image:Management.System_Administration.azure_key_vault-3ae42.png["anchura = 75%"]
+
+* Haga clic en ‘Guardar’:
++
+image:Management.System_Administration.azure_key_vault-15c03.png["anchura = 75%"]
+
+* La directiva de acceso se ha agregado correctamente:
++
+image:Management.System_Administration.azure_key_vault-770dd.png["anchura = 75%"]
+
+* Vuelva a visitar los ‘elementos’ para comprobar que la cuenta ahora tiene acceso a las cuentas de implementación:
++
+image:Management.System_Administration.azure_key_vault-e277a.png["anchura = 75%"]
+
+* Por ejemplo, si necesita que la credencial del administrador de dominio inicie sesión en CWMGR1 y actualice la directiva de grupo, compruebe las cadenas en cjDomainAdministratorName y cjDomainAdministratorPassword haciendo clic en cada entrada:
++
+image:Management.System_Administration.azure_key_vault-69e35.png["anchura = 75%"]
+
++
+image:Management.System_Administration.azure_key_vault-83926.png["anchura = 75%"]
+
+* Mostrar o copiar el valor:
++
+image:Management.System_Administration.azure_key_vault-c9405.png["anchura = 75%"]
+
+

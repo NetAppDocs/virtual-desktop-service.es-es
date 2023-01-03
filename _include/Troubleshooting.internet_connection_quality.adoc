@@ -1,0 +1,47 @@
+= Síntomas
+:allow-uri-read: 
+
+
+
+
+== Síntomas
+
+Conexiones de usuarios interrumpadas que requieren una reconexión. Respuesta de interfaz rezagada, problemas generales de rendimiento que parecen no estar relacionados con las cargas de recursos (RAM/CPU).
+
+
+
+== Causa
+
+Cuando los usuarios notifican problemas de rendimiento, caídas en las conexiones de los usuarios o una interfaz rezagada, la causa más común no son los recursos en absoluto, sino las conexiones de red entre el cliente y el centro de datos. Estas conexiones se ejecutan a través de su ISP, varios operadores troncales de Internet y, en última instancia, en el centro de datos. En la forma en que los datos cruzan varias paradas. Cada uno de estos saltos puede introducir latencia de red, paquetes perdidos y fluctuación, y todo esto puede contribuir al rendimiento percibido del entorno de informática de escritorio en el escritorio virtual.
+
+El triaje y la solución de problemas de nivel 1 incluirán pasos básicos como confirmar que los recursos (RAM, CPU y espacio de disco duro) son suficientes, pero una vez finalizado, probar la conectividad de red es un paso excelente en el proceso de resolución de problemas. Resolución
+
+
+
+=== Opción principal: El cliente Windows VDS de NetApp cuenta con herramientas de diagnóstico integradas
+
+La prueba de diagnóstico se puede ejecutar y enviar a su correo electrónico desde el cliente de escritorio virtual.
+
+. Haga clic en el icono de preferencias (cuatro líneas horizontales en la barra de menú superior)
+. Haga clic en Ayuda
+. Haga clic en Network Test
+. Introduzca el nombre de usuario que experimenta los problemas, haga clic en Run
+. Una vez finalizada, introduzca su dirección de correo electrónico para recibir un informe de correo electrónico
+. Revise el informe para solucionar posibles problemas de conexión
+
+
+image:internet_quality1.gif[""]
+
+image:internet_quality2.png[""]
+
+
+
+=== Opción secundaria: Análisis manual mediante PingPlotter
+
+Para confirmar que la conexión de red del cliente es la culpable, puede ejecutar la utilidad gratuita PingPlotter. Esta utilidad envía un ping cada pocos segundos e informa sobre la velocidad (latencia) del viaje de ida y vuelta de ese ping. También observa el porcentaje de pérdida de paquetes (PL) en cada salto a lo largo de la ruta. Cuando se observa una alta latencia y/o una alta pérdida de paquetes, es una buena indicación de que los problemas de rendimiento están causados por la calidad de la conexión a Internet en el salto que muestra estos problemas.
+
+. Descargue e instale link:https://www.pingplotter.com/["Trazador de ping"] (Disponible para MacOS, Windows e iOS).
+. Introduzca la puerta de enlace del centro de datos en el que se pone en marcha el inquilino.
+. Déjelo funcionar durante varios minutos. Lo ideal mientras se experimentan los problemas de rendimiento o las desconexiones.
+. Capture los datos eligiendo “Guardar imagen…” En el menú Archivo si es necesario para solucionar problemas adicionales.
+

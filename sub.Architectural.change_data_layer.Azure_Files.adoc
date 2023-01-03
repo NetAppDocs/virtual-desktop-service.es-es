@@ -1,0 +1,185 @@
+---
+sidebar: sidebar 
+permalink: Architectural.change_data_layer.Azure_Files.html 
+summary: Guía paso a paso para cambiar la plataforma de almacenamiento a Azure Files 
+keywords:  
+---
+= Redirigiendo la plataforma de almacenamiento a Azure Files
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Las tecnologías de puesta en marcha de Virtual Desktop Service permiten disfrutar de diversas opciones de almacenamiento en función de la infraestructura subyacente. Esta guía trata cómo realizar un cambio en el uso de Azure Files después de la implementación.
+
+
+
+=== Requisitos previos
+
+* AD Connect instalado y configurado
+* Cuenta de administración global de Azure
+* Módulo AZFilesHybrid PowerShell https://github.com/Azure-Samples/azure-files-samples/releases[]
+* Módulo PowerShell de AZ
+* Módulo PowerShell de ActiveDirectory
+
+
+
+
+=== Cree la nueva capa de almacenamiento
+
+. Inicie sesión en Azure con la cuenta de administrador global
+. Cree una nueva cuenta de almacenamiento en la misma ubicación y grupo de recursos que el área de trabajo
++
+image:Architectural.ChangeDataLayer.AzureFiles1.png[""]
+
+. Cree los recursos compartidos de archivos de datos, casa y profesionales en la cuenta de almacenamiento
++
+image:Architectural.ChangeDataLayer.AzureFiles2.png[""]
+
+
+
+
+
+=== Configure Active Directory
+
+. Cree una nueva unidad organizativa llamada «cuenta de almacenamiento» en la OU de cuentas de servicio de área de trabajo cloud > Área de trabajo cloud
++
+image:Architectural.ChangeDataLayer.AzureFiles3.png[""]
+
+. Habilitar la autenticación de AD DS (se debe realizar mediante PowerShell) https://docs.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable[]
++
+.. DomainAccountType debería ser “`ServiceLogonAccount`”
+.. OraganizationalUnitDistinguishedName es el nombre distinguido de la OU creada en el paso anterior (es decir “`OU=Storage Account,OU=Cloud Workspace Service Accounts,OU=Cloud Workspace,DC=TrainingKrisG,DC=onmicrosoft,DC=com`”)
+
+
+
+
+
+
+=== Configure los roles para los recursos compartidos
+
+. En el portal de Azure, proporcione a los técnicos de CloudWorkspaceSVC y Level3 la función "almacenamiento de datos compartidos de SMB elevado colaborador"
++
+image:Architectural.ChangeDataLayer.AzureFiles4.png[""]
+
+. Proporcione la función "Colaborador de recurso compartido de datos de archivo de almacenamiento" a “`<company code>-all users`grupo ”
++
+image:Architectural.ChangeDataLayer.AzureFiles5.png[""]
+
+
+
+
+
+=== Cree los directorios
+
+. Crear un directorio en cada recurso compartido (datos, inicio, pro) utilizando el código de la empresa como nombre (en este ejemplo, el código de la empresa es "'kift'")
++
+image:Architectural.ChangeDataLayer.AzureFiles6.png[""]
+
+. En el directorio <company code> del recurso compartido pro, cree un directorio "'ProfileContainers'"
++
+image:Architectural.ChangeDataLayer.AzureFiles7.png[""]
+
+
+
+
+
+=== Establezca los permisos NTFS
+
+. Conéctese a los recursos compartidos
++
+.. Desplácese hasta el recurso compartido situado bajo la cuenta de almacenamiento del portal de Azure, haga clic en los tres puntos y, a continuación, haga clic en Connect
++
+image:Architectural.ChangeDataLayer.AzureFiles8.png[""]
+
+.. Elija el método de autenticación de Active Directory y haga clic en el icono Copiar en el portapapeles en la esquina inferior derecha del código
++
+image:Architectural.ChangeDataLayer.AzureFiles9.png[""]
+
+.. Inicie sesión en el servidor CWMGR1 con una cuenta que es miembro del grupo de técnicos Level3
+.. Ejecute el código copiado en PowerShell para asignar la unidad
+.. Haga lo mismo para cada recurso compartido mientras selecciona una letra de unidad diferente para cada uno
+
+
+. Desactive la herencia en los directorios de <company code>
+. El sistema y el grupo AD ClientDHPAccess deben tener control completo en los directorios de <company code>
+. Los equipos de dominio deben tener control total en el directorio <company code> del recurso compartido pro, así como en el directorio ProfileContainers de
+. El grupo AD de usuarios de <company code>-All debe tener permisos de carpeta/datos de lectura en los directorios <company code> de los recursos compartidos home y pro
+. El grupo AD de usuarios de <company code>-All debe tener los siguientes permisos especiales para el directorio en el recurso compartido de datos
++
+image:Architectural.ChangeDataLayer.AzureFiles10.png[""]
+
+. El grupo AD de usuarios <company code>-All debe tener el permiso Modificar en el directorio ProfileContainers
+
+
+
+
+=== Actualizar objetos de directiva de grupo
+
+. Actualice los usuarios de GPO <company code> ubicados en espacio de trabajo en nube > Empresas de área de trabajo en nube > <company code> > usuarios de escritorios <company code>
++
+.. Cambie la asignación de la unidad de inicio para que apunte el nuevo recurso compartido
++
+image:Architectural.ChangeDataLayer.AzureFiles11.png[""]
+
+.. Cambie la redirección de carpetas para que apunte el recurso compartido principal para el escritorio y los documentos
++
+image:Architectural.ChangeDataLayer.AzureFiles12.png[""]
+
++
+image:Architectural.ChangeDataLayer.AzureFiles13.png[""]
+
+
+
+
+
+
+
+=== Actualice el recurso compartido en usuarios y equipos de Active Directory
+
+. Con AD clásico o híbrido, el recurso compartido en la unidad organizativa de código de empresa debe actualizarse a la nueva ubicación
++
+image:Architectural.ChangeDataLayer.AzureFiles14.png[""]
+
+
+
+
+
+=== Actualizar rutas de datos/inicio/Pro en VDS
+
+. Inicie sesión en CWMGR1 con una cuenta en el grupo de técnicos de nivel 3 e inicie el Command Center
+. En la lista desplegable comando, seleccione Cambiar datos/Inicio/carpetas Pro
+. Haga clic en el botón cargar datos y asegúrese de que el código de empresa correcto está seleccionado en la lista desplegable
+. Introduzca el nuevo patsh para las ubicaciones de datos, de inicio y de profesionales
+. Desactive la casilla es Windows Server
+. Haga clic en el botón Ejecutar comando
++
+image:Architectural.ChangeDataLayer.AzureFiles15.png[""]
+
+
+
+
+
+=== Actualice las rutas de perfil de FSLogix
+
+. Abra el repositorio del registro en los hosts de sesión
+. Edite la entrada VHDRoccations de HKLM\SOFTWARE\FSLogix\Profiles para que sea la ruta UNC al nuevo directorio ProfileContainers
++
+image:Architectural.ChangeDataLayer.AzureFiles16.png[""]
+
+
+
+
+
+=== Configurar copias de seguridad
+
+. Se recomienda configurar y configurar una política de backup para los nuevos recursos compartidos
+. Cree un nuevo almacén de servicios de recuperación en el mismo grupo de recursos
+. Desplácese hasta el almacén y seleccione copia de seguridad en primeros pasos
+. Elija Azure para la ubicación en la que se ejecuta la carga de trabajo y el recurso compartido de archivos de Azure para el backup. A continuación, haga clic en Backukp
+. Seleccione la cuenta de almacenamiento utilizada para crear los recursos compartidos
+. Añada los recursos compartidos para realizar el backup
+. Edite y cree una política de backup que se ajuste a sus necesidades
+

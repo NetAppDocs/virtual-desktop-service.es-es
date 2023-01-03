@@ -1,0 +1,125 @@
+---
+sidebar: sidebar 
+permalink: Management.Applications.application_entitlement_workflow.html 
+summary: Guía paso a paso para implementar aplicaciones a usuarios finales en VDS 
+keywords:  
+---
+= Autorización de aplicaciones
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+VDS dispone de una sólida funcionalidad de derechos y automatización de aplicaciones integrada. Esta funcionalidad permite a los usuarios tener acceso a diferentes aplicaciones mientras se conectan a los mismos hosts de sesión. Esto se logra mediante la ocultación de accesos directos de algunos GPO personalizados junto con la automatización, colocando de forma selectiva los accesos directos en los escritorios de los usuarios.
+
+
+NOTE: Este flujo de trabajo solo se aplica a implementaciones RDS. Para obtener la documentación sobre los derechos de aplicación de AVD, consulte link:Management.Applications.AVD_application_entitlement_workflow.html["Flujo de trabajo de derechos de aplicación para AVD"]
+
+Las aplicaciones pueden asignarse a los usuarios directamente o a través de grupos de seguridad gestionados en VDS.
+
+.En líneas generales, el proceso de aprovisionamiento de aplicaciones sigue estos pasos.
+. Agregue las aplicaciones al catálogo de aplicaciones
+. Agregue las aplicaciones al área de trabajo
+. Instale la aplicación en todos los hosts Session
+. Seleccione la ruta de acceso directo
+. Asigne aplicaciones a usuarios y/o grupos
+
+
+
+NOTE: Los pasos 3 y 4 se pueden automatizar totalmente con los eventos con secuencias de comandos, como se muestra a continuación
+
+.Demostración de vídeo
+video::19NpO8v15BE[youtube]
+
+
+== Agregar aplicaciones al catálogo de aplicaciones
+
+Derechos de aplicación de VDS comienza con App Catalog, esto es un listado de todas las aplicaciones disponibles para su implementación en entornos de usuario final.
+
+.Para agregar aplicaciones al catálogo, siga estos pasos
+. Inicie sesión en VDS en https://manage.cloudworkspace.com[] uso de las credenciales de administrador principales.
+. En la esquina superior derecha, haga clic en el icono de flecha situado junto a su nombre de usuario y seleccione Configuración.
+. Haga clic en la ficha Catálogo de aplicaciones.
+. Haga clic en la opción Agregar aplicación de la barra de título Catálogo de aplicaciones.
+. Para agregar un grupo de aplicaciones, elija la opción Importar aplicaciones.
++
+.. Aparecerá un cuadro de diálogo que proporciona una plantilla de Excel para descargar que crea el formato correcto para la lista de aplicaciones.
+.. Para esta evaluación, NetApp VDS ha creado una lista de aplicaciones de muestra para la importación, aquí se puede encontrar.
+.. Haga clic en el área cargar y elija el archivo de plantilla de aplicación, haga clic en el botón Importar.
+
+
+. Para agregar aplicaciones individuales, elija el botón Agregar aplicación y aparecerá un cuadro de diálogo.
++
+.. Introduzca el nombre de la aplicación.
+.. El ID externo se puede utilizar para introducir un identificador de seguimiento interno, como un SKU de producto o un código de seguimiento de facturación (opcional).
+.. Marque la casilla Suscripción si desea informar sobre las aplicaciones como producto de suscripción (opcional).
+.. Si el producto no instala por versión (por ejemplo, Chrome), marque la casilla de verificación Versión no obligatoria. Esto permite instalar productos de "actualización continua" sin realizar un seguimiento de sus versiones.
+.. Por el contrario, si un producto admite varias versiones con nombre (por ejemplo, QuickBooks), debe marcar esta casilla de verificación para poder instalar varias versiones y tener VDS específicos cada versión disponible en la lista de aplicaciones que pueden tener derecho a y al usuario final.
+.. Marque “no hay icono de escritorio de usuario” si no desea que VDS suministre un icono de escritorio para este producto. Esto se utiliza para productos de "back-end" como SQL Server, ya que los usuarios finales no tienen una aplicación a la que acceder.
+.. “La aplicación debe estar asociada” hace que sea necesario instalar una aplicación asociada. Por ejemplo, una aplicación de servidor cliente puede requerir también la instalación de SQL Server o MySQL.
+.. Al activar la casilla Licencia necesaria, se indica que VDS debe solicitar que se cargue un archivo de licencia para una instalación de esta aplicación antes de establecer el estado de la aplicación en activo. Este paso se realiza en la página de detalles de la aplicación de VDS.
+.. Visible para todos: El derecho a las aplicaciones puede limitarse a subpartners específicos en una jerarquía multicanal. Para fines de evaluación, haga clic en la casilla de verificación para que todos los usuarios puedan verla en la lista de aplicaciones disponibles.
+
+
+
+
+
+
+== Agregue la aplicación al área de trabajo
+
+Para iniciar el proceso de implementación, agregará la aplicación al espacio de trabajo.
+
+.Para ello, siga estos pasos
+. Haga clic en entornos de trabajo
+. Desplácese hacia abajo hasta aplicaciones
+. Haga clic en Añadir
+. Active la casilla de verificación aplicaciones, introduzca la información necesaria, haga clic en Agregar aplicación y, a continuación, en Agregar aplicaciones.
+
+
+
+
+== Instale manualmente la aplicación
+
+Una vez que la aplicación se haya agregado al espacio de trabajo, deberá tener instalada esa aplicación en todos los hosts de sesión. Esto puede realizarse manualmente o puede automatizarse.
+
+.Para instalar manualmente aplicaciones en hosts de sesión, siga estos pasos
+. Vaya a Service Board.
+. Haga clic en la tarea de la placa de servicio.
+. Haga clic en el nombre del servidor para conectarse como administrador local.
+. Instale las aplicaciones, confirme que el acceso directo a esta aplicación se encuentra en la ruta del menú Inicio.
++
+.. Para Server 2016 y Windows 10: C:\ProgramData\Microsoft\Windows\Start Menu\Programs.
+
+
+. Vuelva a la tarea de la placa de servicio, haga clic en examinar y elija el acceso directo o una carpeta que contenga accesos directos.
+. Lo que seleccione es lo que se mostrará en el escritorio del usuario final cuando se asigne la aplicación.
+. Las carpetas son fantásticas cuando una aplicación es en realidad de varias aplicaciones. Por ejemplo, “Microsoft Office” es más fácil de implementar como una carpeta con cada aplicación como un acceso directo dentro de la carpeta.
+. Haga clic en completar instalación.
+. Si es necesario, abra el icono creado Agregar tarea de placa de servicio y confirme que se ha agregado el icono.
+
+
+
+
+== Asigne aplicaciones a los usuarios
+
+Los derechos de aplicación se gestionan mediante VDS y la aplicación se puede asignar a los usuarios de tres formas distintas
+
+.Asigne aplicaciones a los usuarios
+. Desplácese a la página Detalles del usuario.
+. Vaya a la sección aplicaciones.
+. Marque la casilla junto a todas las aplicaciones requeridas por este usuario.
+
+
+.Asignar usuarios a una aplicación
+. Desplácese a la sección aplicaciones de la página Detalles del área de trabajo.
+. Haga clic en el nombre de la aplicación.
+. Marque la casilla junto a los usuarios de la aplicación.
+
+
+.Asignar aplicaciones y usuarios a grupos de usuarios
+. Desplácese hasta el Detalle de usuarios y grupos.
+. Agregue un nuevo grupo o edite un grupo existente.
+. Asigne usuarios y aplicaciones al grupo.
+

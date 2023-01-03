@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.MicrosoftOffice365.html 
+summary: 'Documentación de script: Microsoft Office' 
+keywords:  
+---
+= Documentación de eventos con guión: Microsoft Office 365
+:allow-uri-read: 
+
+
+
+
+== Descripción general de scripts globales
+
+VDS de NetApp incluye una biblioteca de eventos predefinidos con secuencias de comandos que se pueden usar directamente en entornos VDS y/o duplicados y se pueden usar como elementos básicos para eventos personalizados con secuencias de comandos.
+
+Para esta aplicación, este artículo trata tanto la acción instalar/habilitar como la acción desinstalar/deshabilitar.
+
+
+
+== Uso de Global Script
+
+Los eventos con secuencias de comandos incorporadas como éste se rellenan automáticamente y se activa la casilla de verificación "global" filter.
+
+Los eventos con guión global como este son de sólo lectura. Se pueden usar tal cual o la función "Clonar" se puede usar para crear una copia de cliente que se utilice para editar y utilizar.
+
+El botón Clonar se encuentra en el menú de acciones de la página Eventos con secuencias de comandos.
+
+image::scriptlibrary.overview-2ccb2.png[scriptlibrary.overview 2ccb2]
+
+
+
+== Descripción general de Microsoft Office 365
+
+Este paquete de secuencias de comandos instala/desinstala _Microsoft Office_ utilizando el gestor de paquetes Chocolatey (https://chocolatey.org/)[] para realizar la implementación. Chocolatey es desplegado por VDS cuando las máquinas virtuales son creadas, pero este script también comprobará e instalará Chocolatey como un requisito previo si falta.
+
+
+WARNING: Esta secuencia de comandos de instalación de Microsoft Office 365 no incluye los equipos de Microsoft ni Microsoft One Drive. Estos se incluyen como scripts automatizados independientes para permitir una mayor flexibilidad, ya que algunas puestas en marcha no requieren estas aplicaciones. Esta implementación se puede copiar y editar para incluirlas (o para cambiar cualquier otra link:https://docs.microsoft.com/en-us/deployoffice/overview-office-deployment-tool["Herramienta de implementación de Office"] Configuración) mediante la clonación del script desde VDS y la edición de InstallMicrosoftOffice365.ps1 para introducir valores diferentes en el archivo de configuración xml.
+
+
+
+=== Ruta de acceso de acceso directo predeterminada
+
+La ruta de acceso directo predeterminada se introducirá a continuación, para esta aplicación, el acceso directo es: `\\folders\Microsoft Office`
+
+
+
+=== Captura de pantalla de la ventana de diálogo Agregar actividad
+
+image::scriptlibrary.activity.InstallMicrosoftOffice365.png[scriptlibrary.activity.InstallMicrosoftOffice365]
+
+
+
+=== Añadir actividad de instalación y desinstalación de la aplicación
+
+Para que una secuencia de comandos del repositorio realice cualquier acción, se debe crear una actividad que asocie dicha secuencia de comandos a un desencadenador seleccionado. En este ejemplo, la actividad instalará o desinstalará esta aplicación cuando se agregue o elimine la aplicación del área de trabajo (desde la página _Workspace > Applications_ de VDS).
+
+Los eventos con secuencias de comandos VDS ofrecen muchos otros tipos de desencadenadores de actividad, como _Create Server_, que se pueden utilizar como alternativa al tipo de evento _Application Install_ (o _Application Uninstall_). El uso de _Create Server_ simplemente ejecutaría esta instalación de la aplicación en todas las máquinas virtuales recién creadas en VDS. _Create Server_ y otros desencadenadores se documentan y se pueden explorar link:Management.Scripted_Events.scripted_events.html["aquí"].
+
+
+NOTE: Esta aplicación deberá estar presente en la biblioteca de aplicaciones VDS. Este link:Management.Applications.application_entitlement_workflow.html#add-applications-to-the-app-catalog["sección"] Del derecho a la aplicación para el artículo de RDS trata la adición de aplicaciones a la biblioteca.
+
+.Para crear una actividad y vincular este script a una acción:
+. Desplácese a la sección _script Events_ de VDS
+. En _Activities_ haga clic en _+ Agregar actividad_
+. En la ventana de diálogo abierta, introduzca la siguiente información:
++
+** *Nombre:* asigne un nombre a esta actividad
+** *Descripción:* opcionalmente, introduzca una descripción
+** *Despliegue* Seleccione la implementación deseada en la lista desplegable
+** *Script:* Seleccione la secuencia de comandos de instalación (o desinstalación) de la lista desplegable. Podría ser el guión global o el script de cliente que ha clonado y personalizado.
+** *Argumentos:* dejar en blanco
+** *Casilla de verificación activada:* `Check` la caja
+** *Tipo de evento:* Seleccione `Application Install` (O desinstalación de aplicaciones) en la lista desplegable
+** *Aplicación:* Seleccione esta aplicación en la lista desplegable
+** *Ruta de acceso directo:* Introduzca la ruta de acceso directo predeterminada para esta aplicación (indicada anteriormente)
+
+
+

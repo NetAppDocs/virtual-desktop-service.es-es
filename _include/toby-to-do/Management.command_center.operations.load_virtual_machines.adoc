@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.load_virtual_machines-da7e2.png[Management.command Center.opers.load virtual machines da7e2]

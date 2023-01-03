@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.reboot_server-2fbca.png[Management.command centre.opers.reboot el servidor 2fbca]

@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.backup_server_now-44736.png[Management.command servidor Center.Operations.backup ahora 44736]

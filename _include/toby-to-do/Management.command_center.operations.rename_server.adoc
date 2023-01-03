@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.rename_server-db4c9.png[Management.command Center.opers.rename servidor db4c9]

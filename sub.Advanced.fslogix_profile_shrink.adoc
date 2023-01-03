@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: Advanced.fslogix_profile_shrink.html 
+summary: Resumen de la función de reducción de perfiles FSLogix 
+keywords:  
+---
+= FSLogix Profile Shrink
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+VDS dispone de una operación integrada de reducción de perfil que funciona todas las noches. Esta automatización reducirá automáticamente el contenedor FSLogix del perfil de un usuario si se pueden guardar 5 GB o más. Esta automatización funciona todas las noches a las 12:01 h. El umbral de 5 GB se puede configurar en DCConfig, que se encuentra en el servidor CWMGR1.
+
+image::Advanced.fslogix_profile_shrink-ea982.png[Advanced.fslogix perfil reducir ea982]

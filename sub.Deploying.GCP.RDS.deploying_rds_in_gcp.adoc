@@ -1,0 +1,514 @@
+---
+sidebar: sidebar 
+permalink: Deploying.GCP.RDS.deploying_rds_in_gcp.html 
+summary: Guía paso a paso para implementar RDS en GCP 
+---
+= Guía de implementación de RDS para Google Cloud (GCP)
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Esta guía proporcionará las instrucciones paso a paso para crear una implementación del servicio de puesto de trabajo remoto (RDS) con Virtual Desktop Service (VDS) de NetApp en Google Cloud.
+
+Esta guía de prueba de concepto (POC) está diseñada para ayudarle a implementar y configurar rápidamente RDS en su propio proyecto de prueba de GCP.
+
+Las implementaciones de producción, especialmente en entornos AD existentes, son muy comunes; sin embargo, el proceso no se tiene en cuenta en esta guía de POC. Las pruebas de concepto complejas y las implementaciones de producción deben iniciarse con los equipos de ventas/servicios de VDS de NetApp, y no realizarse de forma autoservicio.
+
+Este documento POC le llevará a través de toda la implementación de RDS y le ofrecerá un breve recorrido por las principales áreas de configuración posterior a la implementación disponibles en la plataforma VDS. Una vez completado, dispondrá de un entorno RDS completamente implementado y funcional, completo con hosts de sesión, aplicaciones y usuarios. Opcionalmente, tendrá la opción de configurar la entrega automatizada de aplicaciones, grupos de seguridad, permisos de recursos compartidos de archivos, Cloud Backup, optimización inteligente de costes. VDS implementa un conjunto de configuraciones de mejores prácticas mediante GPO. También se incluyen instrucciones sobre cómo deshabilitar opcionalmente esos controles, en caso de que su POC no tenga controles de seguridad, similares a un entorno de dispositivo local no administrado.
+
+
+
+== Arquitectura de puesta en marcha
+
+image:Reference Architecture GCP RDS.png["anchura = 75%"]
+
+
+
+== Información básica de RDS
+
+VDS implementa un entorno RDS completamente funcional, con todos los servicios de soporte necesarios desde cero. Esta funcionalidad puede incluir:
+
+* Servidores de puerta de enlace RDS
+* Servidores de acceso de clientes web
+* Servidores del controlador de dominio
+* Servicio de licencias RDS
+* Servicio de licencias de ThinPrint
+* Servicio de servidor FileZilla FTPS
+
+
+
+
+== Alcance de la guía
+
+Esta guía le guiará por el proceso de implementación de RDS mediante la tecnología VDS de NetApp desde el punto de vista de un administrador de GCP y VDS. Puede llevar el proyecto GCP sin preconfiguración y esta guía le ayudará a configurar los servicios RDS de extremo a extremo
+
+
+
+== Crear una cuenta de servicio
+
+. En GCP, desplácese hasta (o busque) _IAM & Admin > Cuentas de servicio_
++
+image:GCP_Deploy1.png[""]
+
+. HAGA CLIC EN _+ CREAR CUENTA DE SERVICIO_
++
+image:GCP_Deploy2.png[""]
+
+. Introduzca un nombre de cuenta de servicio único y haga clic en _CREATE_. Anote la dirección de correo electrónico de la cuenta de servicio que se utilizará en un paso posterior.
++
+image:GCP_Deploy3.png[""]
+
+. Seleccione la función _Owner_ de la cuenta de servicio y haga clic en _CONTINUE_
++
+image:GCP_Deploy4.png[""]
+
+. No es necesario realizar cambios en la página siguiente (_conceder a los usuarios acceso a esta cuenta de servicio (opcional)_), haga clic en _DONE_
++
+image:GCP_Deploy5.png[""]
+
+. En la página _Service Accounts_, haga clic en el menú de acciones y seleccione _Create key_
++
+image:GCP_Deploy6.png[""]
+
+. Seleccione _P12_ y haga clic en _CREATE_
++
+image:GCP_Deploy7.png[""]
+
+. Descargue el archivo .P12 y guárdelo en el ordenador. Se ha dejado sin cambios la _Private Key Password_.
++
+image:GCP_Deploy8.png[""]
+
++
+image:GCP_Deploy9.png[""]
+
+
+
+
+
+== Habilite Google Compute API
+
+. En GCP, desplácese hasta (o busque) _API y servicios > Biblioteca_
++
+image:GCP_Deploy10.png[""]
+
+. En la Biblioteca de API de GCP, desplácese hasta (o busque) _Compute Engine API_, haga clic en _ENABLE_
++
+image:GCP_Deploy11.png[""]
+
+
+
+
+
+== Cree una nueva implementación de VDS
+
+. En VDS, desplácese a _despliegues_ y haga clic en _+ New Deployment_
++
+image:GCP_Deploy12.png[""]
+
+. Escriba un nombre para la implementación
++
+image:GCP_Deploy13.png[""]
+
+. Seleccione _Google Cloud Platform_
++
+image:GCP_Deploy14.png[""]
+
+
+
+
+
+=== Plataforma de infraestructura
+
+. Introduzca la dirección de correo electrónico _Project ID_ y OAuth. Cargue el archivo .P12 de anteriormente en esta guía y seleccione la zona adecuada para esta implementación. Haga clic en _Test_ para confirmar que las entradas son correctas y que se han establecido los permisos adecuados.
++
+
+NOTE: El correo electrónico de OAuth es la dirección de la cuenta de servicio creada anteriormente en esta guía.
+
++
+image:GCP_Deploy15.png[""]
+
+. Una vez confirmado, haga clic en _Continue_
++
+image:GCP_Deploy16.png[""]
+
+
+
+
+
+=== Cuentas
+
+
+
+==== Cuentas de equipo virtual locales
+
+. Proporcione una contraseña para la cuenta de administrador local. Documente esta contraseña para su uso posterior.
+. Introduzca una contraseña para la cuenta de SQL SA. Documente esta contraseña para su uso posterior.
+
+
+
+NOTE: La complejidad de la contraseña requiere un mínimo de 8 caracteres con 3 de los 4 siguientes tipos de caracteres: Mayúsculas, minúsculas, número, carácter especial
+
+
+
+==== Cuenta SMTP
+
+VDS puede enviar notificaciones por correo electrónico mediante una configuración SMTP personalizada o el servicio SMTP integrado se puede utilizar seleccionando _Automatic_.
+
+. Introduzca una dirección de correo electrónico que se utilizará como dirección _de_ cuando VDS envíe una notificación por correo electrónico. _no-reply@<your-domain>.com_ es un formato común.
+. Introduzca una dirección de correo electrónico donde se deben dirigir los informes de éxito.
+. Introduzca una dirección de correo electrónico donde se deben dirigir los informes de errores.
+
+
+image:GCP_Deploy17.png[""]
+
+
+
+==== Técnicos de nivel 3
+
+Cuentas de técnicos de nivel 3 (también conocido como _.tech Accounts_) son cuentas a nivel de dominio para que los administradores de VDS las utilicen al realizar tareas administrativas en los equipos virtuales del entorno VDS. Se pueden crear cuentas adicionales en este paso o posteriormente.
+
+. Introduzca el nombre de usuario y la contraseña de las cuentas de administrador de nivel 3. ".tech" se adjuntará al nombre de usuario que introduzca para ayudar a diferenciar entre usuarios finales y cuentas técnicas. Documente estas credenciales para su uso posterior.
++
+
+NOTE: La práctica recomendada es definir cuentas con nombre para todos los administradores de VDS que deben tener credenciales a nivel de dominio para el entorno. Los administradores de VDS sin este tipo de cuenta pueden seguir teniendo acceso de administrador a nivel de VM mediante la funcionalidad _Connect to Server_ integrada en VDS.
+
++
+image:GCP_Deploy18.png[""]
+
+
+
+
+
+=== Dominios
+
+
+
+==== Directorio activo
+
+Introduzca el nombre de dominio de AD que desee.
+
+
+
+==== Dominio público
+
+El acceso externo se protege mediante un certificado SSL. Esto se puede personalizar con su propio dominio y un certificado SSL autogestionado. De forma alternativa, al seleccionar _Automatic_, VDS puede administrar el certificado SSL, incluida una actualización automática de 90 días del certificado. Cuando se utiliza la opción automática, cada implementación usa un subdominio único de _cloudWorkspace.app_.
+
+image:GCP_Deploy19.png[""]
+
+
+
+=== Equipos virtuales
+
+Para las puestas en marcha de RDS, los componentes requeridos, como controladoras de dominio, los agentes RDS y las puertas de enlace RDS, deben instalarse en servidores de plataforma. En producción, estos servicios deben ejecutarse en máquinas virtuales dedicadas y redundantes. Para las implementaciones de pruebas de concepto, se puede usar un solo equipo virtual para alojar todos estos servicios.
+
+
+
+==== Configuración de máquinas virtuales de plataforma
+
+
+
+===== Máquina virtual única
+
+Esta es la selección recomendada para implementaciones de pruebas de concepto. En una sola puesta en marcha de máquinas virtuales, los siguientes roles se alojan en un único equipo virtual:
+
+* Director de CW
+* Puerta de enlace HTML5
+* Puerta de enlace RDS
+* Aplicación remota
+* FTPS Server (opcional)
+* Controlador de dominio
+
+
+El número máximo recomendado de usuarios para casos de uso de RDS en esta configuración es de 100 usuarios. La carga de puertas de enlace RDS/HTML5 equilibradas no es una opción en esta configuración, lo que limita la redundancia y las opciones para aumentar el escalado en el futuro.
+
+
+NOTE: Si este entorno se diseñó para multi-tenancy, no se admite una única configuración de máquina virtual.
+
+
+
+===== Varios servidores
+
+Al dividir la plataforma VDS en varias máquinas virtuales, las siguientes funciones se alojan en equipos virtuales dedicados:
+
+* Puerta de enlace de Escritorio remoto
++
+La configuración VDS se puede utilizar para implementar y configurar una o dos puertas de enlace RDS. Estas puertas de enlace transmiten la sesión de usuario de RDS desde la conexión a Internet abierta a las máquinas virtuales host de sesión dentro de la implementación. Las puertas de enlace RDS manejan una función importante, lo que protege a RDS de los ataques directos desde Internet abierta y para cifrar todo el tráfico de RDS dentro y fuera del entorno. Cuando se seleccionan dos puertas de enlace de Escritorio remoto, el programa de instalación VDS implementa 2 máquinas virtuales y las configura para equilibrar la carga de las sesiones de usuario RDS entrantes.
+
+* Puerta de enlace HTML5
++
+La configuración VDS se puede utilizar para implementar y configurar una o dos puertas de enlace HTML5. Estas puertas de enlace alojan los servicios HTML5 que utiliza la función _Connect to Server_ en VDS y el cliente VDS basado en web (portal H5). Cuando se seleccionan dos portales HTML5, el programa de instalación VDS implementa 2 máquinas virtuales y las configura para equilibrar la carga de las sesiones de usuario HTML5 entrantes.
+
++
+
+NOTE: Si se utiliza la opción de varios servidores (incluso si los usuarios sólo se conectan a través del cliente VDS instalado), se recomienda al menos una puerta de enlace HTML5 para habilitar la funcionalidad _Connect to Server_ desde VDS.
+
+* Notas de escalabilidad de la puerta de enlace
++
+En los casos de uso de RDS, el tamaño máximo del entorno se puede escalar con VM de puerta de enlace adicionales, cada puerta de enlace RDS o HTML5 que admite aproximadamente 500 usuarios. Posteriormente, se pueden agregar gateways adicionales con la asistencia de servicios profesionales de NetApp mínima
+
+
+
+Si este entorno se está diseñando para multi-tenancy, se requiere la selección de _Multiple Server_.
+
+
+
+====== Funciones de servicio
+
+* Cwmgr1
++
+Esta máquina virtual es la máquina virtual administrativa VDS de NetApp. Ejecuta la base de datos SQL Express, las utilidades auxiliares y otros servicios administrativos. En una implementación de _single Server_, esta VM también puede alojar los otros servicios, pero en una configuración de _Multiple Server_, esos servicios se mueven a diferentes equipos virtuales.
+
+* CWPortal1(2)
++
+La primera puerta de enlace HTML5 se llama _CWPortal1_, la segunda es _CWPortal2_. En la implementación se pueden crear uno o dos. Se pueden agregar servidores adicionales después de la implementación para aumentar la capacidad (unas 500 conexiones por servidor).
+
+* CWRDSGateway1 (2)
++
+La primera puerta de enlace RDS se llama _CWRDSGateway1_, la segunda es _CWRDSGateway2_. En la implementación se pueden crear uno o dos. Se pueden agregar servidores adicionales después de la implementación para aumentar la capacidad (unas 500 conexiones por servidor).
+
+* Aplicación remota
++
+App Service es una colección dedicada para alojar aplicaciones RemotApp, pero utiliza las puertas de enlace RDS y sus funciones RDWeb para enrutar las solicitudes de sesión de usuario final y alojar la lista de suscripción de aplicaciones RDWeb. No se ha puesto en marcha ningún equipo virtual dedicado para esta función de servicio.
+
+* Controladores de dominio
++
+En la implementación se pueden crear y configurar automáticamente uno o dos controladores de dominio para que funcionen con VDS.
+
+
+
+image:GCP_Deploy21.png[""]
+
+
+
+==== De NetApp
+
+Seleccione el sistema operativo del servidor que desea implementar para los servidores de la plataforma.
+
+
+
+==== Zona horaria
+
+Seleccione la zona horaria deseada. Los servidores de plataforma se configurarán para esta hora y los archivos de registro reflejarán esta zona horaria. La sesión de usuario final seguirá reflejando su propia zona horaria, independientemente de esta configuración.
+
+
+
+==== Servicios adicionales
+
+
+
+===== FTP
+
+VDS puede instalar y configurar Filezilla de forma opcional para ejecutar un servidor FTPS con el fin de mover datos dentro y fuera del entorno. Esta tecnología es antigua y se recomiendan métodos de transferencia de datos más modernos (como Google Drive).
+
+image:GCP_Deploy20.png[""]
+
+
+
+=== Red
+
+Se recomienda aislar las máquinas virtuales en diferentes subredes según su propósito.
+
+Defina el alcance de la red y agregue un intervalo /20.
+
+El programa de instalación de VDS detecta y sugiere un rango que debería resultar satisfactorio. Según las prácticas recomendadas, las direcciones IP de subred deben encontrarse en un rango de direcciones IP privadas.
+
+Estos intervalos son:
+
+* 192.168.0.0 hasta 192.168.255.255
+* 172.16.0.0 hasta 172.31.255.255
+* 10.0.0.0 hasta 10.255.255.255
+
+
+Revise y ajuste si es necesario, haga clic en Validar para identificar subredes para cada una de las siguientes:
+
+* Inquilino: Este es el intervalo en el que residirán los servidores de host de sesión y los servidores de base de datos
+* Servicios: Esta es la gama en la que residirán los servicios de PaaS como Cloud Volumes Service
+* Plataforma: Esta es la gama en la que residirán los servidores de la plataforma
+* Directorio: Este es el intervalo en el que residirán los servidores AD
+
+
+image:GCP_Deploy22.png[""]
+
+
+
+=== Licencia
+
+
+
+==== NO SPLA
+
+Introduzca su número SPLA para que VDS pueda configurar el servicio de licencia RDS para un informe de CAL de SPLA más sencillo. Se puede introducir un número temporal (como 12345) para la implementación de una prueba de concepto, pero tras un periodo de prueba (~120 días) las sesiones de RDS dejarán de conectarse.
+
+
+
+==== Productos SPLA
+
+Introduzca los códigos de licencia de MAK para cualquier producto de Office con licencia a través de SPLA para habilitar informes SPLA simplificados desde los informes de VDS.
+
+
+
+==== ThinPrint
+
+Elija instalar el servidor de licencias y la licencia de ThinPrint incluidos para simplificar la redirección de la impresora del usuario final.
+
+image:GCP_Deploy23.png[""]
+
+
+
+=== Revisión y aprovisionamiento
+
+Una vez completados todos los pasos, revise las selecciones y, a continuación, valide y aprovisione el entorno.image:GCP_Deploy24.png[""]
+
+
+
+=== Siguientes pasos
+
+El proceso de automatización de implantación implementará ahora un nuevo entorno RDS con las opciones seleccionadas en el asistente de implementación.
+
+Recibirá varios correos electrónicos cuando finalice la implementación. Una vez terminado, dispondrá de un entorno listo para su primer espacio de trabajo. Un espacio de trabajo contendrá los hosts de sesión y los servidores de datos necesarios para dar soporte a los usuarios finales. Vuelva a esta guía para seguir los siguientes pasos una vez que finalice la automatización de la puesta en marcha en 1-2 horas.
+
+
+
+== Cree una nueva colección de aprovisionamiento
+
+El aprovisionamiento de colecciones es una funcionalidad en VDS que permite la creación, personalización y Sysprep de imágenes de equipos virtuales. Una vez que entremos en la implementación en el lugar de trabajo, necesitaremos una imagen para implementarla. Los siguientes pasos le guiarán a través de la creación de una imagen de VM.
+
+.Siga estos pasos para crear una imagen básica para la implementación:
+. Vaya a _despliegues > Cobranzas de aprovisionamiento_ y haga clic en _Add_
++
+image:GCP_Deploy27.png[""]
+
+. Introduzca un nombre y una descripción. Elija _Type: Shared_.
++
+
+NOTE: Puede elegir Shared o VDI. Compartido admitirá un servidor de sesión más (opcionalmente) un servidor empresarial para aplicaciones como una base de datos. VDI es una única imagen de máquina virtual para equipos virtuales que se dedicará a usuarios individuales.
+
+. Haga clic en _Add_ para definir el tipo de imagen de servidor que se va a generar.
++
+image:GCP_Deploy28.png[""]
+
+. Seleccione TSData como el _Server role_, la imagen VM adecuada (en este caso, el servidor 2016) y el tipo de almacenamiento deseado. Haga clic en _Add Server_
++
+image:GCP_Deploy29.png[""]
+
+. Opcionalmente, seleccione las aplicaciones que se instalarán en esta imagen.
++
+.. La lista de aplicaciones disponibles se rellena desde la Biblioteca de aplicaciones a la que se puede acceder haciendo clic en el menú de nombres de administrador en la esquina superior derecha, debajo de la página _Settings > App Catalog_.
++
+image:GCP_Deploy30.png[""]
+
+
+
+. Haga clic en _Add Collection_ y espere a que se cree la máquina virtual. VDS creará una máquina virtual a la que se puede acceder y personalizar.
+. Una vez finalizada la compilación del equipo virtual, conéctese al servidor y realice los cambios deseados.
++
+.. Una vez que el estado muestre _Collection Validation_, haga clic en el nombre de la colección.
++
+image:GCP_Deploy31.png[""]
+
+.. A continuación, haga clic en el _Server template name_
++
+image:GCP_Deploy32.png[""]
+
+.. Por último, haga clic en el botón _Connect to Server_ para conectarse y iniciar sesión automáticamente en la máquina virtual con credenciales de administrador local.
++
+image:GCP_Deploy33.png[""]
+
++
+image:GCP_Deploy34.png[""]
+
+
+
+. Una vez completadas todas las personalizaciones, haga clic en _Validate Collection_ para que VDS pueda sysprep y finalizar la imagen. Una vez finalizada, la máquina virtual se eliminará y la imagen estará disponible para la implementación dentro de los asistentes de implementación de VDS.
++
+image:GCP_Deploy35.png[""]5
+
+
+
+
+
+== Crear un espacio de trabajo nuevo
+
+Un área de trabajo es una colección de hosts de sesión y servidores de datos que admiten un grupo de usuarios. Una implementación puede contener un solo espacio de trabajo (un solo inquilino) o varios espacios de trabajo (multi-tenant).
+
+Los espacios de trabajo definen la colección del servidor RDS para un grupo específico. En este ejemplo, pondremos en marcha un único conjunto para demostrar la funcionalidad de los escritorios virtuales. Sin embargo, el modelo se puede ampliar a varios espacios de trabajo/colecciones RDS para admitir diferentes grupos y ubicaciones dentro del mismo espacio de dominio de Active Directory. De manera opcional, los administradores pueden restringir el acceso entre los espacios de trabajo y las colecciones para dar soporte a casos de uso que requieran un acceso limitado a aplicaciones y datos.
+
+
+
+=== Cliente y configuración
+
+. En VDS de NetApp, desplácese hasta _Workspaces_ y haga clic en _+ New Workspace_
++
+image:GCP_Deploy25.png[""]
+
+. Haga clic en _Add_ para crear un nuevo cliente. Los detalles del cliente normalmente representan la información de la compañía o la información de una ubicación o departamento específico.
++
+image:GCP_Deploy26.png[""]
+
++
+.. Introduzca los detalles de la empresa y seleccione la implementación en la que se va a implementar este espacio de trabajo.
+.. *Unidad de datos:* defina la letra de unidad que se va a utilizar para la unidad de asignación de recursos compartidos de la empresa.
+.. *Unidad de inicio de usuario:* defina la letra de unidad que se va a utilizar para la unidad asignada de la persona.
+.. *Ajustes adicionales*
++
+Los siguientes ajustes se pueden definir en la implementación y/o después de la implementación seleccionada.
+
++
+... _Enable Remote App:_ la aplicación remota presenta aplicaciones como aplicaciones de streaming en lugar de (o además) presentar una sesión de escritorio remota completa.
+... _Enable App Locker:_ VDS contiene la funcionalidad de implementación y asignación de aplicaciones, de forma predeterminada, el sistema mostrará/ocultará las aplicaciones a los usuarios finales. La activación de App Locker obligará el acceso a la aplicación a través de una lista de seguridad de GPO.
+... _Enable Workspace User Data Storage:_ determine si los usuarios finales necesitan tener acceso al almacenamiento de datos en su escritorio virtual. Para las puestas en marcha de RDS, este valor debe comprobarse siempre para habilitar el acceso a los datos para ver los perfiles de usuario.
+... _Disable Printer Access:_ VDS puede bloquear el acceso a las impresoras locales.
+... _Permitir acceso al Administrador de tareas:_ VDS puede habilitar/deshabilitar el acceso de usuario final al Administrador de tareas en Windows.
+... _Requerir contraseña de usuario compleja:_ la necesidad de contraseñas complejas habilita las reglas nativas de contraseñas complejas de Windows Server. También deshabilita el desbloqueo automático de cuentas de usuario bloqueadas con retraso de tiempo. De este modo, cuando se habilita esta opción, se requiere la intervención del administrador cuando los usuarios finales bloquean sus cuentas con varios intentos fallidos de contraseña.
+... _Enable MFA for All Users:_ VDS incluye un servicio MFA de correo electrónico/SMS sin coste que se puede utilizar para proteger el acceso a la cuenta de administrador de VDS o de usuario final. Para habilitar esto, todos los usuarios finales de este espacio de trabajo deberán autenticarse con MFA para acceder a sus escritorios y/o aplicaciones.
+
+
+
+
+
+
+
+
+=== Elija aplicaciones
+
+Seleccione la versión del sistema operativo Windows y la colección de aprovisionamiento creadas anteriormente en esta guía.
+
+En este punto se pueden agregar aplicaciones adicionales, pero en esta prueba de concepto trataremos el derecho a las aplicaciones tras la puesta en marcha.
+
+image:GCP_Deploy36.png[""]
+
+
+
+=== Agregar usuarios
+
+Se pueden añadir usuarios seleccionando grupos de seguridad de AD o usuarios individuales. En esta guía de prueba de concepto añadiremos usuarios tras la puesta en marcha.
+
+image:GCP_Deploy37.png[""]
+
+
+
+=== Revisión y aprovisionamiento
+
+En la página final, revise las opciones elegidas y haga clic en _Provision_ para iniciar la creación automatizada de los recursos RDS.
+
+image:GCP_Deploy38.png[""]
+
+
+NOTE: Durante el proceso de implementación, los registros se crean y se puede acceder a ellos en _Task History_, cerca de la parte inferior de la página de detalles de la implementación. Para acceder, vaya a _VDS > despliegues > Deployment Name_
+
+
+
+=== Siguientes pasos
+
+El proceso de automatización del lugar de trabajo implementará ahora nuevos recursos RDS con las opciones seleccionadas en el asistente de implementación.
+
+Una vez finalizado, existen varios flujos de trabajo comunes que deberá seguir para personalizar la puesta en marcha de RDS típica.
+
+* link:Management.User_Administration.manage_user_accounts.html["Agregar usuarios"]
+* link:Reference.end_user_access.html["Acceso del usuario final"]
+* link:Management.Applications.application_entitlement_workflow.html["Autorización de aplicaciones"]
+* link:Management.Cost_Optimization.workload_schedule.html["Optimización de costes"]
+

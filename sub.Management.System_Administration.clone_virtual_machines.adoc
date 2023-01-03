@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.clone_virtual_machines.html 
+summary: Clonado de equipos virtuales 
+keywords:  
+---
+= Clonar máquinas virtuales
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Virtual Desktop Service (VDS) permite clonar una máquina virtual existente. Esta funcionalidad se ha diseñado para aumentar automáticamente la disponibilidad de recuento de unidades del servidor a medida que aumenta el número de usuarios definido O crece el número de servidores adicionales a los pools de recursos disponibles.
+
+Los administradores usan el clonado en VDS de dos formas:
+
+. Creación automatizada bajo demanda de un nuevo servidor desde un servidor cliente existente
+. Creación automática proactiva de nuevos servidores cliente para la ampliación automática de recursos basada en reglas definidas y controladas por los socios
+
+
+
+
+== Clonado para agregar servidores compartidos adicionales
+
+Un clon es una copia de un equipo virtual existente. La funcionalidad de clonado ahorra tiempo y ayuda a los administradores a escalar porque la instalación de un sistema operativo invitado y las aplicaciones puede requerir mucho tiempo. Con los clones, puede realizar muchas copias de un equipo virtual desde un único proceso de instalación y configuración. Normalmente tiene el aspecto siguiente:
+
+. Instale todas las aplicaciones y configuraciones deseadas en un servidor TS o TSD
+. Vaya a: Áreas de trabajo > Sección servidores > icono de engranaje para el servidor de origen > haga clic en Clonar
+. Permitir que se ejecute el proceso de clonación (normalmente 45-90 minutos)
+. En el paso final, active el servidor clonado, situándolo en el pool RDS para aceptar conexiones nuevas. Los servidores clonados pueden requerir configuración individual después de clonarse, de modo que VDS espera a que el administrador gire manualmente el servidor.
+
+
+Repita tantas veces como sea necesario.image:Cloning-Servers.gif[""]
+
+.Para aumentar la capacidad de los usuarios en un entorno de host de sesión compartida, clonar un host de sesión es un proceso sencillo que requiere tan solo unos pasos.
+. Seleccione un host de sesión que clonar, compruebe que ningún usuario haya iniciado sesión actualmente en el equipo.
+. En VDS, desplácese al espacio de trabajo del cliente de destino. Desplácese hasta la sección Servers, haga clic en el icono Gear y seleccione Clone. Este proceso tarda mucho tiempo y desconecta la máquina de origen. Se tardan más de 30 minutos en finalizar.
++
+image:clone1.png[""]
+image:clone2.png[""]
+
+. El proceso cerrará el servidor, clonará el servidor en otra imagen y Sysprep la imagen en la siguiente TS# para el cliente. El servidor se muestra como _Type=preconfigurado_ y _Status=Activation Required_ en la lista servidores.
++
+image:clone3.png[""]
+
+. Inicie sesión en el servidor y compruebe que el servidor está listo para la producción.
++
+image:clone4.png[""]
+
+. Cuando esté listo, haga clic en Activar para agregar el servidor al grupo de host de sesión para comenzar a aceptar conexiones de usuario.
++
+image:clone5.png[""]
+
+
+
+
+
+== Definición del proceso de clonación de VDS
+
+El proceso paso a paso se detalla en VDS > Deployment > Task History en cualquier operación de Clone Server. El proceso tiene más de 20 pasos, que comienzan con el acceso al hipervisor para iniciar el proceso de clonación y finaliza con la activación del servidor clonado. El proceso de clonación incluye los siguientes pasos clave, como:
+
+* Configure DNS y establezca el nombre del servidor
+* Asigne StaticIP
+* Agregar a dominio
+* Actualizar Active Directory
+* Actualizar base de datos VDS (instancia de SQL en CWMGR1)
+* Cree reglas de firewall para el clon
+
+
+Además del Historial de tareas, los pasos detallados para cualquier proceso de clonación se pueden ver en el registro CwVmAutomationService en CWMGR1 en la implementación de escritorios virtuales de cada partner. Se documenta la revisión de estos archivos de registro link:Troubleshooting.reviewing_vds_logs.html["aquí"].
+
+
+
+== Creación automatizada de nuevos servidores
+
+Esta funcionalidad VDS está diseñada para aumentar automáticamente la disponibilidad de recuento de unidades de servidor conforme aumenta el número de usuarios definido.
+
+El partner define y gestiona mediante VDS (link:https://manage.cloudworkspace.com[""]) > Cliente > Descripción general – Recursos de equipos virtuales > escala automática. Se exponen varios controles para permitir a los partners habilitar/deshabilitar el escalado automático, así como crear reglas personalizadas para cada cliente como: Número/usuarios/servidor, RAM adicional por usuario y número de usuarios por CPU.
+
+
+NOTE: Arriba asume que la clonación automatizada está activada para toda la implementación de escritorios virtuales. Por ejemplo, para detener la clonación automática, utilice DCConfig, en la ventana Avanzado, desactive la opción creación del servidor->clonación automatizada activada.
+
+
+
+=== ¿Cuándo se ejecuta el proceso de clonación automatizada?
+
+El proceso de clonación automatizado se ejecuta cuando se configura el mantenimiento diario para que se ejecute. El valor predeterminado es medianoche, pero se puede editar. Parte del mantenimiento diario consiste en ejecutar el subproceso Change Resources para cada pool de recursos. El subproceso Change Resources determina el número de servidores compartidos necesarios en función del número de usuarios que la configuración del grupo requiere (personalizable; puede ser de 10, 21, 30, etc. usuarios por servidor).
+
+
+
+== Creación automatizada de un nuevo servidor "bajo demanda"
+
+Esta funcionalidad VDS permite la clonación automatizada “bajo demanda” de servidores adicionales a grupos de recursos disponibles.
+
+El administrador de VDS inicia sesión en VDS y, en los módulos de organizaciones o áreas de trabajo, busca el cliente específico y abre la ficha Descripción general. En el mosaico de servidores se enumeran todos los servidores (TSD1, TS1, D1, etc.). Para clonar cualquier servidor individual, simplemente haga clic en el botón que se encuentra a la derecha del nombre del servidor y seleccione Clone Option.
+
+Normalmente, el proceso debe tardar aproximadamente una hora. Sin embargo, la duración depende del tamaño de la máquina virtual y de los recursos disponibles del hipervisor subyacente. Tenga en cuenta que el servidor que se clona deberá reiniciarse, por lo que los partners normalmente realizan después de horas o durante una ventana de mantenimiento programada.
+
+Al clonar un servidor TSData, uno de los pasos es eliminar las carpetas c:\Home, c:\Data y c:\Pro para que no sean archivos duplicados. En este caso, se ha producido un error en el proceso de clonado, pero se han producido problemas al eliminar estos archivos. Este error es vago. Normalmente, esto significa que el evento del clon ha fallado porque hay un archivo o proceso abierto. A continuación, desactive cualquier AV (ya que podría explicar este error).

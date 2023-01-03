@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: Architectual.migrate_data_into_vds.html 
+summary: Resumen de las consideraciones que se deben tener en cuenta al migrar datos 
+keywords:  
+---
+= Consideraciones sobre la migración de datos
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+La migración de datos es un requisito casi universal al migrar a una solución cloud de cualquier tipo. Mientras que los administradores son responsables de la migración de datos a sus escritorios virtuales, la experiencia de NetApp está disponible y ha demostrado ser inestimable para innumerables migraciones de clientes. El entorno de escritorio virtual es simplemente un entorno Windows alojado, por lo que es probable que se acomode cualquier método deseado.
+
+.Datos que se migran normalmente:
+* Perfiles de usuario (Escritorio, Documentos, Favoritos, etc.)
+* Recursos compartidos del servidor de archivos
+* Recursos compartidos de datos (datos de aplicaciones, bases de datos, caché de backup)
+
+
+.En el entorno de escritorio virtual existen dos lugares principales donde se almacenan y organizan los datos:
+* La unidad de usuario (normalmente H:\): Es la unidad asignada visible para cada usuario.
++
+** Esto se asigna de nuevo a la ruta <DRIVE>:\home\CustomerCode\user.name\
+** Cada usuario tiene su propia unidad H:\ y no puede ver a otro usuario
+
+
+* La unidad compartida (normalmente i:\): Es la unidad asignada compartida visible para todos los usuarios
++
+** Esto se asigna de nuevo a la ruta <DRIVE>:\data\CustomerCode\
+** Todos los usuarios pueden acceder a esta unidad. Su nivel de acceso a carpetas/archivos contenidos se gestiona en la sección carpetas de VDS.
+
+
+
+
+
+
+== Proceso de migración genérico
+
+. Replicar datos en el entorno de cloud
+. Mueva los datos a la ruta adecuada para las unidades H:\ e I:\
+. Asigne los permisos adecuados en el entorno de escritorio virtual
+
+
+
+
+== Transferencias y consideraciones de FTPS
+
+
+
+=== Migración con FTPS
+
+. Si la función de servidor FTPS se habilitó durante el proceso de implementación de CWA, recopile las credenciales de FTPS iniciando sesión en VDS, navegando a Informes y ejecutando el informe de cliente maestro de su organización
+. Cargar datos
+. Mueva los datos a la ruta adecuada para las unidades H:\ e I:\
+. Asigne los permisos adecuados en el entorno de escritorio virtual mediante el módulo carpetas
+
+
+
+NOTE: Al transferir datos a través de FTPS, cualquier interrupción impedirá que los datos se transfieran según lo previsto. Dado que los servidores gestionados por Virtual Desktop Services se reinician todas las noches, es probable que se interrumpa la estrategia de transmisión estándar de una noche a la mañana. Para evitar esto, los administradores pueden habilitar el modo de migración para evitar que se reinicien los equipos virtuales durante 1 semana.
+
+Habilitar el modo de migración es sencillo: Desplácese a la organización y desplácese hasta la sección Configuración de escritorio virtual y marque la casilla de verificación modo de migración y, a continuación, haga clic en Actualizar.
+
+
+NOTE: NetApp recomienda a los administradores habilitar una configuración de cumplimiento que ayude a las organizaciones a cumplir los controles PCI, HIPAA y NIST mediante el endurecimiento de las puertas de enlace de la implementación, etc. Esto también impide que la función predeterminada del servidor FTP, si está habilitada, acepte transmisiones predeterminadas sin cifrar a través del puerto 21. FileZilla no permite SFTP, lo que significa que las conexiones deben realizarse con FTPS en el puerto 990.
+
+Para habilitar esta configuración, conéctese a CWMGR1 y navegue hasta el programa CwVmAutomationService y, a continuación, habilite el cumplimiento de PCI v3.
+
+
+
+== Herramientas y consideraciones de sincronización
+
+Enterprise File Sync y Share, a menudo conocidas como herramientas EFSS o SYNC, pueden ser extremadamente útiles en la migración de datos, ya que la herramienta capturará los cambios en cada lado hasta la transición. Herramientas como OneDrive, que viene con Office 365, pueden ayudarle a sincronizar datos del servidor de archivos. También resulta útil para puestas en marcha de usuarios de VDI, donde existe una relación 1:1 entre el usuario y el equipo virtual, siempre y cuando el usuario no intente sincronizar contenido compartido en su servidor VDI cuando los datos compartidos se pueden poner en marcha una vez en el compartido (normalmente yo:\) impulse el uso de toda la organización. Migración de SQL y datos similares (Archivos abiertos)
+
+.Las soluciones comunes de sincronización y migración no transfieren archivos abiertos, lo que incluye tipos de archivo como:
+* Archivos del buzón (.ost)
+* Archivos de QuickBooks
+* Archivos de Microsoft Access
+* Bases de datos de SQL
+
+
+Esto significa que si un único elemento de todo el archivo (aparece 1 correo electrónico nuevo, por ejemplo) o base de datos (se introduce 1 registro nuevo en el sistema de una aplicación), el archivo completo es diferente y las herramientas de sincronización estándar (Dropbox, por ejemplo) pensará que es un archivo completamente nuevo y necesita ser movido de nuevo. Si lo desea, existen herramientas especializadas disponibles para su compra a proveedores externos.
+
+Otra forma en que se gestionan estas migraciones es mediante el acceso a VAR de terceros, que a menudo han simplificado la importación y exportación de bases de datos.
+
+
+
+== Unidades de transporte
+
+Muchos proveedores de centros de datos ya no incluyen unidades de disco duro, ni eso, ni requieren que siga sus políticas y procedimientos específicos.
+
+Microsoft Azure permite a las organizaciones utilizar Azure Data Box, que los administradores podrán aprovechar mediante la coordinación con sus representantes de Microsoft.

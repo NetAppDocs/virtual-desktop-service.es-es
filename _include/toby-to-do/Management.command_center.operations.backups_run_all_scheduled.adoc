@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.backups_run_all_scheduled-be912.png[Management.command Center.Operations.backups ejecutan todos los backups programados b912]

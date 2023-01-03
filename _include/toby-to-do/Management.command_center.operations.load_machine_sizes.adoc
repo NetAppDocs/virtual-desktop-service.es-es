@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.load_machine_sizes-a93bd.png[Management.command centre.opers.load tamaños de máquina a93bd]

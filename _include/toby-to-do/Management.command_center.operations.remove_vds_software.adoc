@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.remove_vds_software-204f4.png[Management.command Center.opers.Remove vds software 204f4]

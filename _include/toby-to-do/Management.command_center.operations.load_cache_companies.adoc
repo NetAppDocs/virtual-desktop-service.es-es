@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.load_cache_companies-02d25.png[Management.command centre.opers.load cache compans 02d25]

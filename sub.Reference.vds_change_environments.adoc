@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: Reference.vds_change_environments.html 
+summary: Entornos VDS Change de NetApp 
+keywords:  
+---
+= VDS Cambiar entornos
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Virtual Desktop Service de NetApp permite a las organizaciones gestionar puestas en funcionamiento en versiones anteriores, obtener una vista previa de futuras versiones y gestionar entornos que ejecutan una versión anterior (metodología N-1).
+
+
+
+=== Direcciones URL del servicio de escritorios virtuales
+
+Virtual Desktop Service es la consola de administración que los administradores pueden utilizar para administrar implementaciones de VDS de forma continua.
+
+[cols="20,20,20,20,20"]
+|===
+| Entorno Oracle | Descripción | URL | Base de código | Documentación de API 
+
+
+| Vista previa | Versión de vista previa de la próxima versión | https://preview.manage.cloudworksace.com/[] | 5.4 | https://api.cloudworkspace.com/5.4/swagger/ui/index[] 
+
+
+| *Corriente* | *Versión actual* | *https://manage.vds.netapp.com/* | *6.0* | *https://api.cloudworkspace.com/6.0/swagger/ui/index* 
+
+
+| Anterior | Versión anterior | https://manage.cloudworkspace.com/[] | 5.4 | https://api.cloudworkspace.com/5.4/swagger/ui/index[] 
+|===
+
+
+=== Puesta en marcha de servicios de puestos de trabajo virtuales
+
+VDS ofrece un proceso de implementación basado en asistente que permite a los administradores simplificar drásticamente el proceso de aprovisionamiento de un entorno de escritorio virtual y/o AVD.
+
+Los administradores no pueden aprovisionar puestas en marcha en un entorno heredado: Solo en un entorno actual o de vista previa.
+
+[cols="20,20,20,20,20"]
+|===
+| Entorno Oracle | Descripción | URL | Base de código | Guía de puesta en marcha 
+
+
+| *Corriente* | *Versión actual* | *https://manage.vds.netapp.com/deployments/add* | *5.4* | *link:Deploying.Azure.AVD.Deploying_AVD_in_Azure_v6.html["Guía de implementación de VDS v6.0"]* 
+
+
+| Anterior | Versión anterior | https://cwasetup.cloudworkspace.com[] | 5.4 | Comuníquese con el soporte de 
+|===
+
+
+=== Estimador de costes de VDS
+
+El estimador de costes de VDS es una herramienta de valor añadido creada con una finalidad específica que permite a las organizaciones calcular cuáles serán los costes de su cloud público en Azure o Google Cloud. La herramienta incluye formas de variar y optimizar los presupuestos para ofrecer la solución necesaria dentro del presupuesto de una organización.
+
+[cols="33,33,33"]
+|===
+| Entorno Oracle | Descripción | URL 
+
+
+| Validación | Vista previa de la próxima versión | https://val.manage.vds.netapp.com/cost-estimator[] 
+
+
+| *Corriente* | *Versión actual* | *https://manage.vds.netapp.com/cost-estimator* 
+|===

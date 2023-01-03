@@ -1,0 +1,15 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.load_resource_pool_data-e7092.png[Management.command centre.opers.load recursos pool data e7092]
+
+image::Management.command_center.operations.load_resource_pool_data-c9810.png[Management.command Center.opers.load resource pool data c9810]
+
+image::Management.command_center.operations.load_resource_pool_data-cb3a8.png[Management.command Center.opers.load resource pool data cb3a8]
+
+image::Management.command_center.operations.load_resource_pool_data-6ae0e.png[Management.command central.opers.load recurso pool data 6ae0e]

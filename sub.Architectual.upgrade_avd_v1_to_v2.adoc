@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: Architectual.upgrade_AVD_v1_to_v2.html 
+summary: Guía para actualizar AVD de v1 a v2 
+keywords:  
+---
+= Actualizar el grupo de hosts AVD de v1 (otoño de 2019) a v2 (primavera de 2020)
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+En esta guía se describe el proceso de uso de la interfaz de Virtual Desktop Service (VDS) para realizar una actualización in situ de un grupo de hosts existente de AVD Fall Release (v1), lo que resulta en un grupo de hosts de AVD Spring Release (v2). Sin VDS, esta transformación requiere que los arquitectos altamente cualificados lo encuentren por sí mismos o hagan una nueva puesta en marcha completa del entorno.
+
+
+
+=== Requisitos previos
+
+.En esta guía se asume que el cliente tiene lo siguiente:
+* Al menos un grupo de hosts AVD de otoño (v1) implementado
+* Una implementación de Virtual Desktop Service v5.4 (o superior)
+* Todas las máquinas virtuales del pool de hosts deben estar en línea y en ejecución
+
+
+Vale la pena destacar que el servicio de puestos de trabajo virtuales de NetApp puede importar pools de hosts existentes, de modo que los clientes puedan aprovechar VDS para realizar actualizaciones in situ incluso si no se utilizó VDS para implementar el pool de hosts inicialmente.
+
+
+NOTE: Se recomienda realizar esta acción durante una ventana de mantenimiento establecida en la cual los usuarios finales reciben instrucciones de no iniciar sesión (o las máquinas virtuales se han configurado para no permitir conexiones del usuario), ya que los escritorios del usuario final no podrán accederse mientras esta acción se realice.
+
+
+
+=== Pasos del proceso
+
+. Vaya al módulo Workspaces y, a continuación, a la ficha AVD. A continuación, verá la sección grupos de hosts, que ahora incluye una opción para aprovechar la automatización de VDS para actualizar un pool de hosts.
+. Haga clic en el enlace que aparece en Importar grupo de hosts V1 para identificar el grupo de hosts que se va a actualizar a V2 (la versión de muelle AVD) para continuar.
++
+image:upgrade1.png[""]
+
+. A continuación, seleccione el pool de hosts al que desea actualizar en el menú desplegable y seleccione el espacio de trabajo al que desea asignarlo. A continuación, haga clic en el botón Importar pool de hosts para iniciar el proceso de actualización automatizado. +image:upgrade2.png[""]
+. Repita este proceso para cada pool de hosts que desee actualizar. Cuando finalice la automatización, verá el grupo de hosts de Spring Release (v2) recién actualizado en la pestaña AVD de VDS.
+
+
+
+
+=== Vídeo de demostración
+
+video::e4T_Ze6IlMo[youtube]
+Póngase en contacto con su representante del servicio técnico para cualquier pregunta adicional que pueda tener.

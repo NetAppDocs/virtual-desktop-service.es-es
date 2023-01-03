@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.edit_workload_schedule-a3550.png[Management.command Center.opers.edit programación de la carga de trabajo a3550]

@@ -1,0 +1,19 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+VDS envía una serie de informes de correo electrónico nocturnos. Estos están diseñados para resumir varios aspectos de su entorno de forma nocturna para identificar errores y excepciones. Están adaptados para ayudar a las puestas en marcha de gran tamaño en las que la supervisión individual de cada cliente puede ser una tarea significativa.
+
+En entornos más pequeños, estos correos electrónicos pueden ser excesivos o innecesarios.
+
+Las direcciones de correo electrónico que reciben estos informes se definen en el asistente de configuración de VDS del paso Cuentas.
+
+Después de la implementación, las direcciones se pueden cambiar en la utilidad DCConfig. Se trata de una aplicación que se ejecuta en el equipo virtual de CWMGR1 y expone gran parte de los ajustes más avanzados y con matices demasiado avanzados para exponer en la interfaz de usuario de VDS.
+
+Para cambiar la dirección de correo electrónico que recibe estos informes, edite el campo “toaddress” en DCConfig (en Configuración > correo electrónico) en el equipo virtual CWMGR1. Se recomienda dejar ddcnotifications@cloudjumper.com intactos.
+
+image:why_emails.png[""]

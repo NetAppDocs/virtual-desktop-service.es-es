@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.load_hypervisor_type-e9558.png[Management.command centre.opers.load hypervisor type e9558]

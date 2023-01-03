@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.dns_forwarding_for_azure_aadds_sso.html 
+summary: Guía paso a paso para solucionar problemas de ADDS NDS y SSO 
+keywords:  
+---
+= El DNS reenvía para Azure AGREGA e SSO a través de la identidad de O365
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Los usuarios no pueden acceder a los sitios web de la empresa en el dominio principal de correo electrónico.
+
+_Por ejemplo, los empleados de NetApp en espacios de trabajo VDS no pueden acceder a netapp.com si su cuenta SSO es user@netapp.com_
+
+Las implementaciones de VDS dedicadas utilizan el dominio interno del inquilino de Azure.
+
+
+
+== Resolución
+
+Para resolver esto, el equipo de la organización que gestiona DNS necesitará crear una zona de búsqueda de reenvío de DNS para el dominio interno que le permita resolver la IP externa correcta (para la finalidad de NetApp, esto permitirá a los empleados de NetApp navegar hasta netapp.com desde su escritorio virtual).
+
+
+
+== Guía paso a paso
+
+. Instale las Herramientas del servidor DNS en CWMGR1, lo que le permitirá administrar DNS.
++
+image:dns1.png[""]
+
++
+image:dns2.png[""]
+
++
+image:dns3.png[""]
+
++
+image:dns4.png[""]
+
++
+image:dns5.png[""]
+
+. Una vez instalado, puede ir a Panel de control → sistema y seguridad → Herramientas administrativas y abrir DNS.
++
+image:dns6.png[""]
+
+. Cuando se le solicite el servidor DNS que ejecuta DNS, querrá poner su nombre de dominio (en el ejemplo que hemos estado usando, sería _netapp.com_).
+

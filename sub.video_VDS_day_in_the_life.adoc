@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_VDS_day_in_the_life.html 
+summary: Administración diaria de RDS y AVD con NetApp VDS v5.4 
+keywords:  
+---
+= Administración diaria de RDS y AVD con NetApp VDS v5.4
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+video::uGEgA3hFdM4[youtube]

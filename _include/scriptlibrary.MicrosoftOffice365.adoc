@@ -1,0 +1,24 @@
+= Descripción general de Microsoft Office 365
+:allow-uri-read: 
+
+
+
+
+== Descripción general de Microsoft Office 365
+
+Este paquete de secuencias de comandos instala/desinstala _Microsoft Office_ utilizando el gestor de paquetes Chocolatey (https://chocolatey.org/)[] para realizar la implementación. Chocolatey es desplegado por VDS cuando las máquinas virtuales son creadas, pero este script también comprobará e instalará Chocolatey como un requisito previo si falta.
+
+
+WARNING: Esta secuencia de comandos de instalación de Microsoft Office 365 no incluye los equipos de Microsoft ni Microsoft One Drive. Estos se incluyen como scripts automatizados independientes para permitir una mayor flexibilidad, ya que algunas puestas en marcha no requieren estas aplicaciones. Esta implementación se puede copiar y editar para incluirlas (o para cambiar cualquier otra link:https://docs.microsoft.com/en-us/deployoffice/overview-office-deployment-tool["Herramienta de implementación de Office"] Configuración) mediante la clonación del script desde VDS y la edición de InstallMicrosoftOffice365.ps1 para introducir valores diferentes en el archivo de configuración xml.
+
+
+
+=== Ruta de acceso de acceso directo predeterminada
+
+La ruta de acceso directo predeterminada se introducirá a continuación, para esta aplicación, el acceso directo es: `\\folders\Microsoft Office`
+
+
+
+=== Captura de pantalla de la ventana de diálogo Agregar actividad
+
+image::scriptlibrary.activity.InstallMicrosoftOffice365.png[scriptlibrary.activity.InstallMicrosoftOffice365]

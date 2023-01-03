@@ -1,0 +1,11 @@
+= Optimizaciones de cromo de Microsoft Edge
+:allow-uri-read: 
+
+
+
+
+== Optimizaciones de cromo de Microsoft Edge
+
+En Microsoft Edge Chromium 89, Microsoft agregó funcionalidad para limitar el consumo de recursos de las pestañas del explorador de cromo de Microsoft Edge. Este script global aplica la configuración para limitar el tiempo de espera de las pestañas en segundo plano y dejar de consumir recursos después de 15 minutos. Las pestañas de fondo que están reproduciendo audio no se ven afectadas.
+
+Se pueden encontrar más detalles link:https://blogs.windows.com/msedgedev/2021/03/04/edge-89-performance/["aquí"].

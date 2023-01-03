@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: Management.Deployments.logical_hierarchy_overview.html 
+summary: 'Documentación de script: Controladores de instalación de AMD Radeon' 
+keywords:  
+---
+= Visión General de la jerarquía lógica de VDS
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+VDS organiza los conceptos en varias capas de una jerarquía lógica. Este artículo ayuda a esbozar cómo encajan juntos.
+
+
+
+=== Esquema organizativo VDS
+
+El portal de gestión VDS se encuentra en https://manage.vds.netapp.com[]. Esta interfaz web es un único panel para administrar todos los objetos relacionados con VDS. Dentro de la interfaz de usuario web de VDS, existe la siguiente jerarquía de componentes y contenedores lógicos.
+
+
+
+==== Implementación de VDS
+
+El _Deployment_ es un concepto de VDS que organiza y contiene _VDS Workspace(s)_. En algunas arquitecturas de implementación, una implementación puede contener múltiples espacios de trabajo VDS.
+
+
+NOTE: La ejecución de varios espacios de trabajo VDS en una única implementación se denomina "Multi-Tenancy" y es solo una opción en implementaciones RDS, las implementaciones de AVD no admiten este método.
+
+Una implementación está definida por su dominio de Active Directory y hay una relación 1:1 entre el dominio de AD y una implementación.
+
+Existen determinados recursos de máquinas virtuales que se implementan para admitir una implementación que se comparten en todos los espacios de trabajo de VDS de la implementación. Por ejemplo, cada implementación contiene una máquina virtual denominada "CWMGR1", que es un servidor que ejecuta aplicaciones VDS, una base de datos de SQL Express y facilita la administración de los entornos de trabajo VDS (y los recursos contenidos) dentro de la implementación.
+
+
+
+==== Espacio de trabajo VDS
+
+
+WARNING: Existe una diferencia entre un espacio de trabajo "*VDS*" y un espacio de trabajo "*AVD*".
+
+Un espacio de trabajo VDS es un contenedor lógico dentro de la implementación para los recursos del cliente (usuario final). Estos recursos incluyen máquinas virtuales (para hosts de sesión, servidores de aplicaciones, servidores de bases de datos, servidores de archivos, etc.), redes virtuales, almacenamiento y otra infraestructura de hipervisor.
+
+El área de trabajo de VDS también contiene funciones de gestión para administrar usuarios, grupos de seguridad, programación de cargas de trabajo, aplicaciones, automatización, Equipos virtuales y configuración AVD.
+
+Normalmente, un espacio de trabajo VDS se alinea con una sola empresa o (en implementaciones empresariales) con una unidad de negocio.
+
+
+
+==== Sitios VDS
+
+Dentro de una puesta en marcha, se pueden crear varios sitios para representar a distintos proveedores de infraestructura, todos gestionados dentro de una única puesta en marcha.
+
+Esto resulta útil cuando una única empresa o unidad de negocio necesita alojar usuarios y aplicaciones en varias ubicaciones físicas (por ejemplo, Norteamérica y EMEA), suscripciones a hipervisores (para alinear los costes con las unidades de negocio) e incluso hipervisores (por ejemplo, usuarios en Azure, Google Compute y HCI en las instalaciones en vSphere).
+
+
+
+==== Áreas de trabajo AVD
+
+
+WARNING: Existe una diferencia entre un espacio de trabajo "*VDS*" y un espacio de trabajo "*AVD*".
+
+Un área de trabajo AVD es un contenedor lógico que se encuentra dentro de un espacio de trabajo VDS y un sitio VDS. Que se puede utilizar de forma similar a un sitio VDS para segmentar las políticas de gestión y operativas en la misma implementación.
+
+
+
+==== Grupos de hosts AVD
+
+Los grupos de host AVD son contenedores lógicos que se encuentran dentro de un área de trabajo AVD y mantienen a los usuarios de hosts de sesión y grupos de aplicaciones para servidor las sesiones de usuario y controlar el acceso a los recursos individuales.
+
+
+
+==== Grupos de aplicaciones AVD
+
+Cada grupo de host AVD comienza con un único grupo de aplicaciones "Desktop". Se pueden asignar usuarios o grupos a este (u otro) grupo de aplicaciones para permitir el acceso a los recursos del grupo de aplicaciones a los usuarios asignados.
+
+Se pueden crear grupos de aplicaciones adicionales dentro de un grupo de hosts en VDS. Todos los grupos de aplicaciones adicionales son grupos de aplicaciones de "RemoteApp" y proporcionan recursos de RemoteApp en lugar de una experiencia de escritorio de Windows completa.

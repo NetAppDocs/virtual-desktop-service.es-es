@@ -1,0 +1,50 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+La solución de problemas de un error de aplicación es una práctica administrativa común que no implica el propio VDS, pero que cuenta con una gran asistencia de VDS y el nivel de control que proporciona a los administradores. Aunque VDS de NetApp no soluciona estos problemas para los clientes, nuestra experiencia nos permite asesorar a los administradores tras identificar información básica como la siguiente con el fin de profundizar y resolver problemas con los usuarios finales o terceros.
+
+* Nombre del usuario que experimenta el problema
+* Nombre de la aplicación con la que estaba trabajando el usuario
+* El servidor en el que se encontraba la sesión del usuario
+* Pasos para reproducir el problema
+
+
+
+
+== Revisión de las herramientas
+
+
+
+=== Supervisión
+
+Después de identificar el servidor que estaba utilizando el usuario, compruebe su solución de supervisión para validar que el consumo de recursos (CPU y RAM) está dentro de los niveles normales. También puede validar que los requisitos específicos de la aplicación (un servicio especial que causará problemas si no se está ejecutando) son funcionales. En situaciones como esta, pueden haberse activado ajustes avanzados como la supervisión ascendente/descendente de dichos servicios.
+
+
+
+=== Antivirus
+
+Como administrador con acceso tanto a los servidores como a Azure Active Directory, tiene acceso para revisar lo que se ha detectado y qué políticas se han establecido. En el caso de que haya algo imprevisto, puede afectar a la aplicación.
+
+
+
+=== Herramientas adicionales
+
+Algunas aplicaciones requieren componentes adicionales, como una cuenta de servicio que permanece registrada indefinidamente o una VPN en un equipo físico (por ejemplo, un dispositivo de red local o un equipo de fabricación o una utilidad de diagnóstico). En estas situaciones, los errores específicos de la aplicación pueden deberse a algo distinto del modo en que se instaló la aplicación o de configurar sus ajustes.
+
+
+
+=== Ampliación del acceso a terceros
+
+Las aplicaciones o sus bases de datos suelen ser instaladas, configuradas y soportadas por el propio proveedor de software (ISV) o por un tercero experto en configuración, gestión e integraciones del software. En estas situaciones, deseará ampliar el acceso administrativo temporal a estos pasos: link:Management.System_Administration.provide_3rd_party_access.html["Acceso temporal a terceros"]
+
+Se recomienda cerrar estas cuentas de terceros una vez que se haya completado la actualización o la actualización, o bien tras resolver el problema.
+
+En muchos casos, este nivel de solución de problemas requerirá que se tenga un contrato de mantenimiento de software con el ISV. Si esto no está en el lugar, el ISV puede no ayudarle hasta que esté en su lugar.
+
+
+NOTE: También es posible que el problema de la solución de problemas pueda estar relacionado con el hardware (escritorios, portátiles, clientes ligeros, etc.) con el que trabajan los usuarios finales. Un ejemplo podría ser que la actualización del portátil de un usuario podría bloquear la máquina ante un archivo de configuración de cliente ligero, lo que significa que los usuarios finales no pueden acceder a las herramientas que les permiten iniciar sesión en su escritorio virtual. En este caso, es posible que se requiera un contrato de mantenimiento para el hardware antes de que el fabricante le ayude.

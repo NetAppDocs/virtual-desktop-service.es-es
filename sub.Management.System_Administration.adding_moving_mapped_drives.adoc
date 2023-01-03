@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.adding_moving_mapped_drives.html 
+summary: Añadir y mover unidades asignadas 
+keywords:  
+---
+= Añadir y mover unidades asignadas
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+De forma predeterminada, hay tres carpetas compartidas expuestas a las sesiones del usuario final. Estas carpetas se encuentran en la capa de almacenamiento definida. Esto podría estar en el servidor de archivos (TSD1 o D1) o en un servicio de almacenamiento como Azure Files, Azure NetApp Files, NetApp CVO y NetApp CVS.
+
+Para ayudar con claridad, este artículo utilizará un cliente de ejemplo con el código de compañía “NECA”. En este ejemplo se supone que se ha implementado un único servidor TDS1, denominado NECATSD1. Trabajaremos durante el proceso de mover una carpeta a otra VM (llamada “NECAD1”). Esta estrategia se puede utilizar para moverse entre la partición de la misma máquina o a otra máquina, como se muestra en el ejemplo siguiente...
+
+Ubicación de inicio de carpetas:
+
+* Datos: NECATSD1\C:\data\NECA\ (TSD1significa que es el primer servidor Terminal Server y también funciona como servidor de datos)
+* FTP: NECATSD1\C:\FTP\NECA\
+* Inicio: NECATSD1\C:\home\NECA\
+
+
+Ubicación de finalización de carpetas:
+
+* Datos: NECAD1\G:\data\NECA\ (D1significa que es el primer servidor de datos)
+* FTP: El mismo proceso se aplica, sin necesidad de describirlo 3x
+* Inicio: El mismo proceso se aplica, sin necesidad de describirlo 3x
+
+
+
+
+== Agregar disco para G: En NECAD1
+
+. Para poner la carpeta compartida en la unidad E: Tendremos que añadirla a través del hipervisor (por ejemplo, el portal de administración de Azure) y, a continuación, inicializarla y formatearla
++
+image:mapped1.png[""]
+
+. Copie la carpeta existente (en la ruta NECATSD1, C:\) a la nueva ubicación (en NECAD1, G:\)
+. Copie las carpetas de la ubicación original en la nueva ubicación.
++
+image:mapped2.png[""]
+
+
+
+
+
+== Recopilar información del recurso compartido de carpetas original (NECATSD1, C:\data\NECA\)
+
+. Comparta la nueva carpeta con la misma ruta de acceso que la carpeta en la ubicación original.
+. Abra la nueva carpeta NECAD1, G:\data\ y verá una carpeta denominada código de empresa, “NECA” en nuestro ejemplo.
++
+image:mapped3.png[""]
+
+. Tenga en cuenta los permisos de seguridad del recurso compartido de carpeta original:
++
+image:mapped4.png[""]
+
+. Esta es la configuración típica, sin embargo, es importante copiar la configuración original en caso de que haya personalizaciones existentes que tenemos que conservar. Todos los demás permisos de usuario/grupo deben eliminarse del nuevo recurso compartido de carpetas
++
+** SISTEMA:todos los permisos permitidos
+** LocalClientDHAccess (en el equipo local):todos los permisos permitidos
+** ClientDHAccess (en el dominio): Todos los permisos permitidos
+** NECA-All users (en el dominio): Todos los permisos excepto “Control total” permitidos
+
+
+
+
+
+
+== Replicar la ruta de acceso compartida y los permisos de seguridad en la nueva carpeta compartida
+
+. Vuelva a la nueva ubicación (NECAD1, G:\data\NECA\ y comparta la carpeta NECA con la misma ruta de red (excluyendo la máquina), en nuestro ejemplo “neca-data$”
++
+image:mapped5.png[""]
+
+. Para que la seguridad del usuario agregue todos los usuarios, defina sus permisos para que coincidan.
++
+image:mapped6.png[""]
+
+. Elimine cualquier otro permiso de usuario/grupo que ya exista.
++
+image:mapped7.png[""]
+
+
+
+
+
+== Editar directiva de grupo (sólo si la carpeta se ha movido a un equipo nuevo)
+
+. A continuación, edite Drive Maps en el Editor de administración de directivas de grupo. Para Azure AD Domain Services, la asignación se encuentra en:
++
+ “Cloud Workspace Users > User Configuration > Preferences > Windows Settings> Drive Maps”
++
+image:mapped8.png[""]
+
+. Una vez que se actualice la directiva de grupo, la próxima vez que se conecte cada usuario, verán las unidades asignadas que se redirigen a la nueva ubicación.
+. En este punto puede eliminar las carpetas originales, en NECATSD1, C:\.
+
+
+
+
+== Resolución de problemas
+
+Si el usuario final ve las unidades asignadas con una X roja, haga clic con el botón derecho del ratón en la unidad y seleccione desconectar. Cerrar sesión y volver a hacerlo en la unidad aparecerá correctamente.image:mapped9.png[""]

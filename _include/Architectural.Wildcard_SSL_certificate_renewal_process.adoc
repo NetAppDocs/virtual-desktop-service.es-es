@@ -1,0 +1,130 @@
+= Cree una solicitud de firma de certificación (CSR):
+:allow-uri-read: 
+
+
+
+
+== Cree una solicitud de firma de certificación (CSR):
+
+. Conecte a CWMGR1
+. Abra el Administrador de IIS desde Herramientas de administrador
+. Seleccione CWMGR1 y abra certificados de servidor
+. Haga clic en Crear solicitud de certificado en el panel acciones
++
+image:ssl1.png[""]
+
+. Rellene las propiedades de nombre completo en el Asistente para solicitar certificado y haga clic en Siguiente:
++
+.. Nombre común: FQDN de comodín - *.domain.com
+.. Organización: Nombre legalmente registrado de su empresa
+.. Unidad organizativa: «Funciona bien»
+.. Ciudad: Ciudad donde se encuentra la empresa
+.. Estado: Estado donde se encuentra la empresa
+.. País: País donde se encuentra la empresa
++
+image:ssl2.png[""]
+
+
+
+. En la página Propiedades del proveedor de servicios de cifrado, compruebe que aparece lo siguiente y haga clic en Siguiente:
++
+image:ssl3.png[""]
+
+. Especifique un nombre de archivo y busque la ubicación en la que desea guardar la CSR. Si no especifica una ubicación, la CSR estará en C:\Windows\System32:
++
+image:ssl4.png[""]
+
+. Haga clic en Finalizar cuando termine. Usted utilizará este archivo de texto para enviar su pedido al registrador de certificados
+. Póngase en contacto con el apoyo del registrador para comprar un nuevo comodín SSL para su certificado: *.domain.com
+. Después de recibir el certificado SSL, guarde el archivo .cer de certificado SSL en una ubicación de CWMGR1 y siga los pasos que se indican a continuación.
+
+
+
+
+== Instalación y configuración de CSR:
+
+. Conecte a CWMGR1
+. Abra el Administrador de IIS desde Herramientas de administrador
+. Seleccione CWMGR1 y abra ‘certificados del servidor’
+. Haga clic en completar solicitud de certificado en el panel acciones
++
+image:ssl5.png[""]
+
+. Complete los campos siguientes en la solicitud de certificado completa y haga clic en Aceptar:
++
+image:ssl6.png[""]
+
++
+.. Nombre de archivo: Seleccione el archivo .cer que se guardó anteriormente
+.. Nombre descriptivo: *.domain.com
+.. Almacén de certificados: Seleccione Web Hosting o personal
+
+
+
+
+
+
+== Asignando certificado SSL:
+
+. Compruebe que el modo de migración no está habilitado. Esto se puede encontrar en la página Resumen de área de trabajo, en Configuración de seguridad en VDS.
++
+image:ssl7.png[""]
+
+. Conecte a CWMGR1
+. Abra el Administrador de IIS desde Herramientas de administrador
+. Seleccione CWMGR1 y abra ‘certificados del servidor’
+. Haga clic en Exportar en el panel acciones
+. Exporte el certificado en formato .pfx
+. Cree una contraseña. Almacene la contraseña tal y como será necesario para importar o volver a utilizar el archivo .pfx en el futuro
+. Guarde el archivo .pfx en el directorio C:\instals\RDPcert
+. Haga clic en Aceptar y cierre el Administrador de IIS
++
+image:ssl8.png[""]
+
+. Abra DCConfig
+. En Certificado comodín, actualice la ruta de acceso del certificado al nuevo archivo .pfx
+. Introduzca la contraseña .pfx cuando se le solicite
+. Haga clic en Guardar
++
+image:ssl9.png[""]
+
+. Si el certificado es válido durante 30 días más, permita que la automatización aplique el nuevo certificado durante la tarea de acciones diarias de la mañana durante toda la semana
+. Compruebe periódicamente los servidores de la plataforma para verificar que el nuevo certificado se ha propagado. Valide y pruebe la conectividad de usuarios para confirmar.
++
+.. En el servidor, vaya a Herramientas de administración
+.. Seleccione Servicios de Escritorio remoto > Administrador de puerta de enlace de Escritorio remoto
+.. Haga clic con el botón derecho del ratón en el nombre del servidor de puerta de enlace y seleccione Propiedades. Haga clic en la ficha Certificado SSL para revisar la fecha de caducidad
++
+image:ssl10.png[""]
+
+
+
+. Compruebe periódicamente las máquinas virtuales del cliente que ejecutan la función Connection Broker
++
+.. Vaya a Administrador de servidores > Servicios de Escritorio remoto
+.. En Resumen de la implementación, seleccione la lista desplegable tareas y seleccione Editar propiedades de la implementación
++
+image:ssl11.png[""]
+
+.. Haga clic en certificados, seleccione certificado y haga clic en Ver detalles. Se mostrará la fecha de caducidad.
++
+image:ssl12.png[""]
+
++
+image:ssl13.png[""]
+
+
+
+. Si tiene menos de 30 días o prefiere extraer el nuevo certificado inmediatamente, fuerce la actualización con TestVdcTools. Esto se debe realizar durante una ventana de mantenimiento, ya que se perderá la conectividad de los usuarios que hayan iniciado sesión y la conexión con CWMGR1.
++
+.. Vaya a C:\Archivos de programa\CloudWorkspace\TestVdcTools, haga clic en la ficha Operaciones y seleccione el comodín comando Cert-Install
+.. Deje el campo servidor en blanco
+.. Active la casilla Fuerza
+.. Haga clic en Ejecutar comando
+.. Verifique que el certificado se propaga con los pasos indicados anteriormente
++
+image:ssl14.png[""]
+
+
+
+

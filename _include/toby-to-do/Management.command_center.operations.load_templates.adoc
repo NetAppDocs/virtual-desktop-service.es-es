@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.load_templates-ef4af.png[Management.command central.opers.load plantillas ef4af]

@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: Management.Scripted_Events.scripted_events.html 
+summary: Eventos programados 
+keywords:  
+---
+= Eventos programados
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Los eventos con secuencias de comandos proporcionan al administrador avanzado un mecanismo para crear automatización personalizada para el mantenimiento del sistema, alertas de usuario, administración de directivas de grupo u otros eventos. Las secuencias de comandos se pueden designar para ejecutarse como un proceso ejecutable con argumentos o pueden utilizarse como argumentos para un programa ejecutable diferente. Esta funcionalidad permite combinar y anidar scripts para que admitan complejas necesidades de personalización e integración.
+
+Un ejemplo detallado de eventos con guión en acción se encuentra en la link:Management.Applications.application_entitlement_workflow.html["Guía de derechos de aplicaciones"].
+
+Además, Eventos con secuencias de comandos permite la creación de automatización que no requiere un script para procesar, más bien el flujo de automatización es iniciado por un disparador del sistema y ejecuta un programa existente o una utilidad del sistema con argumentos opcionales.
+
+Secuencias de comandos Eventos contiene un *repositorio* de secuencias de comandos y *actividades*. Los scripts contienen las instrucciones sobre *qué* hacer mientras las actividades vinculan los scripts con el desencadenador y el destino apropiado (*cuándo y dónde*) para el script.
+
+
+
+=== Repositorio
+
+La ficha repositorio muestra una lista de todas las secuencias de comandos disponibles para su implementación desde su cuenta VDS. Se trata de un repositorio personalizado que comparten todos los administradores de la instancia de VDS. El acceso a eventos con script se puede administrar en la página _VDS > Admins > Permissions_.
+
+image::sub.Management.Scripted_Events.scripted_events-1ce76.png[Sub.Management.scripted Events.scripted events 1ce76]
+
+
+
+==== Filtro de clientes
+
+Cada organización de administrador de VDS tiene una biblioteca privada de scripts creados y/o personalizados por su organización. Estos scripts se definen como Tipo de secuencia de comandos "Cliente". Secuencias de comandos de cliente a las que cualquier administrador de VDS elimine y edite los permisos de administrador adecuados en la sección Eventos con secuencias de comandos.
+
+
+
+==== Filtro global
+
+NetApp también publica y mantiene una biblioteca de scripts "globales" que es la misma en todas las organizaciones de administradores de VDS. Estos scripts se definen como Tipo de secuencia de comandos "Global". Ningún administrador de VDS puede editar o eliminar los scripts globales. En cambio, los scripts globales se pueden "clonar" y el script resultante es un script de "cliente" que se puede editar y utilizar.
+
+
+
+==== Descargar Script
+
+La posibilidad de descargar el archivo de script asociado a un evento con guión permite al administrador de VDS revisar y editar el archivo de script subyacente antes de la implementación. Nunca es aconsejable ejecutar un script que no entienda por completo.
+
+image::sub.Management.Scripted_Events.scripted_events-02a9b.png[Sub.Management.scripted Events.scripted events 02a9b]
+
+
+
+==== Agregar script
+
+Al hacer clic en el botón _+ Add Script_ se abre una nueva página para crear un script y guardarlo en el repositorio.
+
+image::Management.Scripted_Events.scripted_events-a53fa.png[Management.script Events.scripts eventos a53fa]
+
+Es necesario completar los siguientes campos para crear un nuevo script:
+
+* *Nombre*
+* *Incluir archivo de secuencia de comandos*
++
+** Sí: Permite que un archivo de script (por ejemplo, un archivo .ps1) se cargue y ejecute con el ejecutable "Execute with".
+** No: Elimina el campo "Archivo de secuencia de comandos" (a continuación) y simplemente ejecuta el comando "Ejecutar con" y "argumentos"
+
+
+* *Archivo de secuencia de comandos*
++
+** Si _Include Script File = Yes_ este campo está visible y permite la carga de un archivo de script.
+
+
+* *Ejecutar con*
++
+** Define la ruta del ejecutable que se utiliza para ejecutar el archivo de script o el comando que se ejecuta.
+** Por ejemplo, para ejecutar con PowerShell el valor "Execute with" sería _C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe_
+
+
+* *Argumentos*
++
+** Define cualquier argumento adicional que se ejecute con el comando "se ejecuta con".
+** VDS ofrece algunas variables que tienen en cuenta el contexto que se pueden utilizar, entre las que se incluyen:
++
+*** %Emprescode%: Código de empresa en tiempo de ejecución
+*** %Servername%: Nombre de equipo virtual en tiempo de ejecución
+*** %samaccountname% - <username>.<companycode>
+*** %applicationname%: Nombre de aplicación solicitado en tiempo de ejecución
+*** %Scriptname%: Nombre de secuencia de comandos en tiempo de ejecución
+*** %username% - username@loginidentifier en tiempo de ejecución
+
+
+
+
+* *URL de documentación*
++
+** Este campo permite al escritor de la secuencia de comandos vincularlo a la documentación que se encuentra fuera de VDS, como un sistema de base de conocimientos utilizado por la organización de administradores de VDS.
+
+
+
+
+
+
+==== Editar script
+
+Al hacer clic en el nombre de una secuencia de comandos en el repositorio se abre una nueva página con detalles sobre la secuencia de comandos y un botón de acción para *editar*.
+
+Al editar una secuencia de comandos, se pueden editar los mismos campos que se documentan anteriormente en la link:#add-script["Agregar script"] sección.
+
+En esta página de detalles de scripts, también puede *borrar* el script y *descargar* cualquier archivo de script cargado.
+
+image::Management.Scripted_Events.scripted_events-3e756.png[Management.scripted Events.scripted events 3e756]
+
+
+
+=== Actividades
+
+Las actividades vinculan un script del repositorio a una implementación, un subconjunto de máquinas virtuales y un evento de activación.
+
+image::Management.Scripted_Events.scripted_events-f971c.png[Management.script Events.script events f971c]
+
+
+
+==== Añadir actividad
+
+Al hacer clic en el botón _+ Añadir actividad_ se abre una nueva página para crear una actividad.
+
+image::Management.Scripted_Events.scripted_events-02ef8.png[Management.script Events.script eventos 02ef8]
+
+Es necesario completar los siguientes campos para crear una nueva actividad:
+
+* *Nombre*
+* *Descripción* (opcional)
+* *Despliegue*
+* *Script*
+* *Argumentos*
+* Casilla de verificación *activada*
+* *Ajustes de sucesos*
+
+
+
+
+==== Activadores de actividad
+
+image::sub.Management.Scripted_Events.scripted_events-cdfcd.png[Sub.Management.script Events.script events cdfcd]
+
+* *Instalación de aplicaciones*
++
+** Esto se activa cuando el administrador de VDS hace clic en "+ Add..." En la página _Workspace > Applications_.
+** Esta selección permite seleccionar una aplicación de la Biblioteca de aplicaciones y definir previamente el acceso directo de la aplicación.
+** Las instrucciones detalladas para este activador se resaltan en la link:scriptlibrary.AdobeReader.html#install-script["_Instale la documentación del script de Adobe Reader DC_"].
+
+
+* *Desinstalar aplicaciones*
++
+** Esto se activa cuando el administrador de VDS hace clic en "acciones > Desinstalar" en la página _Workspace > Applications_.
+** Esta selección permite seleccionar una aplicación de la Biblioteca de aplicaciones y definir previamente el acceso directo de la aplicación.
+** Las instrucciones detalladas para este activador se resaltan en la link:scriptlibrary.AdobeReader.html##uninstall-script["_Desinstalar la documentación del script de Adobe Reader DC_"].
+
+
+* *Servidor de clones*
++
+** Esto se activa cuando la función Clone se ejecuta en un equipo virtual existente
+
+
+* *Crear caché*
++
+** Esto se activa cada vez que VDS crea una nueva máquina virtual para aprovisionar una caché de recogida
+
+
+* *Crear cliente*
++
+** Esto se activa cada vez que se agrega una nueva organización de cliente a VDS
+
+
+* *Crear servidor*
++
+** Esto se activa cada vez que VDS crea una nueva máquina virtual
+
+
+* *Crear usuario*
++
+** Esto se activa cada vez que se agrega un nuevo usuario a través de VDS
+
+
+* *Eliminar usuario*
++
+** Esto se activa cuando se elimina un nuevo usuario a través de VDS
+
+
+* *Manual*
++
+** Esto lo activa un administrador de VDS manualmente desde la página "Eventos de secuencia de comandos > actividad"
+
+
+* *Actualización manual de la aplicación*
+* *Programado*
++
+** Esto se activa cuando se alcanza la fecha/hora definida
+
+
+* *Iniciar servidor*
++
+** Esto se activa en una máquina virtual cada vez que arranca
+
+
+
+
+Al hacer clic en _Name_ se abre un cuadro de diálogo en el que se puede editar la actividad.

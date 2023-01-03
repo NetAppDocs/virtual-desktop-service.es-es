@@ -1,0 +1,15 @@
+= Descripción general de los controladores de instalación de AMD Radeon
+:allow-uri-read: 
+
+
+
+
+== Descripción general de los controladores de instalación de AMD Radeon
+
+Este paquete de script instala/desinstala _AMD Radeon Instinct Drivers_ utilizando el gestor de paquetes Chocolatey (https://chocolatey.org/)[] para realizar la implementación. Chocolatey es desplegado por VDS cuando las máquinas virtuales son creadas, pero este script también comprobará e instalará Chocolatey como un requisito previo si falta.
+
+
+
+=== Captura de pantalla de la ventana de diálogo Agregar actividad
+
+image::scriptlibrary.activity.InstallAMDRadeonInstinctDrivers.png[scriptlibrary.activity.InstallAMDRadeonInstinctDrivers]

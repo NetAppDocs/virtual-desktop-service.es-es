@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.load_storage_types-e47d0.png[Management.command central.opers.load tipos de almacenamiento e47d0]

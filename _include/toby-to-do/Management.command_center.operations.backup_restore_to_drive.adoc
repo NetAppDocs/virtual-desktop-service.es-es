@@ -1,0 +1,15 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.backup_restore_to_drive-ea361.png[Management.command Center.opers.backup restore to drive ea361]
+
+image::Management.command_center.operations.backup_restore_to_drive-7ab14.png[Management.command Center.opers.backup restore a unidad 7ab14]
+
+image::Management.command_center.operations.backup_restore_to_drive-0e5fa.png[Management.command central.opers.backup restaurar a la unidad 0e5fa]
+
+image::Management.command_center.operations.backup_restore_to_drive-231c2.png[Management.command Center.opers.backup restore a unidad 231c2]

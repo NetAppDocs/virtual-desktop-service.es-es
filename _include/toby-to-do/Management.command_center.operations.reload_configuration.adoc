@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.reload_configuration-e97f8.png[Management.command centre.opers.reload configuraci n e97f8]

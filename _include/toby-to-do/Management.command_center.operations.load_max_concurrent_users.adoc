@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.load_max_concurrent_users-ebd53.png[Management.command Center.opers.load max usuarios simultáneos ebd53]

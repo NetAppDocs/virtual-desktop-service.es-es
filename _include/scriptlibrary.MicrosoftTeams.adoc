@@ -1,0 +1,18 @@
+= Descripción general de los equipos de Microsoft
+:allow-uri-read: 
+
+
+
+
+== Descripción general de los equipos de Microsoft
+
+Este paquete de secuencias de comandos instala/desinstala _Microsoft Teams_ utilizando el gestor de paquetes Chocolatey (https://chocolatey.org/)[] para realizar la implementación. Chocolatey es desplegado por VDS cuando las máquinas virtuales son creadas, pero este script también comprobará e instalará Chocolatey como un requisito previo si falta.
+
+
+WARNING: Esta instalación de equipos de Microsoft está específicamente configurada para realizar puestas en marcha en un entorno RDS. link:scriptlibrary.MicrosoftTeamsAVD.html["Un script diferente para los equipos de Microsoft"] Se proporciona para implementaciones de AVD.
+
+
+
+=== Ruta de acceso de acceso directo predeterminada
+
+La ruta de acceso directo predeterminada se introducirá a continuación, para esta aplicación, el acceso directo es: `\\shortcut\Microsoft Teams.lnk`

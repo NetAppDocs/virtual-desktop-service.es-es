@@ -1,0 +1,24 @@
+= Visión general del zoom para VDI/AVD
+:allow-uri-read: 
+
+
+
+
+== Visión general del zoom para VDI/AVD
+
+Este paquete de scripts instala/desinstala _Zoom VDI-AVD_ utilizando PowerShell para realizar la implementación.
+
+
+NOTE: El rendimiento del zoom se mejora si la redirección de audio también está activada para el entorno VDI/AVD.
+
+
+
+=== Ruta de acceso de acceso directo predeterminada
+
+La ruta de acceso directo predeterminada se introducirá a continuación, para esta aplicación, el acceso directo es: `\\shortcuts\Zoom VDI.lnk`
+
+
+
+=== Captura de pantalla de la ventana de diálogo Agregar actividad
+
+image::scriptlibrary.activity.InstallZoomVDI-AVD.png[scriptlibrary.activity.InstallZoomVDI AVD]

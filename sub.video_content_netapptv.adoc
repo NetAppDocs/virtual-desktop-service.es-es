@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: video_content_netapptv.html 
+summary: Contenido del vídeo en NetApp TV 
+keywords:  
+---
+= VDS Content en NetApp TV
+:allow-uri-read: 
+
+
+
+
+== VDS, GFC y ANF: La solución para puestos de trabajo cloud puestos en marcha a nivel mundial
+
+Azure NetApp Files aloja un almacenamiento de alto rendimiento, mientras que el servicio de escritorios virtuales y la caché de archivos global gestionan espacios de trabajo y regiones de sitio desde un único panel de control para sus escritorios en la nube implantados globalmente.
+
+image:netapptv1.png["enlace:https://tv.netapp.com/detail/video/6182654694001"]
+
+link:https://tv.netapp.com/detail/video/6182654694001[""]

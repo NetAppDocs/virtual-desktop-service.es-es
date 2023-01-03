@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.generate_email_reports-72145.png[Management.command Center.opers.Generate informes de correo electrónico 72145]

@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.start_server_for_wake_on_demand-d8436.png[Management.command Center.opers.start servidor para activar a petición d8436]

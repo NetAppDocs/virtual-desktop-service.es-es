@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.set_gateway_address-ece6c.png[Management.command center.operations.set dirección de puerta de enlace ece6c]

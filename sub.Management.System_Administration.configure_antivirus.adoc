@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.configure_antivirus.html 
+summary: Consideraciones sobre antivirus 
+keywords:  
+---
+= Aplicar Control y antivirus
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Los administradores de Virtual Desktop Service (VDS) son responsables de supervisar tanto la infraestructura de su plataforma (que consistirá en CWMGR1 como mínimo) como el resto de las infraestructuras y máquinas virtuales (VM). En la mayoría de los casos, los administradores organizan la supervisión de la infraestructura (hipervisor/SAN) directamente con su proveedor de centro de datos/IaaS. Los administradores son responsables de supervisar los servidores de terminal y los servidores de datos, normalmente mediante la implementación de su solución de gestión y supervisión remotas preferida (RMM).
+
+Antivirus es responsabilidad del administrador (tanto para infraestructuras de plataforma como para equipos virtuales de terminal o servidor de datos). Para simplificar este proceso, los servidores VDS para Azure han aplicado Windows Defender de forma predeterminada.
+
+
+NOTE: Al instalar soluciones de terceros, asegúrese de no incluir Firewalls ni cualquier otro componente que pueda interferir con la automatización VDS.
+
+Más específicamente, cuando se aplican de forma predeterminada políticas antivirus muy específicas, esto puede provocar efectos adversos cuando estos agentes antivirus se instalan en un servidor gestionado por Virtual Desktop Service.
+
+Nuestra guía general es que aunque la automatización de la plataforma VDS generalmente no se ve afectada por los productos antivirus o antimalware, es una práctica recomendada agregar excepciones/exclusiones para los siguientes procesos en todos los servidores de plataforma (CWMGR1, RDGpuertas de enlace, HTML5Gpuertas de enlace, FTP, etc.):
+
+....
+*\paexec.exe
+*\paexec_1_25.exe
+C:\Program Files\CloudWorkspace\CwAgent\CwAgent.exe
+C:\Program Files\CloudWorkspace\CW Automation Service\cw.automation.service.exe
+C:\Program Files\CloudWorkspace\CwVmAutomationService\CwVmAutomationService.exe
+C:\Program Files (x86)\Myrtille\bin\Myrtille.Printer.exe
+C:\Program Files (x86)\Myrtille\bin\Myrtille.Services.exe
+....
+Además, recomendamos que se enumeren de forma segura los siguientes procesos en los servidores cliente:
+
+....
+C:\Program Files\CloudWorkspace\CwAgent\paexec.exe
+C:\Program Files\CloudWorkspace\CwAgent\CwAgent.exe
+C:\Program Files\CloudWorkspace\CwRemoteApps\cwra.exe
+C:\Program Files\CloudWorkspace\Pen\Pen.exe
+C:\Program Files\CloudWorkspace\MfaAgent\MFAAgent.exe
+C:\Program Files\CloudWorkspace\MfaAgent\MFAAgentMonitor.exe
+....

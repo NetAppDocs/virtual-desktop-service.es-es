@@ -1,0 +1,772 @@
+= Versión de VDS v6: Thurs., octubre de 6, 2022
+:allow-uri-read: 
+
+
+
+
+== Versión de VDS v6: Thurs., octubre de 6, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Rotación anual de la clave de automatización de datos de rendimiento
+* Este ciclo de versión incluía la rotación anual de tokens de acceso automatizado para el servicio de datos de rendimiento VDS que proporciona Cloud Insights. Este cambio no tuvo un impacto material en los usuarios finales ni en el acceso de administrador de la aplicación web VDS.
+* La acción contenedor de contracción FsLogix se ha eliminado de acciones diarias
+* La acción FsLogix Shrink Container ahora sólo se ejecutará semanalmente, normalmente el domingo 12:01 AM hora local
+* Defecto resuelto: Las referencias de nombres duplicados de la tabla del servidor VDS provocaba un error en las acciones diarias
+* La automatización VDS procesa ahora correctamente las acciones diarias una vez para el nombre del servidor, lo que evita que se produzca el error que dejó de procesar.
+* Aplicación web VDS (versiones anteriores a v6): Quite la opción Eliminar centro de datos para cuentas de administrador no autorizadas
+* Este cambio requiere permiso de edición en el nivel del centro de datos y elimina la opción de eliminación para todas las demás cuentas de usuario de administrador.
+* Mejora de interfaz de usuario: Cuadro de diálogo de confirmación de adición al eliminar objetos de pool de host AVD
+* Defecto resuelto: Error al cargar datos de registro de implementaciones en algunos escenarios
+* Función: Soporte del plano de control local para la API REST de vCloud Director v35
+
+
+
+
+== Versión de VDS V6: Jueves, septiembre de 22, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Defecto resuelto: Fije la caja de cantos al reducir los contenedores de perfiles FSLogix
+* VDS ahora reduce correctamente los contenedores de perfiles en Workspaces utilizando el almacenamiento de Azure Files
+
+
+
+
+== Versión de VDS v6: Viernes, septiembre de 9, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Defecto resuelto: El encogimiento de perfiles FSLogix no funciona en casos de perímetro
+* En determinadas raras configuraciones de espacio de trabajo/directorio, la automatización de reducción del contenedor de perfiles FSLogix en VDS no se pudo ejecutar correctamente
+* Función: Configure automáticamente los nuevos inquilinos de CI para las puestas en marcha
+* VDS ahora implementa automáticamente información de cuenta de Cloud Insights nueva/actualizada a recursos de inquilinos y elimina la necesidad de realizar pasos de configuración manuales
+
+
+
+
+== Versión de VDS v6: Thurs., agosto de 25, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Defecto resuelto: Falta la opción para desactivar el acceso de administrador para un usuario del área de trabajo
+* VDS muestra ahora una opción para deshabilitar el acceso de administrador para un usuario de Workspace al que se ha concedido anteriormente acceso para administrar el área de trabajo
+* Defecto resuelto: No se puede agregar App Group al grupo de hosts de AVD
+* Ahora VDS gestiona correctamente los casos periféricos en los que un pool de host AVD y un espacio de trabajo no coinciden
+
+
+
+
+== Versión de VDS v6: Thurs., agosto de 11, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Sin actualizaciones
+
+
+
+
+== Versión de VDS v6: Thurs., Jul. 28, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Quite el enlace ‘register for Sandbox’ de la página de inicio de sesión de VDS
+
+
+
+
+== Versión de VDS v6: Thurs., Jul. 14, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Función: Nueva configuración opcional para configurar el período de retención de la tabla del rastreador de inicio de sesión de actividad de usuario
+* VDS ahora permite configurar los componentes del plano de control local para controlar el período de retención del registro de actividad de usuario independientemente de otros registros
+* Función: Configure los hosts de sesión AVD para que utilicen la configuración de licencia híbrida de forma predeterminada
+* VDS crea ahora nuevos hosts de sesión AVD utilizando el ajuste ‘licencia híbrida’ de forma predeterminada
+
+
+
+
+== Versión de VDS v6: Jueves, junio 23, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Defecto resuelto: Error en la aplicación web VDS al intentar modificar un evento programado
+* Ahora VDS trata correctamente un problema de sensibilidad de caso al editar objetos de evento con secuencia de comandos
+
+
+
+
+== Versión de VDS v6: Jueves, junio 9, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Sin actualizaciones
+
+
+
+
+== Versión de VDS v6: Thurs., 26 de mayo de 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Sin actualizaciones
+
+
+
+
+== Versión de VDS v6: Thurs., 12 de mayo de 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Sin actualizaciones
+
+
+
+
+== Versión de VDS v6: Lunes, 2 de mayo de 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Sin actualizaciones
+
+
+
+
+== Versión de VDS v6: Jueves, abril 28, 2022
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 28 de abril de 2022 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Diversas mejoras de seguridad proactivas y correcciones de errores
+
+
+
+
+== Versión de VDS v6: Jueves, abril 14, 2022
+
+_Components:_ Virtual Desktop Service v6 _when:_ Jueves 14 de abril de 2022 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Diversas mejoras de seguridad proactivas y correcciones de errores
+
+
+
+
+== Versión de VDS V6: Jueves, marzo 31, 2022
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 31 de marzo de 2022 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Diversas mejoras de seguridad proactivas y correcciones de errores
+
+
+
+
+== Versión de VDS V6: Jueves, marzo 17, 2022
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 17 de marzo de 2022 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Diversas mejoras de seguridad proactivas y correcciones de errores
+
+
+
+
+== Versión de VDS V6: Jueves, marzo 3, 2022
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 3 de marzo de 2022 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Experiencia mejorada al desconectar de un servidor después de utilizar la característica conectar al servidor
+* Diversas mejoras de seguridad proactivas y correcciones de errores
+
+
+
+
+== Versión de VDS v6: Jueves, 17 de febrero de 2022
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 17 de febrero de 2022 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introducción de instancias de aplicación, permitiendo la gestión mejorada de diferentes versiones y ediciones del mismo software
+* Diversas mejoras de seguridad proactivas y correcciones de errores
+
+
+
+
+== Versión de VDS v6: Jueves 3 de febrero de 2022
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 3 de febrero de 2022 de 10pm a 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Mejora de búsqueda de itinerancia de perfil para VDMS
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Versión de VDS v6: Jueves 20 de enero de 2022
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 20 de enero de 2022 de 10pm a 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Corrección de errores para un problema de redirección de vínculos con Azure Cost Estimator (ACE)
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Versión de VDS v6: Jueves 6 de enero de 2022
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 6 de enero de 2022 de 10pm a 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Presentar el informe de restablecimiento de contraseñas de autoservicio tanto para socios como para subsocios
+* Corrección de errores para un problema único de autorización de Azure al principio del proceso de implementación.
+
+
+
+
+== Versión de VDS v6: Jueves 16 de diciembre de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 16 de diciembre de 2021 de 10pm a 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Mejoras en las transmisiones de mensajes SMS secundarias para MFA en caso de que el proveedor de SMS principal no esté disponible
+* Actualice al certificado que se utiliza para el cliente VDS para Windows
+
+
+
+
+== Versión de VDS v6: Jueves 2 de diciembre de 2021 - no hay cambios planificados
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 2 de diciembre de 2021 de 10pm a 11pm Eastern _Impact:_ Ninguno
+
+
+
+== Revisión de VDS v6: Jueves 18 de noviembre de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 18 de noviembre de 2021 de 10pm a 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Corrección de errores para un problema de PAM en el que AAD se basa en ADDS
+
+
+
+
+== Revisión de VDS v6: Lunes 8 de noviembre de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ lunes 8 de noviembre de 2021 de 10pm a 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Active el cuadro de chat de la interfaz de usuario de VDS para todos los usuarios
+* Corrección de errores en una combinación única de selecciones de implementación
+
+
+
+
+== Versión de VDS v6: Domingo 7 de noviembre de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Domingo 7 de noviembre de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introduzca una opción de Command Center para desactivar la reducción automática de perfiles FSLogix
+* Corrección de errores para PAM cuando la implementación se utiliza Azure Active Directory Domain Services (ADDS)
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+=== Estimación de coste de Azure
+
+* Servicios actualizados disponibles en varias regiones
+
+
+
+
+== Versión de VDS v6: Jueves 21 de octubre de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 21 de octubre de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introduzca una opción de Command Center para desactivar la reducción automática de perfiles FSLogix
+* Mejoras en un informe nocturno que ilustra dónde se montan los perfiles FSLogix
+* Actualice a D2S v4 la serie/tamaño de VM predeterminado que se utiliza para CWMGR1 (la VM de la plataforma) en la región de Azure US South Central
+
+
+
+
+== Versión de VDS v6: Jueves 7 de octubre de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 7 de octubre de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Corrección de errores para un escenario en el que una configuración de recopilación específica no guardaba correctamente
+
+
+
+
+== Versión de VDS v6: Jueves 23 de septiembre de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 23 de septiembre de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualice PAM para integrarse con implementaciones basadas en ADDS
+* Mostrar las direcciones URL de RemoteApp en el módulo Workspace para implementaciones que no son de AVD
+* Corrección de errores para un escenario en el que convertir a un usuario final en un administrador de una configuración específica de Active Directory en las instalaciones
+
+
+
+
+== Versión de VDS v6: Jueves 9 de septiembre de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 9 de septiembre de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Versión de VDS v6: Jueves 26 de agosto de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 26 de agosto de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualice a la URL situada en el escritorio de un usuario cuando tenga acceso a la interfaz de usuario de gestión de VDS
+
+
+
+
+== Versión de VDS v6: Jueves 12 de agosto de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 12 de agosto de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Mejoras en la funcionalidad y el contexto de Cloud Insights
+* Gestión de frecuencia de programación de copias de seguridad mejorada
+* Corrección de errores: Resuelva un problema para que el servicio CwVmAutomation compruebe la configuración al reiniciar el servicio
+* Corrección de errores: Resuelve un problema para DCConifg que no permitía guardar configuraciones en determinados escenarios
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Revisión de VDS v6: Martes 30 de julio de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Viernes 30 de julio de 2021 a las 19.00 h – 20.00 h Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualización de la plantilla de implementación para facilitar las mejoras en la automatización
+
+
+
+
+== Versión de VDS v6: Jueves 29 de julio de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Jueves 29 de julio de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Solución de problemas: Resuelva un problema para las implementaciones de VMware en las que CWAgent no se instaló como se pretendía
+* Corrección de errores: Resuelva un problema para las implementaciones de VMware en las que la creación de un servidor con la función de datos no funcionaba según lo previsto
+
+
+
+
+== Revisión de VDS v6: Martes 20 de julio de 2021
+
+_Components:_ Virtual Desktop Service v6 _Cuándo:_ Martes 20 de julio de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Solucione un problema que causa una cantidad anormalmente grande de tráfico API en una configuración determinada
+
+
+
+
+== Versión VDS 6.0: Jueves 15 de julio de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _Cuándo:_ Jueves 15 de julio de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Mejorar la integración de Cloud Insights: Capturar métricas de rendimiento por usuario y mostrarlas en el contexto del usuario
+* Mejoras en la automatización del aprovisionamiento de ANF: Registro automatizado mejorado de NetApp como proveedor en el cliente de Azure
+* Ajuste de fraseo al crear un nuevo espacio de trabajo AVD
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Versión de VDS 6.0: Jueves 24 de junio de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _Cuándo:_ Jueves 4 de junio de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+NOTE: Debido a la programación para el 4 de julio, la próxima versión de VDS será el jueves 7/15.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualizaciones para reflejar que Windows Virtual Desktop (WVD) es ahora Azure Virtual Desktop (AVD)
+* Corrección de errores para el formato de nombre de usuario en las exportaciones de Excel
+* Configuraciones mejoradas para páginas de inicio de sesión HTML5 de Marca personalizada
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+=== Estimadores de costes
+
+* Actualizaciones para reflejar que Windows Virtual Desktop (WVD) es ahora Azure Virtual Desktop (AVD)
+* Las actualizaciones de reflejan el mayor número de servicios/máquinas virtuales para las GPU están disponibles en nuevas regiones
+
+
+
+
+== Versión de VDS 6.0: Jueves 10 de junio de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _Cuándo:_ Jueves 10 de junio de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introducción de una puerta de enlace/punto de acceso HTML5 adicional para máquinas virtuales
+* Mejor enrutamiento de usuario tras eliminar un pool de hosts
+* Corrección de errores para una situación en la que la importación de un pool de hosts no administrado no funcionaba como se esperaba
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Versión de VDS 6.0: Jueves 10 de junio de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _when:_ Jueves 10 de junio de 2021 en 22.00 pm este _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Mejoras técnicas:
+
+* Actualice la versión de .NET Framework instalada en cada máquina virtual de v4.7.2 a v4.8.0
+* Aplicación adicional back-end del uso de https:// y TLS 1.2 o superior entre el equipo del plano de control local y cualquier otra entidad
+* Corrección de errores para la operación de eliminación de copia de seguridad en el Centro de comandos: Ahora hace referencia correctamente a la zona horaria de CWMGR1
+* Cambie el nombre de la acción del Centro de comandos desde el recurso compartido de archivos de Azure al recurso compartido de Azure Files
+* Actualizaciones de la convención de nomenclatura en la Galería de imágenes compartidas de Azure
+* Se mejoró la recogida de número de inicios de sesión de usuarios simultáneos
+* Actualización del tráfico saliente permitido desde CWMGR1, si se restringe el tráfico saliente desde la VM CWMGR1
+* Si no restringe el tráfico saliente de CWMGR1, no tiene que hacer ninguna actualización aquí
+* Si está restringiendo el tráfico saliente de CWMGR1, permita el acceso a vdctoolsapiprimary.azurewebsites.net. Nota: Ya no es necesario permitir el acceso a vdctoolsapi.trafficmanager.net.
+
+
+
+
+=== Mejoras en la puesta en marcha:
+
+* Sentar las bases para la futura compatibilidad de prefijos personalizados en los nombres de servidor
+* Mejora de la automatización de procesos y las redundancias para puestas en marcha de Azure
+* Numerosas mejoras en la automatización de la puesta en marcha para puestas en marcha de Google Cloud Platform
+* Compatibilidad con Windows Server 2019 en implementaciones de Google Cloud Platform
+* Corrección de errores para un subconjunto de escenarios en los que la imagen EVD de Windows 10 20H2
+
+
+
+
+=== Mejoras en la prestación de servicios:
+
+* Presenta la integración de Cloud Insights, ofreciendo datos de rendimiento en streaming para experiencia de usuario, capas de máquinas virtuales y almacenamiento
+* Introduce una función que permite navegar rápidamente a una página VDS visitada recientemente
+* Tiempos de carga de listas (usuarios, grupos, servidores, aplicaciones, etc.) mucho mejores para implementaciones de Azure
+* Introduce la capacidad de exportar fácilmente listas de usuarios, grupos, servidores, administradores, informes, etc.
+* Introduce la capacidad de controlar qué métodos MFA de VDS están disponibles para los clientes (el cliente prefiere el correo electrónico frente a SMS, por ejemplo)
+* Presenta campos "de" personalizables para los correos electrónicos de restablecimiento de contraseñas de autoservicio VDS
+* Presenta la opción de permitir que sólo los correos electrónicos de restablecimiento de contraseñas de autoservicio VDS vayan a los dominios especificados (propiedad de la empresa frente a personal, por ejemplo)
+* Introduce una actualización que puede solicitar al usuario que añada su correo electrónico a su cuenta para que pueda usarlo o restablecer contraseñas de MFA/autoservicio
+* Cuando inicie una puesta en marcha detenida, inicie también todas las máquinas virtuales dentro de la puesta en marcha
+* Mejora del rendimiento para determinar qué dirección IP se asigna a máquinas virtuales de Azure nuevas
+
+
+
+
+== Versión de VDS 6.0: Jueves 27 de mayo de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _when:_ Jueves 27 de mayo de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los servicios de escritorio y aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introduzca Start on Connect para los hosts de sesión agrupados en grupos de hosts de AVD
+* Presentar las métricas de rendimiento del usuario a través de la integración de Cloud Insights
+* Muestre la ficha servidores más de forma destacada en el módulo Workspaces
+* Permita la restauración de una máquina virtual a través de Azure Backup si la máquina virtual se ha eliminado de VDS
+* Manejo mejorado de la funcionalidad conectar a servidor
+* Tratamiento mejorado de las variables al crear y actualizar certificados automáticamente
+* La corrección de errores para un problema en el que hacer clic en una X en un menú desplegable no borraba la selección como se esperaba
+* Fiabilidad mejorada y control automático de errores de los mensajes SMS
+* Actualización a la función de asistencia al usuario: Ahora puede finalizar los procesos de un usuario que ha iniciado sesión
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Versión de VDS 6.0: Jueves 13 de mayo de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _Cuándo:_ Jueves 13 de mayo de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introducción de propiedades adicionales del pool host AVD
+* Presentar una resiliencia de automatización adicional en las implementaciones de Azure en caso de problemas del servicio back-end
+* Incluya el nombre del servidor en la nueva ficha del explorador cuando utilice la función conectar con el servidor
+* Muestra la cantidad de usuarios de cada grupo
+* Flexibilidad mejorada para la función Connect to Server en todas las implementaciones
+* Mejoras adicionales al configurar opciones de MFA para organizaciones y usuarios finales
++
+** Si SMS está configurado como la única opción MFA disponible, se requiere un número de teléfono pero no una dirección de correo electrónico
+** Si el correo electrónico está configurado como la única opción MFA disponible, necesitará una dirección de correo electrónico, pero no un número de teléfono
+** Si el SMS y el correo electrónico están configurados como opciones para la MFA, se requiere una dirección de correo electrónico y un número de teléfono
+
+
+* Mejora de la claridad: Elimine el tamaño de una instantánea de Azure Backup, ya que Azure no devuelve el tamaño de la instantánea
+* Añada la capacidad de eliminar una snapshot en entornos que no sean de Azure
+* Corrección de errores para la creación de grupos de hosts AVD cuando se utilizan caracteres especiales
+* Corrección de errores para la programación de cargas de trabajo para el pool de hosts mediante la pestaña Resources
+* Corrección de errores para un mensaje de error que aparece al cancelar una importación masiva de usuarios
+* Corrección de errores para un posible escenario con la configuración de la aplicación agregada a una colección de aprovisionamiento
+* Actualizar a la dirección de correo electrónico que envía notificaciones/mensajes. Los mensajes se enviarán desde noreply@vds.netapp.com
++
+** Los clientes que tengan seguridad en las direcciones de correo electrónico entrantes deben añadir esta dirección de correo electrónico
+
+
+
+
+
+
+== Versión de VDS 6.0: Jueves 29 de abril de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _Cuándo:_ Jueves 29 de abril de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introduzca la función Iniciar en Connect para grupos de hosts personales AVD
+* Presentar el contexto de almacenamiento en el módulo Workspace
+* Presente la supervisión del almacenamiento (Azure NetApp Files) mediante la integración de Cloud Insights
++
+** Supervisión de IOPS
+** Supervisión de la latencia
+** Supervisión de la capacidad
+
+
+* Registro mejorado para acciones de clonado de equipos virtuales
+* Corrección de errores para un escenario de programación de carga de trabajo específica
+* Corrección de errores para no mostrar la zona horaria de una VM en un escenario determinado
+* Corrección de errores para no cerrar sesión de un usuario AVD en un determinado escenario
+* Actualizaciones para enviar correos electrónicos generados automáticamente y reflejar la Marca de NetApp
+
+
+
+
+== Revisión VDS 6.0: Viernes 16 de abril de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _when:_ Viernes 16 de abril de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los equipos de escritorio y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Resolver un problema con la creación automatizada de certificados que surgió tras la actualización de la noche anterior que mejoró la gestión automatizada de certificados
+
+
+
+
+== Versión de VDS 6.0: Jueves 15 de abril de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _Cuándo:_ Jueves 15 de abril de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Mejoras en la integración de Cloud Insights:
++
+** Tramas omitidas: Recursos de red insuficientes
+** Tramas omitidas: Recursos de cliente insuficientes
+** Trama omitida: Recursos de servidor insuficientes
+** Disco de sistema operativo: Bytes de lectura
+** Disco de sistema operativo: Bytes de escritura
+** Disco de sistema operativo: Lectura de bytes/segundo
+** Disco de sistema operativo: Escritura de bytes/segundo
+
+
+* Actualizar al historial de tareas en el módulo implementaciones: Mejor manejo del historial de tareas
+* Corrección de errores para un problema en el que no se pudo restaurar una copia de seguridad de Azure a CWMGR1 desde un disco en un subconjunto de escenarios
+* Corrección de errores para un problema en el que los certificados no se estaban actualizando y creando automáticamente
+* Corrección de errores para un problema en el que un despliegue detenido no se inició con la suficiente rapidez
+* Actualizar a la lista desplegable Estado al crear un área de trabajo: Elimine el elemento “Nacional” de la lista
+* Actualizaciones adicionales para reflejar la Marca de NetApp
+
+
+
+
+== VDS 6.0: Miércoles 7 de abril de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _when:_ Wednesday, 7 de abril de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Debido a los tiempos de respuesta cada vez más variables de Azure, estamos aumentando la cantidad de tiempo que esperamos para recibir una respuesta al introducir las credenciales de Azure durante el asistente de implementación.
+
+
+
+
+== Versión de VDS 6.0: Jueves 1 de abril de 2021
+
+_Components:_ 6.0 Virtual Desktop Service _Cuándo:_ Jueves 1 de abril de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualizaciones en la integración de Cloud Insights de NetApp: Nuevos puntos de datos en streaming:
++
+** Datos de rendimiento de GPU de NVIDIA
+** Tiempo de ida y vuelta
+** Retardo de entrada del usuario
+
+
+* Actualice la función conectar al servidor para permitir conexiones administrativas a equipos virtuales incluso cuando los equipos virtuales estén configurados para desactivar las conexiones de los usuarios finales
+* Mejoras en la API para activar la configuración y la Marca en una versión posterior
+* Visibilidad mejorada del menú acciones disponible en las conexiones HTML5 a través de las sesiones de usuario Connect to Server o RDS a través de HTML5
+* Aumente la CANT. De caracteres admitidos en el nombre de una actividad con guión Eventos
+* Opciones actualizadas del SO de las colecciones de aprovisionamiento por tipo
++
+** Para AVD y Windows 10, utilice el tipo de colección VDI para asegurarse de que el sistema operativo Windows 10 está presente
+** Para un sistema operativo Windows Server, utilice el tipo de colección Shared
+
+
+* Diversas mejoras proactivas de seguridad y rendimiento
+

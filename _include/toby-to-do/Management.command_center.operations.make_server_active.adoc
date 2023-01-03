@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.make_server_active-6dc9b.png[Management.command Center.opers.make Server active 6dc9b]

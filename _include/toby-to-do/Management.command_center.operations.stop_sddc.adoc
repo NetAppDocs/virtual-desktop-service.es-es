@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.stop_sddc-ce267.png[Management.command centre.Operations.stop sddc ce267]

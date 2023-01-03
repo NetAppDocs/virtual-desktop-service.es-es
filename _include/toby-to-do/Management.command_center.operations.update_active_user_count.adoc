@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.update_active_user_count-4ae14.png[Management.command Center.opers.update recuento de usuarios activos 4a14]

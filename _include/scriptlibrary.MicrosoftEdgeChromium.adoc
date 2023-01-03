@@ -1,0 +1,21 @@
+= Descripción general de Microsoft Edge Chromium
+:allow-uri-read: 
+
+
+
+
+== Descripción general de Microsoft Edge Chromium
+
+Este paquete de secuencias de comandos instala/desinstala _Microsoft Edge Chromium_ mediante el gestor de paquetes Chocolatey (https://chocolatey.org/)[] para realizar la implementación. Chocolatey es desplegado por VDS cuando las máquinas virtuales son creadas, pero este script también comprobará e instalará Chocolatey como un requisito previo si falta.
+
+
+
+=== Ruta de acceso de acceso directo predeterminada
+
+La ruta de acceso directo predeterminada se introducirá a continuación, para esta aplicación, el acceso directo es: `\\shortcuts\Microsoft Edge.lnk`
+
+
+
+=== Captura de pantalla de la ventana de diálogo Agregar actividad
+
+image::scriptlibrary.activity.InstallMicrosoftEdgeChromium.png[scriptlibrary.activity.InstallMicrosoftEdgeChromium]

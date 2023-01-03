@@ -1,0 +1,98 @@
+---
+sidebar: sidebar 
+permalink: Reference.Release_Notes.cws_v5.0_release_notes.html 
+summary: Notas de la versión de VDS de NetApp v5.0 
+keywords:  
+---
+= CWS – Notas de la versión v5.0
+:allow-uri-read: 
+
+
+
+NOTE: No habrá más lanzamientos recurrentes para v5.0 de CWS; todas las versiones se considerarán revisiones.
+
+
+
+== Descripción general
+
+CloudJumper ha lanzado Cloud Workspace Suite 5.0 para una implementación general a partir del cuarto trimestre de 2016. Esta versión incluye una actualización de las API de CWS y de la interfaz Admin Control. La versión es un cambio significativo y no es “compatible con versiones anteriores” a entidades de la versión 4.x.
+
+La versión 4.x continuará siendo compatible hasta que todos los centros de datos definidos de software (SDDC) del partner hayan sido actualizados a la plataforma 5.0, las actualizaciones serán completadas por CloudJumper en coordinación con cada partner y no interrumpirán los servicios existentes. No hay ningún coste de actualización ni de implementación para realizar la transición. CWS 5 sigue siendo compatible con todas las funciones de las versiones anteriores y amplía las nuevas funciones que mejoran la experiencia del administrador y del usuario final, y mejoran aún más la galardonada automatización y orquestación que se introdujo con los lanzamientos anteriores de Cloud Workspace Suite.
+
+Con CWS 5.0, CloudJumper ha reescrito todas las API de plataformas en el formato de API REST y ha retirado completamente las API SOAP anteriores. Esta arquitectura actualizada hará que las mejoras adicionales de CloudJumper sean más fáciles y rápidas, y creará un entorno aún más amigable para que los desarrolladores externos amplíen sus servicios y productos basados en Cloud Workspace.
+
+
+
+== Temas de interés
+
+* Completar la reescritura de la interfaz de usuario/UX
+* Integración con Azure AD
+* Puesta en marcha del autoservicio de Azure SDDC
+* Servicios de aplicaciones
+* Programación de recursos
+* Escalado de servidores en directo – entre plataformas
+* Clonación automatizada de servidores: En varias plataformas
+* Personalizar los recursos compartidos de unidad por cliente
+
+
+
+
+== Principales características
+
+
+
+=== Integración de Azure Active Directory (AD)
+
+* Cree SDDC como Cloud privado Active Directory o utilice Microsoft Azure-AD como servicio
+* Combinar CWS con Office365
+* Admita SSO y MFA basados en Azure
+
+
+
+
+=== Puesta en marcha del autoservicio de Azure SDDC
+
+* Integración completa con Azure
+* Poner en marcha rápidamente nuevos SDDC
+* Implemente clouds empresariales privados en Azure para cualquier carga de trabajo, incluido Cloud Workspace, gestionado: WAAS, servicios de aplicaciones, Private Web App y SharePoint
+
+
+
+
+=== Servicios de aplicaciones
+
+* Implementar silos de aplicaciones para publicar aplicaciones como elementos básicos de servicios aislados
+* Aplicaciones entregadas desde servidores de aplicaciones ‘públicos’ a muchas entidades personalizadas
+* Aplicaciones instaladas en grupos de servidores dedicados de una sola aplicación
+* Aplicaciones independientes del perfil de usuario y los requisitos de la capa de datos
+* Cree servicios de aplicaciones hiperescalables
+* Se pueden combinar varios servicios de aplicaciones en colecciones de usuarios
+* Seguimiento de licencias de CWS e informes de uso
+
+
+
+
+=== Escalado en directo de servidores: Entre plataformas
+
+* Escalado automático inteligente de recursos de servidor/servidores activos
+* Gestione los recursos del servidor con un aumento/reducción dinámicos mientras cambia la carga del usuario
+* Escale automáticamente los recursos del servidor de forma vertical y horizontal según la carga de trabajo varíe
+
+
+
+
+=== Clonación automatizada de servidores, en toda la plataforma
+
+* Aumente automáticamente el servidor hasta que aumente la disponibilidad de recuento según aumente el número de usuarios definido
+* Añade servidores adicionales a los pools de recursos disponibles
+* Combínelo con la capacidad de ampliación de servidor en tiempo real CWS para crear una solución totalmente automatizada
+
+
+
+
+=== Programación de recursos
+
+* Programar los tiempos de servicio por cliente
+* Contención de costes del cloud público
+* Apague los sistemas cuando no estén en uso y vuelva a activarlos en la programación predefinida
+

@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.configure_backup.html 
+summary: Configuración de copia de seguridad 
+keywords:  
+---
+= Configurar la programación de copia de seguridad
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+VDS tiene la capacidad de configurar y gestionar servicios de backup nativos en algunos proveedores de infraestructura como Azure.
+
+
+
+== Azure
+
+En Azure, VDS puede configurar automáticamente los backups con las funcionalidades nativas link:https://azure.microsoft.com/en-us/services/backup/["Backup en el cloud de Azure"] Con almacenamiento redundante local (LRS). El almacenamiento redundante (GRS) se puede configurar en el portal de gestión de Azure si es necesario.
+
+* Se pueden definir políticas de backup individuales para cada tipo de servidor (con recomendaciones predeterminadas). Además, se puede asignar a máquinas individuales una programación independiente (desde su tipo de servidor) desde la interfaz de usuario de VDS. Esta opción se puede aplicar desplazando a la vista Detalle del servidor haciendo clic en el nombre del servidor en la página espacio de trabajo (vea el vídeo siguiente: Configuración de políticas de copia de seguridad individuales).
++
+** SQL Server
++
+*** Backup con 7 copias de seguridad diarias, 5 semanales y 2 mensuales. Aumente los períodos de retención en función de los requisitos del negocio.
+*** Esto es válido tanto para un servidor de datos dedicado como para equipos virtuales VPS adicionales para aplicaciones y bases de datos.
+
+
+** De almacenamiento
++
+*** CWMGR1 – copia de seguridad diaria y mantener 7 días, 5 semanas, 2 meses.
+*** Puerta de enlace RDS: Realice una copia de seguridad semanal y mantenga las 4 horas del día.
+*** Puerta de enlace HTML5: Realice una copia de seguridad semanal y mantenga 4 horas al día.
+
+
+** PowerUser (también conocido como usuario de VDI)
++
+*** No haga una copia de seguridad del equipo virtual ya que los datos deberían almacenarse en un servidor D1 o TSD1.
+*** Tenga en cuenta que algunas aplicaciones almacenan los datos localmente y deben tenerse en cuenta consideraciones especiales si este es el caso.
+*** En caso de fallo de una máquina virtual, es posible integrar un nuevo equipo virtual mediante el procedimiento de clonación de otro. En caso de que solo haya un equipo virtual de VDI (o una compilación única de equipo virtual), es recomendable realizar un backup de dicho equipo virtual para que no se requiera una recompilación completa de dicho equipo virtual.
+*** Si es necesario, en lugar de realizar backups de todos los servidores VDI, puede minimizar los costes mediante la configuración manual de una única máquina virtual para realizar backups directamente en el portal de gestión de Azure.
+
+
+** LA PANTALLA
++
+*** No haga una copia de seguridad del equipo virtual ya que los datos deberían almacenarse en un servidor D1 o TSD1.
+*** Tenga en cuenta que algunas aplicaciones almacenan los datos localmente y deben tenerse en cuenta consideraciones especiales si este es el caso.
+*** En caso de fallo de una máquina virtual, es posible integrar un nuevo equipo virtual mediante el procedimiento de clonación de otro. En caso de que sólo exista un VM de TS, es recomendable realizar una copia de seguridad para que no se requiera una reconstrucción completa de ese equipo virtual.
+*** Si es necesario, en lugar de realizar backups de todos los servidores TS, los costes pueden minimizarse configurando manualmente un único equipo virtual para realizar backups directamente en el portal de gestión de Azure.
+
+
+** TSData
++
+*** Backup con 7 copias de seguridad diarias, 5 semanales y 2 mensuales. Aumente los períodos de retención en función de los requisitos del negocio.
+
+
+
+
+* Las políticas se pueden configurar para realizar backups diarios o semanales; Azure no admite programaciones más frecuentes.
+* En el caso de las programaciones diarias, introduzca la hora preferida para realizar el backup. En el caso de las programaciones semanales, introduzca el día y la hora preferidos para llevar a cabo el backup. Nota: Si se configura la hora exactamente a las 12:00 am, se pueden generar problemas en Azure Backup, de modo que se recomienda hacerlo a las 12:01 am.
+* Definir cuántos backups diarios, semanales, mensuales y anuales debe conservarse.
+
+
+
+
+=== Configuración de los valores predeterminados de la implementación
+
+image:Backup_gif.gif[""]
+
+.Para configurar el backup de Azure en toda la implementación, siga estos pasos:
+. Desplácese hasta la página de detalles implementaciones, seleccione Backup Defaults
+. Seleccione un tipo de servidor en el menú desplegable. Los tipos de servidor son:
++
+....
+Data: these are for LOB/database server types
+Infrastructure: these are platform servers
+Power User: these are for Users with a TS server dedicated solely to them
+TS: these are terminal servers that Users launch sessions on
+TSData: these are servers doubling as terminal and data servers.
+....
++
+** Esto definirá los ajustes de backup globales para toda la puesta en marcha. Si lo desea, pueden anularse y establecerse en un nivel específico del servidor.
+
+
+. Haga clic en la rueda de configuración y, a continuación, en la ventana emergente Editar que aparece.
+. Seleccione los siguientes ajustes de backup:
++
+....
+On or off
+Daily or weekly
+What time of day backups take place
+How long each backup type (daily, weekly, etc.) should be retained
+....
+. Por último, haga clic en Crear (o Editar) Programación para establecer esta configuración.
+
+
+
+
+=== Configurar políticas de backup individuales
+
+.Para aplicar la configuración de copia de seguridad integrada específica del servidor, desplácese a una página de detalles de Workspace.
+. Desplácese hasta la sección servidores y haga clic en el nombre de un servidor
+. Haga clic en Add Schedule
+. Aplique la configuración de copia de seguridad como desee y haga clic en Crear programación
+
+
+
+
+=== Restaurar a partir de un backup
+
+.Para restaurar las copias de seguridad de un equipo virtual determinado, comience por navegar a esa página de detalles de Workspace.
+. Desplácese hasta la sección servidores y haga clic en el nombre de un servidor
+. Desplácese hacia abajo hasta la sección copias de seguridad y haga clic en la rueda para expandir las opciones y, a continuación, seleccione cualquiera de las dos opciones
+. Restaurar en servidor o Restaurar en disco (asociar una unidad del backup para que pueda copiar los datos del backup a la versión existente de la máquina virtual).
+. Continúe con la restauración desde este punto como lo haría en cualquier otro escenario de restauración.
+
+
+
+NOTE: Los costes dependen de la programación que desee mantener y se basa por completo en el coste de backup de Azure. Los precios del backup para las máquinas virtuales se encuentran en la Calculadora de coste de Azure: https://azure.microsoft.com/en-us/pricing/calculator/[]

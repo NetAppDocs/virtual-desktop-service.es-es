@@ -1,0 +1,240 @@
+---
+sidebar: sidebar 
+permalink: Management.Deployments.provisioning_collections.html 
+summary: Resumen de colecciones de aprovisionamiento 
+keywords:  
+---
+= Colecciones de aprovisionamiento
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Provisioning Collections es una función de VDS relacionada con la creación y gestión de imágenes de VM.
+
+.En un nivel elevado, el flujo de trabajo de la recopilación de aprovisionamiento es el siguiente:
+. Se crea un equipo virtual temporal (por ejemplo, "CWT1") basado en una imagen existente (ya sea una imagen en stock o una colección de aprovisionamiento guardada previamente).
+. El administrador de VDS personaliza la máquina virtual temporal para que se ajuste a sus requisitos usando link:Management.Scripted_Events.scripted_events.html["Eventos programados"], link:#customizing-the-temporary-vm["Conéctese al servidor"] o herramientas de gestión de terceros.
+. Una vez personalizado, el administrador de VDS hace clic en *Validar* y activa un proceso de validación que automatiza la finalización de la imagen, ejecutando Sysprep, eliminando la VM temporal y haciendo que la imagen esté disponible para su implementación en VDS.
+
+
+
+
+=== Demostración de vídeo: Gestión de imágenes de máquinas virtuales para hosts de sesiones de VDI
+
+video::rRDPnDzVBTw[youtube]
+
+
+=== Aprovisionamiento de tipos de colecciones
+
+Hay dos tipos distintos de colección con casos de uso específicos, *_Shared_* y *_VDI_*.
+
+
+
+==== Compartido
+
+El tipo *_Shared_* es una colección de imágenes de VM diseñadas para implementar un entorno completo con varias imágenes de VM distintas y funciones de VM distintas.
+
+
+
+==== VDI
+
+El tipo *_VDI_* es una única imagen de VM diseñada para ser utilizada y reutilizada para implementar varias VM idénticas, normalmente usadas para alojar sesiones de usuario. Para todos los tipos de hosts de sesiones AVD, se debe seleccionar el tipo _VDI_, incluso para los hosts que ejecutan varias sesiones por VM.
+
+
+
+=== Crear una nueva colección de aprovisionamiento
+
+Las colecciones de aprovisionamiento se encuentran en la interfaz VDS de cada implementación, en la subpestaña *_Provisioning Collections_*.
+
+image:Management.Deployments.provisioning_collections1.png["anchura = 75%"]
+
+.Para crear una nueva colección
+. Haga clic en el botón *_+ Agregar colección_*.
+. Complete los siguientes campos:
++
+.. *Nombre*
+.. *Descripción* (opcional)
+.. *Tipo* - compartido o VDI
+.. *Sistema operativo*
+.. *Share Drive*: Si esta VM se utilizará para alojar perfiles de usuarios o datos compartidos de la empresa, elija la letra de unidad en la que se alojará. Si no es así, déjelo como "C"
+.. *Caché mínima*: SI usted y VDS crean equipos virtuales para la implementación instantánea, especifique el número mínimo de equipos virtuales en caché que deben mantenerse. Si poner en marcha nuevas máquinas virtuales puede esperar tanto tiempo como necesite el hipervisor para crear una máquina virtual, esta puede configurarse en «0» para ahorrar costes.
+.. *Agregar servidores*
++
+... *Función* (si se ha seleccionado el tipo "compartido")
++
+.... *TS*: Este equipo virtual sólo actuará como host de sesión
+.... *Datos*: Este equipo virtual no alojará ninguna sesión de usuario
+.... *TSData*: Este equipo virtual será tanto el host de sesión como el host de almacenamiento (máximo: Un TSData por espacio de trabajo)
+
+
+... *VM Template* - Seleccione en la lista disponible, tanto las imágenes de hipervisor en stock como las colecciones de aprovisionamiento guardadas anteriormente están disponibles para seleccionar.
++
+.... NOTA: Las imágenes de Windows 7 de Azure Marketplace no tienen habilitada la opción Remoting de PowerShell. Para utilizar una imagen de Windows 7, deberá proporcionar una imagen personalizada en la galería de imágenes compartida con PowerShell Remoting activado.
+.... NOTA: Al utilizar una colección de aprovisionamiento existente, puede actualizar y volver a implementar las imágenes existentes como parte de un proceso de actualización de imágenes planificado.
+
+
+... *Tipo de almacenamiento*: Seleccione la velocidad del disco del sistema operativo considerando el coste y el rendimiento
+... *Unidad de datos*: Opcionalmente, activa un segundo disco conectado a esta imagen, normalmente para la capa de almacenamiento de datos mencionada anteriormente en 2.e.
++
+.... *Tipo de unidad de datos*: Seleccione la velocidad del segundo disco (datos) teniendo en cuenta el coste y el rendimiento
+.... *Tamaño de la unidad de datos (GB)*: Defina el tamaño del segundo disco (datos) teniendo en cuenta la capacidad, el coste y el rendimiento
+
+
+
+
+.. *Agregar aplicaciones*: Seleccione cualquier aplicación de la Biblioteca de aplicaciones que vaya a instalar (1) en esta imagen y (2) gestionada por el derecho de aplicación VDS. (Esto solo es aplicable a implementaciones RDS. Debe permanecer vacío para los espacios de trabajo AVD)
+
+
+
+
+
+
+=== Personalización del equipo virtual temporal
+
+VDS incluye una funcionalidad que permite eliminar el acceso de las máquinas virtuales desde la interfaz web de VDS. De forma predeterminada, se crea una cuenta de administrador local de Windows con una contraseña rotativa y se pasa a la máquina virtual, lo que permite al administrador local de VDS acceder sin necesidad de conocer las credenciales de administrador local.
+
+
+NOTE: La función Connect to Server tiene una configuración alternativa en la que se solicitará al administrador de VDS credenciales con cada conexión. Esta opción puede habilitarse o deshabilitarse si edita la cuenta de administrador de VDS desde la sección "Admin" de VDS. La funcionalidad se llama _Tech Account_ y al activar la casilla se necesitará introducir la credencial al utilizar Connect to Server, al desactivar esta casilla se activará la inyección automática de las credenciales de administración locales de Windows en cada conexión.
+
+El administrador de VDS simplemente debe conectarse a la máquina virtual temporal mediante Connect to Server u otro proceso y realizar los cambios necesarios para cumplir sus requisitos.
+
+
+
+=== Validación de la colección
+
+Una vez completada la personalización, el administrador de VDS puede cerrar la imagen y Sysprep haciendo clic en *Validar* en el icono acciones.
+
+image::Management.Deployments.provisioning_collections-ed97e.png[Management.Deployments.provisioning colecciones ed97e]
+
+
+
+=== Uso de la colección
+
+Una vez finalizada la validación, el estado de la colección de aprovisionamiento cambiará a *disponible*. Desde dentro de la colección de aprovisionamiento, el administrador de VDS puede identificar el nombre *plantilla de VM* que se utiliza para identificar esta colección de aprovisionamiento a través de VDS.
+
+image::Management.Deployments.provisioning_collections-f5a49.png[Management.Deployments.provisioning colecciones f5a49]
+
+
+
+==== Nuevo servidor
+
+En la página Workspace > Servers, se puede crear un nuevo servidor y el cuadro de diálogo solicitará la plantilla de VM. El nombre de la plantilla de arriba se encuentra en esta lista:
+
+image:Management.Deployments.provisioning_collections-fc8ad.png["anchura = 75%"]
+
+
+TIP: VDS proporciona una forma sencilla de actualizar los hosts de sesión en un entorno RDS mediante Provisioning Collections y la funcionalidad *Add Server*. Este proceso se puede realizar sin afectar a los usuarios finales y se puede repetir una y otra vez con las actualizaciones de imagen subsiguientes, basándose en las iteraciones de imagen anteriores. Para obtener un flujo de trabajo detallado de este proceso, consulte link:#rds-session-host-update-process["*Proceso de actualización del host de sesión de RDS*"] a continuación.
+
+
+
+==== Nueva piscina de host AVD
+
+En la página Workspace > AVD > Host Pools, se puede crear un nuevo grupo de hosts AVD haciendo clic en *+ Agregar grupo de hosts* y el cuadro de diálogo solicitará la plantilla VM. El nombre de la plantilla de arriba se encuentra en esta lista:
+
+image::Management.Deployments.provisioning_collections-ba2f5.png[Management.Deployments.provisioning colecciones ba2f5]
+
+
+
+==== Nuevos host(s) de sesión AVD
+
+En la página Workspace > AVD > Host Pool > Session hosts, se pueden crear nuevos hosts de sesiones AVD haciendo clic en *+ Add Session Host* y el cuadro de diálogo solicitará la plantilla VM. El nombre de la plantilla de arriba se encuentra en esta lista:
+
+image::Management.Deployments.provisioning_collections-ba5e9.png[Management.Deployments.provisioning colecciones ba5e9]
+
+
+TIP: VDS proporciona una forma sencilla de actualizar los hosts de sesión en un grupo de hosts AVD mediante Provisioning Collections y la funcionalidad *Add Session Host*. Este proceso se puede realizar sin afectar a los usuarios finales y se puede repetir una y otra vez con las actualizaciones de imagen subsiguientes, basándose en las iteraciones de imagen anteriores. Para obtener un flujo de trabajo detallado de este proceso, consulte link:#AVD-session-host-update-process["*Proceso de actualización del host de sesión AVD*"] a continuación.
+
+
+
+==== Nuevo espacio de trabajo
+
+En la página Workspaces, se puede crear un espacio de trabajo nuevo haciendo clic en *+ Nuevo espacio de trabajo* y el cuadro de diálogo solicitará la colección Provisioning. El nombre del conjunto de aprovisionamiento compartido se encuentra en esta lista.
+
+image::Management.Deployments.provisioning_collections-5c941.png[Management.Deployments.provisioning colecciones 5c941]
+
+
+
+==== Nueva colección de aprovisionamiento
+
+En la página implementación > Colección de aprovisionamiento, se puede crear una nueva colección de aprovisionamiento haciendo clic en *+ Agregar colección*. Al agregar servidores a esta colección, el cuadro de diálogo le pedirá la plantilla de VM. El nombre de la plantilla de arriba se encuentra en esta lista:
+
+image::Management.Deployments.provisioning_collections-9eac4.png[Management.Deployments.provisioning colecciones 9eac4]
+
+
+
+== Anexo 1: Hosts de sesiones de RDS
+
+
+
+=== Proceso de actualización del host de sesión RDS
+
+VDS proporciona una forma sencilla de actualizar los hosts de sesión en un entorno RDS mediante Provisioning Collections y la funcionalidad *Add Server*. Este proceso se puede realizar sin afectar a los usuarios finales y se puede repetir una y otra vez con las actualizaciones de imagen subsiguientes, basándose en las iteraciones de imagen anteriores.
+
+.El proceso de actualización del host de sesión de RDS es el siguiente:
+. Cree una nueva colección de aprovisionamiento VDI, personalice y valide la colección siguiendo las instrucciones anteriores.
++
+.. Por lo general, esta recopilación de aprovisionamiento se realizará en la plantilla de equipo virtual anterior, emulando un proceso "abierto, guardado como".
+
+
+. Una vez que la colección de aprovisionamiento se ha validado, vaya a la página _Workspace > Servers_, haga clic en *+ Add Server*
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png[Management.Deployments.provisioning recolecciones.hosts de sesión rds e8204]
+
+. Seleccione *TS* como *función de servidor*
+. Seleccione la última *plantilla VM*. Realice las selecciones *Tamaño de máquina* y *Tipo de almacenamiento* adecuadas en función de sus requisitos. Deje *Unidad de datos* sin marcar.
+. Repita esto para el número total de hosts de sesión necesarios para el entorno.
+. Haga clic en *Agregar servidor*, los hosts de sesión se construirán en función de la plantilla de VM seleccionada y comenzarán a conectarse en tan sólo 10-15 minutos (dependiendo del hipervisor).
++
+.. Tenga en cuenta que los hosts de sesión que se encuentran actualmente en el entorno se retirará en última instancia después de que estos nuevos hosts se encuentren en línea. Planifique la creación de suficientes hosts nuevos para ser suficientes para admitir toda la carga de trabajo en este entorno.
+
+
+. Cuando un nuevo host se conecta, la configuración predeterminada es permanecer en *no permitir nuevas sesiones*. Para cada host de sesión, se puede utilizar el conmutador *permitir nuevas sesiones* para administrar qué hosts pueden recibir nuevas sesiones de usuario. Para acceder a esta configuración, edite la configuración de cada servidor host de sesión individual. Una vez que se han creado suficientes hosts nuevos y se ha confirmado la funcionalidad, este ajuste se puede gestionar tanto en los hosts nuevos como antiguos para enrutar todas las sesiones nuevas a los hosts nuevos. Los hosts antiguos, con *permitir nuevas sesiones* establecido en *desactivado*, pueden seguir ejecutándose y alojar sesiones de usuario existentes.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png[Management.Deployments.provisioning Colecciones.hosts de sesión rds 726d1]
+
+. A medida que los usuarios cierran la sesión del host antiguo y sin nuevas sesiones de usuario que se unan a los hosts antiguos, se pueden eliminar los hosts antiguos donde *sesiones = 0* haciendo clic en el icono *acciones* y seleccionando *borrar*.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png[Management.Deployments.provisioning Colecciones.host de sesión rds 45d32]
+
+
+
+
+
+== Addendum 2 - anfitriones de la sesión del AVD
+
+
+
+=== Proceso de actualización del host de sesión de AVD
+
+VDS proporciona una forma sencilla de actualizar los hosts de sesión en un grupo de hosts AVD mediante Provisioning Collections y la funcionalidad *Add Session Host*. Este proceso se puede realizar sin afectar a los usuarios finales y se puede repetir una y otra vez con las actualizaciones de imagen subsiguientes, basándose en las iteraciones de imagen anteriores.
+
+.El proceso de actualización del host de sesión de AVD es el siguiente:
+. Cree una nueva colección de aprovisionamiento VDI, personalice y valide la colección siguiendo las instrucciones anteriores.
++
+.. Por lo general, esta recopilación de aprovisionamiento se realizará en la plantilla de equipo virtual anterior, emulando un proceso "abierto, guardado como".
+
+
+. Una vez que la colección de aprovisionamiento se ha validado, desplácese a la página _Workspace > AVD > Host Pools_ y haga clic en el nombre del grupo de hosts
+. Desde la página _Host Pool > Session hosts_, haga clic en *+ Add Session Host*
++
+image::Management.Deployments.provisioning_collections-9ed95.png[Management.Deployments.provisioning colecciones 9ed95]
+
+. Seleccione la última *plantilla VM*. Realice las selecciones *Tamaño de máquina* y *Tipo de almacenamiento* adecuadas en función de sus requisitos.
+. Introduzca el *número de instancias* igual al número total de hosts de sesión requeridos. Normalmente, este número será el mismo que el que se encuentra actualmente en el pool de hosts, pero puede ser cualquier número.
++
+.. Tenga en cuenta que los hosts de sesión que se encuentran actualmente en el pool de hosts se retirará en última instancia después de que estos nuevos hosts se conecten. Planificar el *número de instancias* introducido para que sea suficiente para soportar toda la carga de trabajo en este grupo de hosts.
+
+
+. Haga clic en *Guardar*, los hosts de sesión se construirán en función de la plantilla de VM seleccionada y comenzarán a conectarse en tan sólo 10-15 minutos (dependiendo del hipervisor).
+. Cuando un nuevo host se conecta, la configuración predeterminada es permanecer en *no permitir nuevas sesiones*. Para cada host de sesión, se puede utilizar el conmutador *permitir nuevas sesiones* para administrar qué hosts pueden recibir nuevas sesiones de usuario. Una vez que se han creado suficientes hosts nuevos y se ha confirmado la funcionalidad, este ajuste se puede gestionar tanto en los hosts nuevos como antiguos para enrutar todas las sesiones nuevas a los hosts nuevos. Los hosts antiguos, con *permitir nuevas sesiones* establecido en *desactivado*, pueden seguir ejecutándose y alojar sesiones de usuario existentes.
++
+image::Management.Deployments.provisioning_collections-be47e.png[Management.Deployments.provisioning colecciones b47e]
+
+. A medida que los usuarios cierran la sesión del host antiguo y sin nuevas sesiones de usuario que se unan a los hosts antiguos, se pueden eliminar los hosts antiguos donde *sesiones = 0* haciendo clic en el icono *acciones* y seleccionando *borrar*.
++
+image::Management.Deployments.provisioning_collections-cefb9.png[Management.Deployments.provisioning colecciones cefb9]
+
+

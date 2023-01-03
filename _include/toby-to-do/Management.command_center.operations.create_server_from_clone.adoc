@@ -1,0 +1,17 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.create_server_from_clone-098a1.png[Management.command Center.opers.create Server a partir de la clonación 098a1]
+
+image::Management.command_center.operations.create_server_from_clone-2b8e0.png[Management.command Center.opers.create servidor a partir del clon 2b8e0]
+
+image::Management.command_center.operations.create_server_from_clone-b252d.png[Management.command Center.Operations.create servidor a partir del clon b252d]
+
+image::Management.command_center.operations.create_server_from_clone-3b909.png[Management.command Center.Operations.create servidor a partir del clon 3b909]
+
+image::Management.command_center.operations.create_server_from_clone-68dc9.png[Management.command Center.opers.create Server a partir de la clonación 68dc9]

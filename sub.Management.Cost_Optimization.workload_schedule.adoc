@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: Management.Cost_Optimization.workload_schedule.html 
+summary: Guía paso a paso para implementar aplicaciones a usuarios finales en VDS 
+keywords:  
+---
+= Optimización de recursos
+:allow-uri-read: 
+
+
+
+
+== Programación de las cargas de trabajo
+
+La programación de la carga de trabajo es una función que puede programar la ventana de tiempo en la que está activo el entorno.
+
+La programación de las cargas de trabajo puede configurarse en "Always On", "Always Off" o "Scheduled". Cuando se establece en "programado", las horas de encendido y apagado se pueden establecer de manera tan granular como una ventana de hora diferente para cada día de la semana.
+
+image:Workload_schedule1.png[""]
+
+Cuando se programa el apagado, ya sea a través de "Always Off" o "Scheduled", todas las máquinas virtuales de inquilino se apagarán. Los servidores de la plataforma (como CWMGR1) permanecerán activos para facilitar la funcionalidad como activar a petición.
+
+El programa de cargas de trabajo funciona en combinación con otras funciones de optimización de recursos, como Live Scaling y Wake on Demand.
+
+
+
+== Activar a petición
+
+Wake on Demand (WOD) es una tecnología pendiente de patente que puede activar los recursos de VM adecuados para un usuario final para facilitar el acceso desatendido 24/7, incluso cuando se ha programado que los recursos estén inactivos.
+
+
+
+=== WOD para servicios de Escritorio remoto
+
+En RDS, el cliente de Windows VDS cuenta con la integración de activación a petición incorporada y puede activar los recursos apropiados sin ninguna acción adicional del usuario final. Simplemente, necesitan iniciar su inicio de sesión normal y el cliente les notificará un breve retraso en el que se activan las máquinas virtuales. Este cliente (y, por lo tanto, esta función de activación automática a petición) sólo está disponible cuando se conecta desde un dispositivo Windows a un entorno RDS.
+
+El cliente web VDS incluye una funcionalidad similar para las implementaciones RDS. VDS Web Client se encuentra en: link:https://login.cloudworkspace.com[""]
+
+La funcionalidad Wake on Demand no está integrada en el cliente de Microsoft RD (para Windows o cualquier otra plataforma) ni en ningún otro cliente de RD de terceros.
+
+
+
+=== Active On Demand para Azure Virtual Desktop
+
+En AVD, los únicos clientes que se pueden utilizar para conectar son Microsoft proporcionados y, por lo tanto, no contienen la funcionalidad Wake on Demand.
+
+VDS sí incluye una función de activación a petición de autoservicio para AVD a través del cliente web VDS. El cliente web puede utilizarse para activar los recursos adecuados y, a continuación, la conexión se puede iniciar a través del cliente AVD estándar.
+
+.Para activar los recursos de VM en AVD:
+. Conéctese al cliente web VDS en link:https://login.cloudworkspace.com[""]
+. Inicie sesión con las credenciales del usuario AVD
++
+** Un mensaje de advertencia le indicará _"que tiene los servicios AVD de Microsoft disponibles. Haga clic AQUÍ para ver el estado e iniciar grupos de hosts sin conexión."_
+
+
+. Después de hacer clic en "_HERE_" verá una lista de grupos de hosts disponibles junto con un enlace a "Click to Start" bajo la columna status
++
+image:Wake_on_Demand_h5_1.png[""]
+
+. _Haga clic en Inicio_ el enlace y espere 1-5 minutos para que el estado cambie a "en línea" y muestre un icono de estado verde
+. Conéctese a AVD utilizando el proceso normal
+
+
+
+
+== Escalado en directo
+
+Live Scaling funciona junto con la programación de cargas de trabajo mediante la gestión del número de hosts de sesiones en línea durante el tiempo activo programado, tal y como se configura en la programación de cargas de trabajo. Cuando la opción esté programada para estar sin conexión, Live Scaling no controlará la disponibilidad del host de sesión. El escalado en vivo solo afecta a usuarios compartidos y servidores compartidos en entornos RDS y AVD, los usuarios de VDI y los equipos virtuales de VDI quedan excluidos de estos cálculos. El resto de tipos de equipos virtuales no se ven afectados.
+
+
+NOTE: El ajuste AVD _Load equilibrador type_ interactúa con esta configuración, por lo que debe tenerse cuidado al elegir ese ajuste también. El ahorro de costes se maximiza con un amplio primer tipo mientras el rendimiento del usuario final se maximiza con un amplio primer tipo.
+
+Activación de escala en directo sin opciones marcadas, el motor de automatización seleccionará automáticamente los valores para el número de servidores con tecnología adicional, usuarios compartidos por servidor y usuarios compartidos máximos por servidor.
+
+* El _Number of Extra Powered on Servers_ se establece por defecto en 0, lo que significa que 1 servidor ejecutará 24/7.
+* El _Shared Users per Server_ toma por defecto el número de usuarios de la compañía dividido por el número de servidores.
+* El valor predeterminado de _Max Shared Users per Server_ es infinito.
+
+
+Live Scaling activa los servidores cuando los usuarios inician sesión y los desactiva a medida que los usuarios cierran la sesión.
+
+La activación de un servidor adicional se activa automáticamente una vez que el total de usuarios activos alcanza el número de usuarios compartidos por servidor multiplicado por el número total de servidores alimentados.
+
+ e.g. With 5 Shared Users per Server set (this is the default # we’ll use for all examples in this article) and 2 servers running, a 3rd server won’t be powered up until server 1 & 2 both have 5 or more active users. Until that 3rd server is available, new connections will be load balanced all available servers. In RDS and AVD Breadth mode, Load balancing sends users to the server with the fewest active users (like water flowing to the lowest point). In AVD Depth mode, Load balancing sends users to servers in a sequential order, incrementing when the Max Shared Users number is reached.
+Live Scaling también desactivará servidores para ahorrar costes. Cuando un servidor tiene 0 usuarios activos y otro servidor tiene capacidad disponible por debajo de _Shared Users per Server_ se apaga el servidor vacío.
+
+El encendido del siguiente servidor puede tardar unos minutos. En determinadas situaciones, la velocidad de los inicios de sesión puede superar la disponibilidad de nuevos servidores. Por ejemplo, si 15 personas inician sesión en 5 minutos, todos desembarcaran en el primer servidor (o se les deniega una sesión) mientras se inician la segunda y la tercera. Existen dos estrategias que se pueden utilizar para mitigar la sobrecarga de un único servidor en este escenario:
+
+. Active _Number of Extra Powered on Servers_ para que los servidores adicionales estén activados y disponibles para aceptar conexiones y permitir que la plataforma acelere servidores adicionales.
++
+.. Cuando se activa, el número se agrega a la necesidad calculada. Por ejemplo, si se establece en 1 servidor adicional (y con 6 usuarios conectados), dos servidores estarían activos debido al número de usuarios, más un tercero debido al valor _Extra Powered on Servers_.
+
+
+. Active _Max Shared Users per Server_ para colocar un límite mínimo en el número de usuarios permitidos por servidor. Se rechazarán las conexiones nuevas que superen este límite, el usuario final recibirá un mensaje de error y deberá volver a intentarlo dentro de unos minutos una vez que esté disponible el servidor adicional. Si se establece, este número también define la profundidad de los servidores compartidos AVD.
++
+.. Suponiendo que el delta entre _Shared Users per Server_ y _Max Shared Users per Server_ sea apropiado, los nuevos servidores deberían estar disponibles antes de que se alcance el máximo en todas las situaciones más extremas (tormentas de inicio de sesión inusualmente grandes).
+
+
+
+
+
+
+== Escalado de recursos de equipos virtuales
+
+El escalado de recursos de VM es una función opcional que puede cambiar el tamaño y la cantidad de los equipos virtuales del host de sesión en un entorno.
+
+Cuando se activa, VDS calcula el tamaño y la cantidad adecuados de las máquinas virtuales host de sesión en función de los criterios seleccionados. Estas opciones incluyen: Usuarios activos, usuarios con nombre, carga de servidor y fijo.
+
+image:VMResource2.png[""]
+
+El tamaño de los equipos virtuales se incluye con la familia de equipos virtuales seleccionada en la interfaz de usuario, que se puede cambiar mediante la lista desplegable. (Por ejemplo, _Standard DV3 Family_ en Azure)
+
+image:VMResource1.png[""]
+
+
+
+=== Escalado basado en usuarios
+
+
+NOTE: La siguiente función se comporta igual para "usuarios activos" o "recuento de usuarios". El recuento de usuarios es un simple recuento de todos los usuarios activados con un escritorio VDS. Active Users es una variable calculada basada en las 2 semanas anteriores de los datos de sesión de usuario.
+
+Al calcular en función de los usuarios, el tamaño (y la cantidad) de los equipos virtuales del host de sesión se calculan en función de los requisitos de RAM y CPU definidos. El administrador puede definir los GB de la RAM y el número de núcleos vCPU por usuario junto con recursos no variables adicionales.
+
+En la siguiente captura de pantalla, a cada usuario se le asignan 2 GB de RAM y 1/2 de un núcleo vCPU. Además, el servidor comienza con 2 núcleos vCPU y 8 GB de RAM.
+
+image:VMResource3.png[""]
+
+Además, el administrador puede definir el tamaño máximo que puede alcanzar una máquina virtual. Cuando se alcance, los entornos se escalarán horizontalmente añadiendo hosts adicionales de sesiones de equipos virtuales.
+
+En la siguiente captura de pantalla, cada equipo virtual está limitado a 32 GB de RAM y 8 núcleos de vCPU.
+
+image:VMResource4.png[""]
+
+Con todas estas variables definidas, VDS puede calcular el tamaño y la cantidad adecuados de los equipos virtuales host de sesión, lo que simplifica en gran medida el proceso de mantenimiento de la asignación de recursos adecuada, incluso cuando se añaden y se quitan los usuarios.
+
+
+
+=== Escalado basado en la carga de servidor
+
+Cuando se calcula en función de la carga del servidor, el tamaño (y la cantidad) de los equipos virtuales del host de sesión se calcula en función de la tasa media de utilización de CPU/RAM observada por VDS durante el período de dos semanas anterior.
+
+Cuando se supera el umbral máximo, VDS aumenta el tamaño o aumenta la cantidad para recuperar el uso medio dentro del intervalo.
+
+Al igual que el escalado basado en el usuario, se puede definir la familia de equipos virtuales y el tamaño máximo de estos.
+
+image:VMResource6.png[""]
+
+
+
+== Otros recursos activos
+
+La programación de cargas de trabajo no controla los servidores de la plataforma como CWMGR1, ya que son necesarios para activar la funcionalidad Wake on Demand y facilitar otras tareas de la plataforma y debe ejecutar 24/7 para un funcionamiento ambiental normal.
+
+Se puede obtener un ahorro adicional desactivando todo el entorno, pero sólo se recomienda para entornos que no sean de producción. Se trata de una acción manual que se puede realizar en la sección implementaciones de VDS. Para devolver el entorno a su estado normal, también es necesario realizar un paso manual en la misma página.
+
+image:Stop_Deployment.png[""]
+image:Start_deployment.png[""]

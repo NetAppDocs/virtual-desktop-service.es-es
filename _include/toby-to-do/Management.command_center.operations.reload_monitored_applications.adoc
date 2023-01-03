@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.reload_monitored_applications-6d616.png[Management.command central.operations.recargue las aplicaciones monitorizadas 6d616]

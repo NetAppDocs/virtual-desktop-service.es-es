@@ -1,0 +1,53 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+En ocasiones, los administradores de VDS necesitan credenciales a nivel de dominio para gestionar el entorno. En VDS, se denominan cuentas de "nivel 3" o ".tech".
+
+Estas instrucciones muestran cómo se pueden crear estas cuentas con los permisos correspondientes.
+
+
+
+=== Controlador de dominio de Windows Server
+
+Al ejecutar un controlador de dominio alojado internamente (o un DC local vinculado a Azure a través de una ruta VPN/Express), las cuentas .tech se pueden realizar directamente en Active Directory Manager.
+
+. Conéctese al controlador de dominio (CWMGR1, DC01 o a la VM existente) con una cuenta de administrador de dominio (.tech).
+. Cree un nuevo usuario (si es necesario).
+. Añada el usuario al grupo de seguridad "técnicos de nivel 3"
++
+image::Management.System_Administration.create_domain_admin_account-9ee17.png[Management.System Administration.create dominio admin account 9ee17]
+
++
+.. Si falta el grupo de seguridad "técnicos de nivel 3", cree el grupo y haga que sea miembro del grupo de seguridad "CW-Infrastructure".
++
+image::Management.System_Administration.create_domain_admin_account-0fc27.png[Management.System Administration.create domain admin account 0fc27]
+
+
+
+
+
+
+NOTE: Agregar “.tech” al final del nombre de usuario es una práctica recomendada para ayudar a delinear las cuentas de administración de las cuentas de usuario final.
+
+
+
+=== Servicios de dominio de Azure AD
+
+Si se ejecuta en Azure AD Domain Services o se administra un usuario en Azure AD, estas cuentas pueden gestionarse (es decir, cambiar contraseña) en el portal de gestión de Azure como un usuario normal de Azure AD.
+
+Se pueden crear nuevas cuentas, si se añaden a estos roles, se deberán otorgar los permisos necesarios:
+
+. Administradores de DC de AAD
+. ClientDHAccess
+. Administrador global en el directorio.
+
+
+
+NOTE: Agregar “.tech” al final del nombre de usuario es una práctica recomendada para ayudar a delinear las cuentas de administración de las cuentas de usuario final.
+
+image:l33.png[""]

@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.azure_vcpu_core_quota.html 
+summary: Guía paso a paso para solucionar los problemas de la cuota central de vCPU de Azure 
+keywords:  
+---
+= Cuota de Azure vCPU Core
+:allow-uri-read: 
+
+
+
+
+== Ver cuota actual
+
+. Inicie sesión en la consola de Azure, desplácese hasta el módulo Suscripciones y haga clic en cuotas. A continuación, seleccione todos los proveedores del menú desplegable proveedores, seleccione Mostrar todo en el menú desplegable que se encuentra a la derecha y seleccione la región de Azure en la que se implementa Cloud Workspace.
++
+image:quota1.png[""]
+
+. A continuación, verá cuánto consume con respecto a ¿cuánto cuota tiene disponible? En la siguiente imagen, CloudJumper consume 42 CPU de las 350 CPU disponibles para la familia BS de equipos virtuales. Aumentando la cuota
++
+image:quota2.png[""]
+
+. Si desea aumentar la cuota, haga clic en solicitar aumento y díganos qué desea aumentar (99 % del tiempo que utilizará esto para calcular/CPU).
++
+image:quota3.png[""]
+
+. Seleccione la región en la que se ha implementado Cloud Workspace y la familia de equipos virtuales para la que desea aumentar la cuota.
++
+image:quota4.png[""]
+
+. Introduzca su información de contacto y haga clic en Crear para enviar la solicitud a Microsoft. Por lo general, son MUY rápidas en incrementar esto.
+

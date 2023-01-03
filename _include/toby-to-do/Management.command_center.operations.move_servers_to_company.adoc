@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.move_servers_to_company-cec7b.png[Management.command Center.Operations.Move Server to company cec7b]

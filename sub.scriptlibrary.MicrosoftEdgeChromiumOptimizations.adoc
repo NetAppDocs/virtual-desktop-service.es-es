@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.MicrosoftEdgeChromiumOptimizations.html 
+summary: 'Documentación de secuencias de comandos: Optimizaciones de cromo de Microsoft Edge' 
+keywords:  
+---
+= Documentación de eventos con guión: Optimizaciones de cromo de Microsoft Edge
+:allow-uri-read: 
+
+
+
+
+== Descripción general de scripts globales
+
+VDS de NetApp incluye una biblioteca de eventos predefinidos con secuencias de comandos que se pueden usar directamente en entornos VDS y/o duplicados y se pueden usar como elementos básicos para eventos personalizados con secuencias de comandos.
+
+Para esta aplicación, este artículo trata tanto la acción instalar/habilitar como la acción desinstalar/deshabilitar.
+
+
+
+== Uso de Global Script
+
+Los eventos con secuencias de comandos incorporadas como éste se rellenan automáticamente y se activa la casilla de verificación "global" filter.
+
+Los eventos con guión global como este son de sólo lectura. Se pueden usar tal cual o la función "Clonar" se puede usar para crear una copia de cliente que se utilice para editar y utilizar.
+
+El botón Clonar se encuentra en el menú de acciones de la página Eventos con secuencias de comandos.
+
+image::scriptlibrary.overview-2ccb2.png[scriptlibrary.overview 2ccb2]
+
+
+
+== Optimizaciones de cromo de Microsoft Edge
+
+En Microsoft Edge Chromium 89, Microsoft agregó funcionalidad para limitar el consumo de recursos de las pestañas del explorador de cromo de Microsoft Edge. Este script global aplica la configuración para limitar el tiempo de espera de las pestañas en segundo plano y dejar de consumir recursos después de 15 minutos. Las pestañas de fondo que están reproduciendo audio no se ven afectadas.
+
+Se pueden encontrar más detalles link:https://blogs.windows.com/msedgedev/2021/03/04/edge-89-performance/["aquí"].
+
+
+
+=== Añadir actividad manual
+
+Para que una secuencia de comandos del repositorio realice cualquier acción, se debe crear una actividad que asocie dicha secuencia de comandos a un desencadenador seleccionado. En este ejemplo, se ejecuta cuando el administrador de VDS activa manualmente el script.
+
+Los eventos con secuencias de comandos VDS ofrecen muchos otros tipos de desencadenadores de actividad, como _Create Server_, que pueden utilizarse como alternativa al tipo de evento _Manual_. El uso de _Create Server_ simplemente ejecutaría este script en todas las máquinas virtuales recién creadas en VDS. _Create Server_ y otros desencadenadores se documentan y se pueden explorar link:Management.Scripted_Events.scripted_events.html["aquí"].
+
+.Para crear una actividad y vincular esta secuencia de comandos a una acción:
+. Desplácese a la sección Eventos de secuencia de comandos de VDS
+. En _Activities_ haga clic en _+ Agregar actividad_
+. En la ventana de diálogo abierta, introduzca la siguiente información:
++
+** *Nombre:* asigne un nombre a esta actividad
+** *Descripción:* opcionalmente, introduzca una descripción
+** *Despliegue* Seleccione la implementación deseada en la lista desplegable
+** *Script:* Seleccione la secuencia de comandos de instalación (o desinstalación) de la lista desplegable. Podría ser el guión global o el script de cliente que ha clonado y personalizado.
+** *Argumentos:* dejar en blanco
+** *Casilla de verificación activada:* `Check` la caja
+** *Tipo de evento:* Seleccione `Manual` de la lista desplegable
+** *Tipo de destino:* Seleccione `Servers` botón de radio
+** *Servidores administrados:* `Check` La caja para cada equipo virtual que debería recibir esta desinstalación.
+
+
+

@@ -1,0 +1,19 @@
+= Active AVD Shortpath
+:allow-uri-read: 
+
+
+
+
+== Active AVD Shortpath
+
+Este paquete de secuencias de comandos activa/desactiva la función AVD nativa _RDP Shortpath_ ejecutando el comando (relevante) con PowerShell:
+
+Habilitar:
+
+`reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v fEnableScreenCaptureProtection /t REG_DWORD /d 1`
+
+Desactivar:
+
+`reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v fEnableScreenCaptureProtection /f`
+
+La documentación de Microsoft sobre esta característica AVD se puede encontrar aquí:https://docs.microsoft.com/en-us/azure/virtual-desktop/shortpath[]

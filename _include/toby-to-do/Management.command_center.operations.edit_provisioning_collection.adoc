@@ -1,0 +1,11 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.edit_provisioning_collection-cc1b0.png[Management.command Center.opers.edit colección de aprovisionamiento c1b0]
+
+image::Management.command_center.operations.edit_provisioning_collection-4e113.png[Management.command Center.opers.edit colección de aprovisionamiento 4e113]

@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.make_server_data_server-67eee.png[Management.command centre.opers.make 67eee servidor de datos de servidor]

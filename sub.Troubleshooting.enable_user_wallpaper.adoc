@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.enable_user_wallpaper.html 
+summary: Cómo activar el fondo de pantalla del usuario 
+keywords:  
+---
+= Active Desktop Wallpaper para sesiones de usuario
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+De forma predeterminada, las sesiones remotas tienen desactivada la visualización de Wallpaper para mejorar el rendimiento. El resultado es un fondo de pantalla negro que los usuarios a menudo desean personalizar. Esta configuración se puede cambiar con una simple edición de GPO
+
+
+
+=== Instrucciones:
+
+. Inicie sesión en un servidor de plataforma (por ejemplo, CWMGR1) con una cuenta .tech de nivel 3
+. Abra la Consola de administración de directivas de grupo
+. Localice el GPO de rdsh (etiquetado como “código de empresa” rdsh (por ejemplo, “rdsh Xiz1”)), haga clic con el botón derecho del ratón en “rdsh 1”, seleccione EDIT
++
+.. En Azure AD Domain Services, el GPO se denomina “equipos AADDC > equipos de área de trabajo en la nube”
+
+
+. Modifique la directiva: Configuración del equipo > Directivas > Plantillas administrativas > componentes de Windows > Servicios de Escritorio remoto > Host de sesión de Escritorio remoto > entorno de sesión remoto > Quitar fondo de pantalla de escritorio remoto establezca esta opción en Desactivado
+
+
+image:wallpaper1.png[""]
+image:wallpaper2.png[""]
+image:wallpaper3.png[""]

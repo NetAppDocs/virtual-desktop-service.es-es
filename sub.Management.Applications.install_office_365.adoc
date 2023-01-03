@@ -1,0 +1,119 @@
+---
+sidebar: sidebar 
+permalink: Management.Applications.install_office_365.html 
+summary: Guía de instalación de Office 365 
+keywords:  
+---
+= Instale Microsoft Office 365
+:allow-uri-read: 
+
+
+
+
+== Información general sobre los pasos manuales
+
+Las reglas de licencia impiden a los administradores descargar simplemente Microsoft Office de una cuenta de usuario iniciada e instalarla en un servidor de terminal compartido y funcionar para varios usuarios como se esperaba. En su lugar, los administradores deben seguir un proceso específico para instalar Office Pro Plus con el indicador de activación de equipo compartido activado.
+
+
+
+=== Resumen de pasos del proceso
+
+. Comience descargando la herramienta de implementación de Office desde https://www.microsoft.com/en-us/download/details.aspx?id=49117[]
+. Vaya a la herramienta Configuración de Office: https://config.office.com/deploymentsettings[].
+
+
+
+NOTE: Esta guía omitirá las opciones más allá del mínimo necesario y de la activación compartida del ordenador. Si necesita otras opciones, puede obtener más información en la guía de Microsoft aquí: https://docs.microsoft.com/en-us/deployoffice/deploy-office-365-proplus-from-the-cloud)[]
+
+. Seleccione la arquitectura adecuada para su implementación: Se recomienda utilizar 64 bits a menos que haya un motivo específico para utilizar 32 bits (como los plugins de Office anteriores que requieren versiones de 32 bits de Office).
++
+image:office1.png[""]
+
+. Seleccione las aplicaciones y versiones de Office que desee: Nota: Sólo Office Pro Plus es compatible con la activación de equipo compartido. Independientemente de la versión de Office que tenga (Office 365 Pro Plus, Office 365 E3. Office 365 E5, Microsoft 365 Business, Microsoft 365 E3, Microsoft 365 E5) seguirá instalando Office 365 Pro Plus aquí.
++
+image:office2.png[""]
+
+. Seleccione el idioma deseado y haga clic en Siguiente para continuar.
++
+image:office3.png[""]
+
+. En “Opciones de instalación”, le recomendamos que anule la selección de “iconos de PIN a la barra de tareas”:
++
+image:office4.png[""]
+
+. Este es el paso más importante de All: Establecer la activación del producto en un equipo compartido. Opcionalmente, los administradores pueden hacer clic en el conmutador que acepta automáticamente el CLUF para el beneficio de la experiencia del usuario.
++
+image:office5.png[""]
+
+. Vuelva a la parte superior de la página y haga clic en Exportar.
++
+image:office6.png[""]
+
+. Seleccione mantener configuración actual y haga clic en Aceptar para continuar.
++
+image:office7.png[""]
+
+. Acepte los términos del acuerdo, mantenga o cambie el nombre del archivo de instalación y haga clic en Exportar para continuar. En esta guía se presupone que mantiene el nombre predeterminado “Configuración”.
++
+image:office8.png[""]
+
+. Después de hacer clic en “Export” (Exportar), comenzará la descarga de “Configuration.xml”.
+. Ejecute el archivo autoextraíble deploymenttool EXE/autoextraíble (officedeploymenttool_11901-20022.exe es la versión del archivo en el momento de escribir este documento) que descargó anteriormente, extráigalo a una nueva carpeta (suponemos que “C:\Office” se usa para este ejemplo), Y copie el archivo Configuration.xml en el mismo directorio (sobrescriba el ejemplo que ya se extrajo).
+. A continuación, abra el símbolo del sistema como Administrador y cambie el directorio a “C:\Office” (ejecute “cd \Office”).
+. A continuación, ejecute “setup.exe /download Configuration.xml” (cambie “Configuration.xml” para que coincida con el archivo XML que exportó en el paso 10) y no se preocupe si parece que no ocurre nada, este paso puede tardar un tiempo.
+. Finalmente, ejecute “setup.exe /configure Configuration.xml” (de nuevo, ajustando el nombre del archivo XML para que coincida con el archivo).
+
+
+
+
+== Puesta en marcha automatizada no compatible
+
+
+WARNING: Este proceso automatizado se basa en un ps1 personalizado y un xml precreado. No se admite en el sentido de que NetApp no ofrece garantía de que funcionará o de que afectará a ninguna máquina objetivo. NetApp aloja a ps1 y podría cambiar o desaparecer en cualquier momento. Recomendamos utilizar este método como plantilla para construir y alojar su propio proceso automatizado. Este proceso fue validad para Windows Server 2016 Datacenter 10.0.14393 y Windows 10 Enterprise para Virtual Desktop 10.0.18362 en Azure el 30 de agosto de 2019.
+
+
+
+=== Resumen de pasos del proceso
+
+. Ejecute el comando para descargar y ejecutar Hosted .ps1
+. Ps1 descarga el archivo .xml de la Configuración de la implementación de Office alojada (aquí está la captura de pantalla de la configuración de la herramienta de configuración de Office utilizada para este XML)
+. Ps1 ejecuta ProPlus Install haciendo referencia a .xml
+. Ps1 copia los accesos directos de Microsoft Office en una única carpeta con fines de publicación de aplicaciones
+
+
+
+
+=== Pasos para la personalización
+
+. Descargue y edite el ps1 alojado desde http://getAVD.com/proplus_minus_onedrive.ps1[]
++
+.. Creó su propio archivo xml (descrito anteriormente) y cárguelo a su propia URL
+.. Edite la variable “$download” para que apunte a su propia dirección URL su propio archivo xml de configuración
+.. Edite la variable “$officeapps” para incluir todos los accesos directos instalados por el archivo xml de configuración
++
+image:office9.png[""]
+
+
+
+. Cargue el archivo ps1 editado en su propia URL de host
+. Edite el script de sucesos programado para descargar y ejecutar el ps1 personalizado y autoalojado (paso 3.1. a continuación)
+
+
+
+
+=== Pasos de eventos programados
+
+Esto sigue el mismo flujo de trabajo que un evento programado de instalación de aplicaciones normal. Estas instrucciones asumen que Chocolatey ya está instalado siguiendo los pasos del Plan de Gestión de aplicaciones. Office 365 ProPlus Automated Install con Chocolatey
+
+Para instalar O365 ProPlus creará un nuevo script con los siguientes ajustes:
+
+. No hay archivo de script
+. Correr con: PowerShell.exe
+. Argumentos (opcional): Set-ExecutionPolicy Bypass -scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(‘http://getAVD.com/proplus_minus_onedrive.ps1’))
+. Edite el http://getAVD.com/proplus_minus_onedrive.ps1[] Y sustitúyala por la dirección URL en su propio archivo ps1 alojado.
++
+image:office10.png[""]
+
+
+
+Una vez guardado el script, el siguiente paso es asociar dicho script con un desencadenador. En este caso, desencadenaremos la secuencia de comandos cuando se solicite una instalación de aplicaciones en VDS. Consulte la Guía de gestión de aplicaciones para obtener más información.

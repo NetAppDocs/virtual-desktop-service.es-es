@@ -1,0 +1,23 @@
+= Descripción general de scripts globales
+:allow-uri-read: 
+
+
+
+
+== Descripción general de scripts globales
+
+VDS de NetApp incluye una biblioteca de eventos predefinidos con secuencias de comandos que se pueden usar directamente en entornos VDS y/o duplicados y se pueden usar como elementos básicos para eventos personalizados con secuencias de comandos.
+
+Para esta aplicación, este artículo trata tanto la acción instalar/habilitar como la acción desinstalar/deshabilitar.
+
+
+
+== Uso de Global Script
+
+Los eventos con secuencias de comandos incorporadas como éste se rellenan automáticamente y se activa la casilla de verificación "global" filter.
+
+Los eventos con guión global como este son de sólo lectura. Se pueden usar tal cual o la función "Clonar" se puede usar para crear una copia de cliente que se utilice para editar y utilizar.
+
+El botón Clonar se encuentra en el menú de acciones de la página Eventos con secuencias de comandos.
+
+image::scriptlibrary.overview-2ccb2.png[scriptlibrary.overview 2ccb2]

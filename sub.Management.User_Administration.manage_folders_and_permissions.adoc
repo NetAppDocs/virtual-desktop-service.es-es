@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: Management.User_Administration.manage_folders_and_permissions.html 
+summary: Gestión de permisos de datos 
+keywords:  
+---
+= Gestión de permisos de datos
+:allow-uri-read: 
+
+
+
+
+== Perspectiva del usuario final
+
+Los usuarios finales de escritorios virtuales pueden tener acceso a varias unidades asignadas. Estas unidades incluyen un recurso compartido de equipo accesible para FTs, un recurso compartido de archivos de la empresa y su unidad doméstica (para sus documentos, escritorio, etc.) . Todas estas unidades asignadas hacen referencia a una capa de almacenamiento central en un servicio de almacenamiento (como Azure NetApp Files) o en un equipo virtual de servidor de archivos.
+
+Dependiendo de la configuración que el usuario pueda no tener las unidades H: O F: Expuestas, sólo pueden ver su escritorio, documentos, etc. carpetas. Además, ocasionalmente el administrador de VDS establece diferentes letras de unidad en la implementación.image:manage_data1.png[""]
+
+image:manage_data2.png[""]
+
+
+
+=== Gestión de permisos
+
+VDS permite a los administradores editar grupos de seguridad y permisos de carpeta desde el portal VDS.
+
+
+
+=== Grupos de seguridad
+
+Los grupos de seguridad se gestionan haciendo clic en: Espacios de trabajo > Nombre de inquilino > usuarios y grupos > en la sección grupos
+
+.En esta sección puede:
+. Crear nuevos grupos de seguridad
+. Agregar o quitar usuarios a los grupos
+. Asignar aplicaciones a grupos
+. Habilitar/deshabilitar acceso de unidad local a los grupos
+
+
+image:manage_data3.gif[""]
+
+
+
+== Permisos de carpeta
+
+Los permisos de carpeta se gestionan haciendo clic en: Áreas de trabajo > Nombre de inquilino > Administrar (en la sección carpetas).
+
+.En esta sección puede:
+. Agregar/eliminar carpetas
+. Asignar permisos a usuarios o grupos
+. Personalice los permisos para sólo lectura, Control total y Ninguno
+
+
+image:manage_data4.gif[""]

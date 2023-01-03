@@ -1,0 +1,404 @@
+= CWMS 5.1, versión menor: Jueves, 18 de octubre de 2018
+:allow-uri-read: 
+
+
+
+NOTE: No habrá más lanzamientos recurrentes para v5.1 de CWMS; todas las versiones se considerarán revisiones.
+
+
+
+== CWMS 5.1, versión menor: Jueves, 18 de octubre de 2018
+
+Componentes: 5.1 Cloud Workspace Management Suite Cuándo: Jueves 18 de octubre de 2018 a 10pm – 11pm impacto oriental: El acceso a los escritorios de Cloud Workspace y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Cloud Workspace Management Suite permanecerá disponible.
+
+
+
+=== Workspace Management Suite
+
+* Agregue una función de búsqueda en la tabla aplicaciones
+* Clasificación mejorada en la tabla aplicaciones
+
+
+
+
+== CWMS 5.1 comunicado menor: Jueves, 6 de septiembre de 2018
+
+Componentes: 5.1 Cloud Workspace Management Suite Cuándo: Jueves, 6 de septiembre de 2018 a 10pm – 11pm impacto oriental: El acceso a los escritorios de Cloud Workspace y los servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Cloud Workspace Management Suite permanecerá disponible.
+
+
+
+=== 5.1 Cloud Workspace Management Suite
+
+* Se ha añadido la capacidad de buscar subpartners en el Catálogo de aplicaciones personalizadas
+* Se ha corregido un error en el que la actualización de la pantalla en el módulo de centros de datos provoca un aviso de error
+* Eliminar la restricción en el tamaño máximo del nombre de carpeta y facilitar la exploración de carpetas
+* Asegúrese de que el número de recursos en las máquinas virtuales nunca sea inferior a los valores mínimos de CPU y RAM especificados
+
+
+
+
+=== 5.1 Herramientas y servicios de Cloud Workspace
+
+* Se ha corregido un error con MFA en el que los usuarios que han seleccionado correo electrónico a veces no recibieron un código
+* Permite introducir CPU y RAM adicionales para el tipo de asignación de recursos de recuento de usuarios
+* Se ha solucionado un error para la asignación de recursos para el tipo de asignación de carga de servidor en el que, en algunos casos, el número de servidores necesarios estaba desactivado
+* Agregar protección al reiniciar automáticamente un servidor: Si CwVmAutomationService está ocupado, vuelva a intentarlo en 20 minutos
+* Manejo mejorado de las instalaciones de certificados comodín en CWMGR1
+* Datos fijos en el Informe de recursos del centro de datos
+* Manejo mejorado de la actualización de recursos de RAM
+* Cálculos mejorados de los recursos de disco duro disponibles
+* Introduce la compatibilidad de v4 de la API de ProfitBricks, permitiendo la configuración de la familia de CPU
+* Se ha corregido la eliminación de plantillas temporales antiguas en ProfitBricks utilizadas al crear una colección de aprovisionamiento
+* Aumento del tiempo de espera al hipervisor de ProfitBricks para crear una VM
+* Al instalar nuevas versiones de VdcTools, actualice VdcToolsVersionContinuaContinuaContinuaVDC en cuanto esté en proceso, de forma que la automatización se ejecute antes
+* Se ha solucionado un error que se vería al instalar certificados comodín en los servidores de puerta de enlace RDP
+* Automatice la instalación manual anterior de un certificado comodín en el servidor FTP
+* Se ha solucionado un error en el que los avisos de caducidad de la contraseña no forzaban a los usuarios a actualizar su contraseña
+* Se ha mejorado el proceso de auditoría de archivos para reducir la frecuencia con la que aparece el error de usuario desconocido
+* Se ha solucionado un error en el que el informe de auditoría de archivos no excluía correctamente las carpetas
+* Se ha agregado una función para instalar el certificado comodín si el certificado del intermediario de conexión ha caducado
+* Se ha corregido un error en el que los avisos de caducidad de la contraseña no aparecerían si se elimina el acceso directo de notificación de caducidad de la contraseña de la carpeta de inicio (se volverá a instalar)
+* Se ha solucionado un error en el que el certificado comodín no retrasaba una actualización en los servidores del portal HTML5 si se iniciaba sesión un usuario
+* Se ha corregido un error en el que el certificado comodín mostraría la necesidad de una actualización de servidores de portal HTML5 cuando ya estaba actualizado
+* Se ha corregido un error al instalar certificados comodín en los servidores de intermediario de conexión
+* Se ha solucionado un problema de clonación en el que se habían eliminado las cuentas de equipo virtual local
+* Se ha solucionado un problema por el que los servidores de clonado pusieron al cliente en modo de migración
+* Se ha solucionado un error al clonar máquinas virtuales en vCloud, donde el hipervisor tardaba mucho tiempo de lo que se esperaba en crear la máquina virtual
+* Se ha corregido un error en el cual la eliminación de una máquina virtual en AzureRM también siempre eliminaba los discos gestionados asociados
+* Se ha solucionado un problema de sincronización poco frecuente al crear máquinas virtuales en AzureRM para evitar que se superponían dos operaciones de compilación
+* Lista actualizada de los tipos y tamaños de máquina en AzureRM
+* Se ha solucionado un error al configurar la subred en el hipervisor para GCP durante la implementación
+* Se ha solucionado un error al almacenar los datos de supervisión RE: Estado de la plataforma al eliminar un tiempo de espera que provocaba que los datos no se grabaran cuando un servidor está ocupado
+* Se ha agregado una función para permitir que cada servidor tenga su zona horaria definida individualmente o no controlada por la automatización de la plataforma
+* Si se resuelve un error al crear máquinas virtuales en un sitio secundario, se devolvería las direcciones IP estáticas del sitio principal
+* Se ha solucionado un error al capturar el nombre de usuario para el informe de inicio de sesión de usuario
+* Se ha solucionado un error que no se pudieron eliminar los datos de supervisión antiguos haciendo la llamada asíncrona para que no se agote el tiempo de espera
+* Instalar automáticamente certificados comodín en todos los servidores de la infraestructura
+
+
+
+
+== CWMS 5.1 comunicado menor: Jueves, 12 de julio de 2018
+
+Componentes: 5.1 CWMS Tools and Services Cuándo: Jueves 12 de julio de 2018 @ 10-10:30 PM Eastern Impact: El acceso a los escritorios de Cloud Workspace y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido.
+
+
+
+=== 5.1 CWMS aplicación web
+
+* Solucione un problema relacionado con la persistencia de la configuración del catálogo de aplicaciones global
+
+
+
+
+== CWMS 5.1 comunicado menor: Thurs., 17 de mayo de 2018
+
+Componentes: 5.1 CWMS Tools and Services Cuándo: Jueves 17 de mayo de 2018 @ 10-11 pm impacto de EST: El acceso a los escritorios de Cloud Workspace y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido.
+
+
+
+=== 5.1 CWMS aplicación web
+
+* Solucione un problema relacionado con los resúmenes de usuarios para grupos de Servicios de aplicaciones
+* Solucione un problema con el asistente del centro de datos que pre-rellenando nombre de usuario y contraseña
+* Añada la validación de nombre de usuario para los administradores locales del equipo virtual y los técnicos de nivel 3 en el asistente del centro de datos
+* Gestión de sesiones mejorada, incluido el cierre automático de sesión de los usuarios después de un tiempo de espera de sesión
+* Solucione un problema al eliminar administradores si no se pudo detectar un administrador principal
+* Cambie el marcador de posición en el centro de datos -> servidor de perfiles de introducir nombre de perfil a introducir perfil y cambiar etiqueta de nombre de perfil a nombre de servidor
+* Corrección al habilitar el administrador de AD que no funciona para usuarios que no son de área de trabajo en la nube
+* Corregir error de JavaScript evitando agregar nuevos usuarios/grupos para un cliente que no sea de área de trabajo en la nube
+* Permitir a los socios maestros crear administradores de usuarios de Active Directory para subpartners
+* Corregir error que provoca el restablecimiento de contraseñas del administrador principal de un Subpartner para que se produzca un error
+
+
+
+
+== CWS 5.1: Miércoles, febrero 21, 2018
+
+Componentes: 5.1 CW Tools and Services Cuándo: Miércoles, febrero 21 de 2018 a 10-11 p. m. impacto de la EST: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido.
+
+
+
+=== 5.1 aplicación web CW
+
+* Solucionar problemas administrando carpetas de usuario a través de la función de acceso de administrador
+
+
+
+
+=== 5.1 herramientas y servicios CW
+
+* Asegúrese de que el servidor defectuoso no se elimina automáticamente al actualizar un cliente “sin servicios” con un área de trabajo
+* Gestione las actualizaciones de GPO de W2016 para evitar que las ventanas emergentes de notificación sean visibles brevemente para los usuarios que han iniciado sesión en sus sesiones de RDS en equipos virtuales W2016
+
+
+
+
+=== 5.1 API REST
+
+* Agregar nuevos atributos (modificar el informe SPLA de CWS para consumir nuevos atributos) para manejar mejor las aplicaciones basadas en licencias principales (específicamente, SQL)
+
+
+
+
+== CWS 5.1: Miércoles, febrero 7, 2018
+
+Componentes: 5.1 CW Tools and Services Cuándo: Miércoles, febrero 7 de 2018 a 10-11 p. m. impacto de la EST: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido.
+
+
+
+=== 5.1 aplicación web CW
+
+* Ninguno
+
+
+
+
+=== 5.1 herramientas y servicios CW
+
+* Problema de solución desactivación de App Locker en Windows 2016 (debido al nuevo problema interno de Windows 2016 descubierto)
+* Solucione errores cuando IP se reasigna de forma incorrecta según el evento de fallo de clonado
+
+
+
+
+=== 5.1 API REST
+
+* Corregir guardar tipo de almacenamiento al modificar un servidor en una colección de aprovisionamiento
+* Al crear una colección de provisión con dos servidores Terminal Server (TS), sólo se debe crear un servidor TS para validar la recopilación
+
+
+
+
+== CWS 5.1 menor de edad: Miércoles, enero 31, 2018
+
+Componentes: 5.1 CW Tools and Services Cuándo: Miércoles, enero 31 de 2018 a 10-11 p. m. impacto de la EST: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido.
+
+
+
+=== 5.1 aplicación web CW
+
+* Aumente el número de hileras por tabla en módulos CWS de nivel superior de 10 a 20
+* Corregir el administrador de sólo soporte de usuario no puede pasar a un cliente
+
+
+
+
+=== 5.1 herramientas y servicios CW
+
+* Corregir error cuando la plantilla no tiene .Net Framework v4.5.2 falla incorrectamente la creación del servidor
+* Solución de problemas al clonar máquinas virtuales en Hyper-V
+
+
+
+
+== CWS 5.1 menor de edad: Miércoles, enero 10, 2018
+
+Componentes: 5.1 CW Tools and Services Cuándo: Miércoles, enero 10 de 2018 a 10-11 p. m. impacto de la EST: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido.
+
+
+
+=== 5.1 herramientas y servicios CW
+
+Las herramientas y servicios de CWS versión 5.1 (incluidos CW Automation Service, VM Automation Service y el servicio CWAgent) se actualizarán para eliminar cualquier error de autorización que se produzca para escenarios específicos de entrega de aplicaciones de RemoteApp. Específicamente, los servicios se modificarán para:
+
+* Cambie la implementación automática del certificado comodín SSL para los servidores de sesión para que sólo se implemente en servidores de Connection Broker de Escritorio remoto (RD) y servidores de usuario avanzado. Los servidores de sesión que no sean de Broker utilizarán el certificado predeterminado generado por Servicios de Escritorio remoto (RDS).
+* Cambie la zona de búsqueda directa de DNS externa en Active Directory en el SDDC para crear sólo un registro DNS para los servidores de sesión compartidos de cliente. Ese registro señalará al servidor RDS Broker (VM) del cliente, que a su vez manejará el equilibrio de carga entre servidores de sesión compartidos. Los servidores de usuarios avanzados seguirán teniendo entradas DNS independientes.
+
+
+Nota: Este problema afecta sólo a las configuraciones de cliente final que utilizan varios servidores de sesión compartidos, pero se implementarán configuraciones de cliente nuevas y modificadas con esta configuración.
+
+
+
+== CWS 5.1 menor de edad: Miércoles, enero 3, 2018
+
+Componentes: 5.1 CW Web App cuando: Miércoles, enero 3 de 2018 a 10-10:30 UTC Impact: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido.
+
+
+
+=== 5.1 aplicación web CW
+
+* Corrija la clasificación por código de empresa en el módulo Workspaces de CWS
+* Corregir usuarios de Cloud Workspace -> Forzar restablecimiento de contraseña no reflejar cambios (al navegar a otro módulo y volver al usuario)
+* Asistente de autoimplementación SDDC: Agregar alerta de confirmación modal al desactivar la instalación de ThinPrint (sección Licencia)
+
+
+
+
+== CWS 5.1, versión menor: Tues., dic 5, 2017
+
+Componentes: 5.1 CW Web App cuando: Tues., dic 5 de 2017 a 10-10:30 UTC Impact: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido.
+
+
+
+=== 5.1 aplicación web CW
+
+* Corregir error de MFA del administrador de CWS en Internet Explorer (IE) 11
+* Reparar grupos de CWS -> acceso a la unidad local que devuelve ‘no encontrado’
+* Asistente de puesta en marcha automática del centro de datos: Añada compatibilidad con AzureRM (ARM) Azure Active Directory
+* Catálogo de aplicaciones: Asegúrese de que la opción de suscripción esté siempre disponible/se propague
+* CWS - módulo de eventos programados > actividad de secuencia de comandos -> Agregar aplicación: Corregir ruta incorrecta del icono de aplicación
+* Mejorar la eficacia de la solicitud de acceso de administrador para evitar errores al redirigir a CWS v5.0
+* Corrija varios errores al actualizar los detalles de AppService y/o administrar licencias de aplicación para un AppService
+* CWS Workspace Module > Add Workspace Wizard -> fix AppServices Formato incorrecto enviado al Global Control Plane
+* CWS Workspace Module > Add Workspace Wizard -> New Client -> Paso 3, corregir Update Group para solucionar el error de JavaScript para asegurarse de que se procesa la actualización
+
+
+
+
+== CWS 5.1: Sábado, noviembre 11, 2017
+
+Componentes: 5.1 CW Web App cuando: Sábado, noviembre 11, 2017 @ 10-11pm impacto de la EST: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerán sin interrupciones.
+
+
+
+=== 5.1 aplicación web CW
+
+* A partir de las 22.00 horas EST en Nov 11, todos los socios de CWS 5.1 deben utilizar https://iit.hostwindow.net[]. Esta URL se está modificando para admitir CWS 5.1 (así como CWS 5.0). Los socios son responsables de garantizar que sus administradores de CWS y los usuarios finales con CWS Admin Access sean conscientes de este cambio.
+
+
+
+
+== CWS 5.1: Mes de octubre 30, 2017
+
+Componentes: 5.1 CW Web App y 5.1 CW Tools & Services cuando: Lunes, octubre 30, 2017 @ 10-11pm impacto de la EST: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerán sin interrupciones
+
+
+
+=== 5.1 aplicación web CW
+
+* MFA de CWS Admin: Presionando Enter Submit code for MFA and fix bug que impide el reenvío de código MFA
+* Asistente de autopuesta en marcha de SDDC: Para GCP, tenga Administrador para el nombre de máquina virtual local en lugar de limitarla
+* Asistente de puesta en marcha automática de SDDC: Aumente el ancho del menú desplegable para zonas horarias
+* Eventos con guión: Agregue el campo argumentos a la actividad de la secuencia de comandos
+* Eventos con secuencias de comandos: Agregue %applicationname% como variable en tiempo de ejecución para las secuencias de comandos de eventos con secuencias de comandos
+
+
+
+
+=== 5.1 herramientas y servicios CW
+
+* Dirección de correo electrónico del usuario final: Solucionar el problema con direcciones de correo electrónico que no se guardan en la base de datos para los usuarios finales existentes
+* Estado de inicio de sesión del usuario final: Solucionar problema al obtener UPN del usuario final que ha iniciado sesión
+* Estado de inicio de sesión del usuario final en AzureRM: Compatible con los discos gestionados de Azure
+* Plantillas: Corregir el flujo de trabajo cuando las plantillas no se eliminan correctamente
+* Recursos: Solucionar problema convirtiendo grupos de recursos antiguos a nuevos tipos de asignación
+* Informe de auditoría de archivos: Corrija el error que hace que el usuario no se conozca
+* Windows 2016: Corrección para asegurarse de que GPO para quitar iconos de PowerShell de entornos de trabajo de usuario final se aplica correctamente
+* Informe de recursos de cambio/asignación de recursos: Error de corrección que se muestra incorrectamente
+* Informe de recursos del centro de datos: Si el hipervisor no está configurado para devolver el espacio disponible en el disco duro o el presupuesto de la máquina virtual, evite que el informe muestre un error
+* Reinicios mensuales del servidor de la infraestructura: Trate el escenario cuando los servidores de la infraestructura no se reiniciaban mensualmente según lo programado porque no podían comunicarse con el servidor CWMGR1 debido a que este servidor estaba ocupado de reiniciarse
+
+
+
+
+== 5.1 menor de libertad: Martes, octubre 3, 2017
+
+Componentes: 5.1 CW Web App y 5.1 CW Tools & Services cuando: Martes, octubre 3, 2017 @ 10-11pm impacto de la EST: El acceso a los puestos de trabajo de Cloud Workspace y los servicios de aplicaciones para los usuarios finales permanecerán sin interrupciones
+
+
+
+=== 5.1 aplicación web CW
+
+* AppServices: Corrija la función de bloqueo de problemas para agregar licencias para aplicaciones de AppService
+* AppServices: Asegúrese de que la funcionalidad “Agregar nueva instancia” esté siempre disponible para las aplicaciones de AppService
+* Terminología del pool de recursos: Actualice la terminología mientras siempre permite aplicar la configuración del pool de recursos a servidores incluso cuando no haya cambios – “Actualizar” cambiado a “aplicar a servidores” y “Editar” se ha cambiado a “gestionar”
+* Programa de carga de trabajo: Asegúrese de que siempre se abre Editar modal
+* Programación de cargas de trabajo: Asegúrese de que siempre aparecen las flechas para seleccionar la hora
+* Eventos con guión: Permite una selección de tiempo más granular
+* Informe de CWS ‘acceso de administración’: Problema de solución que hace que la columna IP tenga varias direcciones IP en la lista en lugar de sólo la IP del cliente
+
+
+
+
+=== 5.1 herramientas y servicios CW
+
+* Servicio de auditoría de archivos: Ahora está desactivado de forma consistente
+* Servicio de automatización y nuevo certificado comodín SSL (conexiones RDP): Actualice el orden de los comandos para asegurarse de que el certificado RDP actualizado en la puerta de enlace RDS se actualice siempre (es decir, no se almacena en caché)
+
+
+
+
+== Descripción general de la versión inicial de CWS® 5.1
+
+Cloud Workspace Suite 5.1 se encuentra actualmente en Public Beta a partir del tercer trimestre de 2017. Esta versión incluye una actualización de las API de CWS y de la interfaz Admin Control. La versión es una actualización de CWS 5.0 (lanzado el cuarto trimestre de 2016) y no es “compatible con versiones anteriores” de entidades de la versión 4.x.
+
+Una vez publicado oficialmente en el cuarto trimestre de 2017, no existe ningún costo de actualización ni costo de implementación para la transición a CWS 5.1. CloudJumper completará las actualizaciones en coordinación con cada partner y no interrumpirá los servicios existentes. CWS 5.1 sigue siendo compatible con todas las funciones de las versiones anteriores y amplía las nuevas funciones que mejoran la experiencia del administrador y del usuario final, y mejoran aún más la galardonada automatización y orquestación que se introdujo con los lanzamientos anteriores de Cloud Workspace Suite.
+
+La actualización de CWS 5.1 es la más rápida y sencilla aún al ampliar y aprovechar la arquitectura actualizada y la plataforma de la API DE REST introducida en CWS 5.0. CWS 5.1 continúa el compromiso de CloudJumper para un entorno más amigable que permita a los desarrolladores externos ampliar sus servicios y productos basados en Cloud Workspace.
+
+
+NOTE: CWS 4.x llegará al final oficial de la vida en 12.31.2017. Los socios que permanezcan en la plataforma CWS 4.x ya no recibirán soporte directo para implementaciones de 4.x y no se proporcionarán más actualizaciones de 4.x o correcciones de errores.
+
+
+
+=== 5.1 puntos destacados:
+
+* Compatibilidad con Windows 2016 Server
+* Soporte completo para Microsoft Azure Resource Manager
+* Compatibilidad con autenticación única de Office 365
+* MFA para administradores de portal CWS
+* Gestión de recopilación de aprovisionamiento mejorada
+* Automatización y secuencias de comandos definidas por el administrador
+* Sistemas de gestión del ajuste de tamaño de los recursos
+
+
+
+
+==== Compatibilidad con Windows 2016 Server
+
+* Compatibilidad con las versiones de servidor de Windows Server 2016 para todas las plataformas compatibles.
+* Windows 2016 Server proporciona la experiencia de escritorio “Windows 10” para usuarios de sesión RDS compartida y habilita opciones de configuración como la asignación de GPU para aplicaciones con uso intensivo de gráficos*.
+
+
+
+
+==== Compatibilidad de pila completa para Microsoft Azure Resource Manager
+
+* Microsoft requiere migración del modelo tradicional de concesión de usuario de cuenta delegada/clave de cifrado al modelo de Azure Resource Manager.
+* Microsoft Azure Resource Manager es un marco que permite a los usuarios trabajar con los recursos de una solución como grupo.
+* Los atributos de autenticación necesarios se recogen una vez durante la implementación del centro de datos definido por software (SDDC) y, a continuación, se reutilizan para otras actividades de Microsoft Azure sin necesidad de volver a introducir o volver a realizar la autenticación.
+
+
+
+
+==== Compatibilidad con autenticación única de Office 365
+
+* Microsoft Office 365 utiliza un modelo de autenticación que requiere que los usuarios finales introduzcan credenciales cada vez que utilicen el paquete de productividad de oficina en un equipo o dispositivo nuevo.
+* CWS 5.1 administra estas credenciales en la comunidad de servidores de modo que los usuarios finales sólo necesiten autenticación en su primer uso de una nueva suscripción a Office 365.
+
+
+
+
+==== Se ha mejorado la gestión de la recopilación de información
+
+* La configuración y gestión de plantillas de hipervisor para cargas de trabajo predefinidas pueden resultar confusas, especialmente al trabajar con varias plataformas de hipervisores.
+* CWS 5.1 presenta funciones de administración automatizada del hipervisor que incluyen la creación de instancias de servidor basadas en una plantilla existente o la imagen VM de Cloud Provider; conexión/inicio de sesión directo al servidor creado para la instalación de aplicaciones desde CWS Web App; Creación automática de plantillas/Windows sysprep desde la instancia de servidor configurada y validación de rutas de aplicaciones e instalaciones desde CWS para eliminar la necesidad de acceder directamente al hipervisor o al panel de servicios en la nube.
+
+
+
+
+==== MFA para administradores del portal CWS
+
+* CWS 5.1 incluye una solución de autenticación multifactor (MFA) integrada sólo para administradores de CWS
+* Los partners pueden implementar su propia solución de MFA para usuarios finales. Entre las opciones más populares se incluyen Duo, Auth-Anvil y Azure MF. CloudJumper lanzará su propia MFA integrada para usuarios finales en el primer trimestre de 2018
+
+
+
+
+==== Automatización definida por el administrador
+
+* CWS proporciona automatización mejorada de implementación/administración para proveedores de servicios con automatización definida por el administrador de tareas/ejecución de secuencias de comandos.
+* Con esta mejora, CWS 5.1 acelerará significativamente las implementaciones, simplificará la gestión y reducirá los costes generales.
+* La automatización definida por el administrador de CWS permitirá la instalación o actualización de aplicaciones basadas en eventos, lo que permitirá a los socios activar instalaciones/mantenimiento de aplicaciones automatizadas mediante este método.
+
+
+
+
+==== Esquemas de gestión de ajuste de tamaño de los recursos
+
+* La funcionalidad de recursos de CWS 5.1 mejora la capacidad para escalar los recursos dinámicamente mediante la adición de tres esquemas de recursos más
+* Los esquemas de usuarios totales existentes ahora se han incrementado por tres esquemas de ajuste de tamaño de recursos más: Fijo, activo, basado en usuario y actividad
+* Ejemplo: El método fijo admite la especificación exacta de la CPU y la RAM.
+* Todos los esquemas de ajuste de tamaño de los recursos siguen permitiendo un cambio inmediato/forzado o una modificación/comprobación de recursos automatizada todas las noches.
+

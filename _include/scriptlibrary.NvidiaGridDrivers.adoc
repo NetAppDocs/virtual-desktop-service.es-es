@@ -1,0 +1,15 @@
+= Información general sobre los controladores DE GRID de NVIDIA
+:allow-uri-read: 
+
+
+
+
+== Información general sobre los controladores DE GRID de NVIDIA
+
+Este paquete de script instala/desinstala _Nvidia GRID Drivers_ mediante el gestor de paquetes Chocolatey (https://chocolatey.org/)[] para realizar la implementación. Chocolatey es desplegado por VDS cuando las máquinas virtuales son creadas, pero este script también comprobará e instalará Chocolatey como un requisito previo si falta.
+
+
+
+=== Captura de pantalla de la ventana de diálogo Agregar actividad
+
+image::scriptlibrary.activity.InstallNvidiaGridDrivers.png[scriptlibrary.activity.InstallNvidaGridDrivers]

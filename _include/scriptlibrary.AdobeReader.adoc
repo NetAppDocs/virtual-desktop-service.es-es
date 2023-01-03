@@ -1,0 +1,21 @@
+= Descripción general de Adobe Reader DC
+:allow-uri-read: 
+
+
+
+
+== Descripción general de Adobe Reader DC
+
+Este paquete de script instala/desinstala _Adobe Reader DC_ utilizando el gestor de paquetes Chocolatey (https://chocolatey.org/)[] para realizar la implementación. Chocolatey es desplegado por VDS cuando las máquinas virtuales son creadas, pero este script también comprobará e instalará Chocolatey como un requisito previo si falta.
+
+
+
+=== Ruta de acceso de acceso directo predeterminada
+
+La ruta de acceso directo predeterminada se introducirá a continuación, para esta aplicación, el acceso directo es: `\\shortcuts\Acrobat Reader DC.lnk`
+
+
+
+=== Captura de pantalla de la ventana de diálogo Agregar actividad
+
+image::scriptlibrary.activity.InstallAdobeReader.png[scriptlibrary.activity.InstallAdobeReader]

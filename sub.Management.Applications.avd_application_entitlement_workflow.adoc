@@ -1,0 +1,128 @@
+---
+sidebar: sidebar 
+permalink: Management.Applications.AVD_application_entitlement_workflow.html 
+summary: Guía paso a paso para implementar aplicaciones a usuarios finales en VDS 
+keywords:  
+---
+= Flujo de trabajo de derechos de aplicación para AVD
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+En un entorno de Azure Virtual Desktop (AVD), el acceso a la aplicación se gestiona mediante la pertenencia a grupos de aplicaciones.
+
+
+NOTE: Este flujo de trabajo solo se aplica a las implementaciones de AVD. Para obtener la documentación sobre los derechos de aplicación de RDS, consulte link:Management.Applications.application_entitlement_workflow.html["Flujo de trabajo de derechos de aplicaciones para RDS"]
+
+
+TIP: AVD es un servicio bien documentado y hay muchos link:https://docs.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups["recursos públicos para información"]. VDS no superpone la forma estándar de funcionamiento del AVD. En su lugar, este artículo está diseñado para ilustrar cómo VDS se acerca al concepto estándar que se encuentra en todas las implementaciones de AVD.
+
+
+TIP: Consulte la link:Management.Deployments.logical_hierarchy_overview.html["Visión General de la jerarquía lógica de VDS"] el artículo puede ser útil antes o durante la revisión de este artículo.
+
+
+
+=== La vista del usuario final
+
+En Azure Virtual Desktop, a cada usuario final se le asigna acceso a RemoteApp y/o escritorios por parte de su administrador de AVD. Esto se logra a través de la asignación de grupos de aplicaciones en VDS.
+
+*RemoteApp* hace referencia a una aplicación que se ejecuta de forma remota en el host de sesión pero se presenta en el dispositivo local sin el contexto de escritorio. Esta aplicación, conocida normalmente como una "aplicación de streaming", tiene el aspecto de una aplicación local en el dispositivo local, pero se ejecuta en el contexto de seguridad, y en la capa de almacenamiento e informática del host de sesiones.
+
+* Desktop* se refiere a la experiencia completa de Windows que se ejecuta en el host de sesión y se presenta en el dispositivo local, normalmente en una ventana de pantalla completa. Este escritorio contiene todas las aplicaciones instaladas en el host de sesión que el usuario puede iniciar desde la ventana de sesión del escritorio, lo que normalmente se conoce como "escritorio remoto".
+
+En el inicio de sesión, el usuario final aparece con los recursos que le asigna su administrador. A continuación se muestra un ejemplo de la vista que un usuario final puede ver al iniciar sesión con su cliente AVD. Este es un ejemplo más complejo, a menudo un usuario final sólo tendrá asignado un escritorio dingle o RemoteApp. El usuario final puede hacer doble clic en cualquiera de estos recursos para iniciar la aplicación o el escritorio.
+
+image::Management.Deployments.vds_sites-0e49c.png[Management.despliegues.vds sitios 0e49c]
+
+En este ejemplo más complejo, este usuario tiene acceso a dos sesiones de escritorio diferentes y 4 aplicaciones de streaming diferentes:
+
+* *Escritorios disponibles*
++
+** Escritorio GPU de NVIDIA
+** Escritorio conjunto AVD compartido
+** Operación 2 Escritorio de la piscina
+
+
+* *RemoteApps* disponible
++
+** AutoCAD 2021
+** Revisión 2021
+** Microsoft Edge
+** Bloc de notas
+
+
+
+
+Entre bastidores, estas aplicaciones y escritorios se alojan en una gran variedad de hosts de sesiones, espacios de trabajo AVD e incluso se pueden alojar en diferentes regiones de Azure.
+
+Este es un diagrama que ilustra dónde se aloja cada uno de estos recursos y la forma en que se asignaron a este usuario final.
+
+image::Management.Deployments.vds_sites-0e880.png[Management.despliegues.vds sites 0e880]
+
+Como se ha mostrado anteriormente, los distintos recursos disponibles para este usuario final se alojan en diferentes hosts de sesión, en diferentes pools de host y son potencialmente gestionados por diferentes organizaciones DE TI en diferentes entornos de trabajo AVD. Si bien no se muestra en este ejemplo, estos recursos también podrían alojarse en distintas regiones y/o suscripciones de Azure mediante la función VDS Sites.
+
+
+
+=== Acceso a escritorio
+
+De forma predeterminada, cada pool de hosts comienza con un solo grupo de aplicaciones, utilizado para asignar acceso a la experiencia de escritorio de Windows. Todas las aplicaciones instaladas en estos hosts de sesión serán accesibles para los usuarios finales asignados a este grupo de aplicaciones.
+
+.Para habilitar el recurso Desktop para usuarios en VDS:
+. Desplácese a la página Workspaces > AVD > Host Pool > App Groups y haga clic en el grupo App para el recurso "Desktop".
++
+image::Management.Applications.avd_application_entitlement_workflow-349fe.png[Flujo de trabajo de derechos de aplicaciones Management.Applications.avd 349fe]
+
+. Una vez dentro del grupo de aplicaciones, haga clic en Editar
++
+image::Management.Applications.avd_application_entitlement_workflow-3bcfc.png[Management.Applications.avd flujo de trabajo de derechos de aplicación 3bcfc]
+
+. Desde el cuadro de diálogo de edición, puede agregar o quitar usuarios a este grupo de aplicaciones por usuario o por grupos.
++
+image::Management.Applications.avd_application_entitlement_workflow-07ff0.png[Flujo de trabajo de derechos de aplicación Management.Applications.avd 07ff0]
+
+
+
+
+
+=== Acceso de RemoteApp
+
+Para aprovisionar acceso a RemoteApps, es necesario crear un nuevo grupo de aplicaciones dentro del grupo de hosts. Una vez creadas, se deben asignar las aplicaciones adecuadas a este grupo de aplicaciones.
+
+
+NOTE: Cualquier aplicación en estos hosts de sesiones estará disponible para cualquier usuario asignado al AppGroup "Desktop" de este grupo de hosts. No es necesario también aprovisionar acceso a través de un grupo de aplicación RemoteApp para proporcionar acceso a las aplicaciones. Un grupo de aplicaciones RemoteApp sólo es necesario para habilitar el acceso a aplicaciones que se ejecutan como si estuviera en el dispositivo local como una aplicación de streaming.
+
+
+
+==== Cree un nuevo grupo de aplicaciones
+
+. Desplácese a la página Workspaces > AVD > Host Pool > App Groups y haga clic en el botón _+ Add App Group_
++
+image::Management.Applications.avd_application_entitlement_workflow-d33da.png[Management.Applications.avd flujo de trabajo de autorización de aplicaciones d33da]
+
+. Introduzca el nombre, el espacio de trabajo y el nombre descriptivo de este grupo de aplicaciones. Seleccione los usuarios o grupos que se deben asignar y haga clic en _Save_
++
+image::Management.Applications.avd_application_entitlement_workflow-242eb.png[Flujo de trabajo de concesión de aplicaciones Management.Applications.avd 242eb]
+
+
+
+
+
+==== Agregar aplicaciones al grupo de aplicaciones
+
+. Desplácese a la página Workspaces > AVD > Host Pool > App Groups y haga clic en el grupo App para el recurso "RemoteApp".
++
+image::Management.Applications.avd_application_entitlement_workflow-3dcde.png[Management.Applications.avd flujo de trabajo de derechos de aplicación 3dcde]
+
+. Una vez dentro del grupo de aplicaciones, haga clic en Editar
++
+image::Management.Applications.avd_application_entitlement_workflow-27a41.png[Management.Applications.avd flujo de trabajo de derechos de aplicación 27a41]
+
+. Desplácese hacia abajo hasta la sección "aplicaciones remotas". Esta sección puede tardar un momento en rellenarse ya que VDS consulta directamente a los hosts de sesión para mostrar las aplicaciones disponibles para streaming.
++
+image::Management.Applications.avd_application_entitlement_workflow-1e9f2.png[Management.Applications.avd flujo de trabajo de derechos de aplicación 1e9f2]
+
+. Busque y seleccione las aplicaciones a las que los usuarios de este grupo de aplicaciones tengan acceso como recurso RemoteApp.
+

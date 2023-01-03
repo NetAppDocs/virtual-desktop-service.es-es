@@ -1,0 +1,853 @@
+= Versión de VDS 5.4: Jueves 12 de agosto de 2021
+:allow-uri-read: 
+
+
+
+
+== Versión de VDS 5.4: Jueves 12 de agosto de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 12 de agosto de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Enlaces actualizados del pool de host de AVD
+
+
+
+
+== Versión de VDS 5.4: Jueves 13 de mayo de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 13 de mayo de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Corrección de errores para la creación de grupos de hosts AVD cuando se utilizan caracteres especiales
+* Mejoras de automatización para nombres de dominio largos en el asistente de implementación de instalación de CWA
+* Corrección de errores para clonar servidores en un subconjunto de escenarios en puestas en marcha de GCP
+* Corrección de errores para un escenario en el que la eliminación de una instantánea no funcionaba según lo previsto
+* Actualizar a la dirección de correo electrónico que envía notificaciones/mensajes. Los mensajes se enviarán desde noreply@vds.netapp.com
++
+** Los clientes que tengan seguridad en las direcciones de correo electrónico entrantes deben añadir esta dirección de correo electrónico
+
+
+
+
+
+
+== Versión de VDS 5.4: Jueves 29 de abril de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 29 de abril de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+(No hay actualizaciones en esta versión)
+
+
+
+== Revisión VDS 5.4: Viernes 16 de abril de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Viernes 16 de abril de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los equipos de escritorio y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Resolver un problema con la creación automatizada de certificados que surgió tras la actualización de la noche anterior que mejoró la gestión automatizada de certificados
+
+
+
+
+== Versión de VDS 5.4: Jueves 15 de abril de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 15 de abril de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualizaciones continuas para mejorar la conectividad y la comunicación con el hipervisor vSphere/vCloud
+* Corrección de errores para un escenario individual en el que un usuario no pudo clonar un host de sesión AVD
+
+
+
+
+== Revisión VDS 5.4: Martes 23 de marzo de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Tuesday, 23 de marzo de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualizar a la visualización de pools de hosts: Resuelva un problema en un subconjunto de casos en los que los pools de hosts nuevos se estaban completando correctamente, pero no de inmediato en la interfaz de usuario de VDS
+
+
+
+
+== Versión VDS 5.4: Jueves 18 de marzo de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 18 de marzo de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+* Servicio de puestos de trabajo virtuales
+* Permitir la funcionalidad conectar con el servidor cuando se permitan las conexiones de usuario final a una máquina virtual
+* Ajuste de redacción de los mensajes PAM que los usuarios reciben a través de SMS
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Revisión VDS 5.4: Martes 9 de marzo de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Martes 9 de marzo de 2021 a las 17.00 h – 5:15pm Eastern _Impact:_ el acceso a escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Aplique una actualización para resolver un problema de conexión al servidor en un subconjunto de escenarios
+
+
+
+
+== Versión VDS 5.4: Jueves, marzo 4, 2021
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Jueves 4 de marzo de 2021 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introducción del modelo de puesta en marcha basado en DSC para puestas en marcha de Google Cloud Platform
+* Los eventos con secuencias de comandos se actualizan para evitar que se elimine una secuencia de comandos mientras se ejecuta activamente
+* Mejoras de automatización en el manejo de NetBIOS del asistente de implementación para entornos de Active Directory existentes
+* Admite la aplicación de diferentes programas de backup para servidores de plataforma individuales
+* Permite cambiar la contraseña de un usuario para exigirles que restablezcan su contraseña en el siguiente inicio de sesión en el mismo comando
+* Corrección de errores: Permite que las máquinas virtuales individuales configuradas en modo de migración anulen la configuración de modo de migración en toda la implementación
+* Corrección de errores para situaciones de vSphere en las que el envío de demasiados comandos de API al mismo tiempo provocó un retraso en la puesta en marcha de máquinas virtuales
+* Actualice las nuevas implementaciones para que sean compatibles con .NET 4.8.0
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Versión VDS 5.4: Thurs, febrero 18, 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 18 de febrero de 2021 a las 10pm - 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualiza el método de instalación predeterminado para FSLogix de acuerdo con las prácticas recomendadas de Microsoft
+* Actualizaciones proactivas de los componentes de la plataforma para dar cabida a una mayor actividad del usuario
+* Automatización mejorada para gestionar variables de gestión de certificados
+* Permite forzar un restablecimiento de la configuración de MFA de un usuario en el siguiente inicio de sesión al cambiar su contraseña
+* Quite el grupo de administración VDS de que se administre dentro del módulo de grupos VDS en las implementaciones de ADDS
+
+
+
+
+=== Estimadores de costes
+
+* Actualizaciones para reflejar que ciertas máquinas virtuales ya no tienen precios promocionales
+
+
+
+
+== Versión VDS 5.4: Thurs, febrero 4, 2021
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Jueves 4 de febrero de 2021 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Manejo de variables mejorado al utilizar la funcionalidad conectar a servidor
+* API: Funcionalidad lateral para reinicio y función de reinicio multicanal
+* Mejoras en la automatización de la puesta en marcha en Google Cloud Platform
+* Gestión mejorada de implementaciones de Google Cloud Platform apagadas
+
+
+
+
+== Versión de VDS 5.4: Thurs, 21 de enero de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 21 de enero de 2021 a las 10pm - 11pm Eastern _Impact:_ el acceso a los equipos de escritorio y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Eliminación de equipos virtuales TSD1 de implementaciones que seleccionan servicios PaaS para la gestión de datos
+* Diversas mejoras proactivas de seguridad y rendimiento
+* Optimización de procesos para configuraciones de implementación de varios servidores
+* Corrección de errores para una configuración específica para una implementación en GCP
+* Corrección de errores para crear recursos compartidos de Azure Files mediante el Centro de comandos
+* Actualice para proporcionar Server 2019 como sistema operativo en GCP
+
+
+
+
+=== Estimadores de costes
+
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Revisión VDS 5.4: Mon. 18 de enero de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Lunes 18 de enero de 2021 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* VDS aplicará una actualización a las implementaciones que utilicen SendGrid para retransmisión SMTP
+* SendGrid está introduciendo un cambio radical el miércoles 1/20
+* El equipo de VDS ya había investigado las actualizaciones de SendGrid
+* Hemos sido conscientes de este próximo cambio y hemos probado y validado una alternativa (postmark)
+* Además de mitigar las disrupciones del cambio, el equipo de VDS ha mejorado la fiabilidad y el rendimiento de las implementaciones aprovechando postmark en lugar de SendGrid
+
+
+
+
+== Revisión VDS 5.4: Frio. 8 de enero de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ miércoles 8 de enero de 2021 a las 12:05 h Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Breve, actualización subsiguiente para asegurarse de que VDCTools está al día en todas las implementaciones
++
+** Por diseño, las actualizaciones de VDCTools se aplican de forma inteligente. La actualización espera hasta que no se tomen acciones y, a continuación, completa automáticamente las acciones que se tomen durante el breve período de actualización
+
+
+
+
+
+
+== Versión de VDS 5.4: Thurs, 7 de enero de 2021
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 7 de enero de 2021 a las 10pm - 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Diversas mejoras proactivas de seguridad y rendimiento
+* Actualización de texto: Cambie la acción del Centro de comandos de Crear recurso compartido de archivos de Azure a Crear recurso compartido de archivos de Azure
+* Mejora del proceso para utilizar el Centro de comandos para actualizar carpetas de Data/Home/Pro
+
+
+
+
+=== Estimadores de costes
+
+* Diversas mejoras proactivas de seguridad y rendimiento
+
+
+
+
+== Versión de VDS 5.4: Thurs, 17 de diciembre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 17 de diciembre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+NOTE: La próxima liberación será el jueves 7 de enero de 2021 en lugar de la víspera de año Nuevo 2020.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Automatización de puesta en marcha mejorada cuando se usa Azure NetApp Files
+* Mejora a las colecciones de aprovisionamiento con imágenes de Windows 10 actualizadas
+* Actualice a VCC para mejorar la compatibilidad con variables en configuraciones de varios sitios
+* Mejora de seguridad proactiva de menor importancia para la funcionalidad de los sitios
+* Mejoras de API para la funcionalidad de escalado en vivo máximo dentro de escalado en directo
+* Mejoras en la facilidad de uso general y la claridad del texto en DC Config
+* Diversos tipos de solución de errores y mejoras de seguridad entre bastidores
+
+
+
+
+== Versión de VDS 5.4: Thurs, 3 de diciembre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Jueves 3 de diciembre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los equipos de escritorio y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Actualice al método de instalación de FSLogix
+* Medidas de seguridad proactivas constantes
+
+
+
+
+=== Configuración de VDS
+
+* Actualice a la automatización de la puesta en marcha de Azure NetApp Files: Soporte para la creación:
+* 4 TB de capacidad: Pool/volumen al mínimo
+* Pool de capacidad de 500 TB/100 TB volumen como máximo
+* Gestión de variables mejorada para opciones de implementación avanzadas
+
+
+
+
+=== Estimadores de costes
+
+* Eliminación de las operaciones de disco de Google Cost Estimator
+* Actualizaciones que reflejan los nuevos servicios disponibles por región en Azure Cost Estimator
+
+
+
+
+== Versión de VDS 5.4: Thurs., 19 de noviembre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 19 de noviembre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== VDS
+
+* Los mensajes de correo electrónico de Privileged Account Management (PAM) ahora incluyen detalles de código de implementación
+* Optimización de permisos para implementaciones de Azure Active Directory Domain Services (ADDS)
+* Mayor claridad para los administradores que buscan realizar tareas de administración en una implementación completamente apagada
+* Corrección de errores para un mensaje de error que apareció cuando un administrador de VDS visualiza los detalles de RemoteApp Group para un pool de hosts que está apagado
+* Modificar la actualización a los usuarios de API para reflejar que son usuarios de la API de VDS
+* Resultados más rápidos para devolver el informe de estado del centro de datos
+* Tratamiento mejorado de las variables para acciones diarias (reinicios nocturnos, por ejemplo) de equipos virtuales
+* Corrección de errores para una situación en la que las direcciones IP introducidas en la configuración de CC no se han guardado correctamente
+* Corrección de errores para un escenario en el que desbloquear una cuenta de administrador no funcionó según lo previsto
+
+
+
+
+=== Configuración de VDS
+
+* Actualización del factor de forma: Resuelva una situación en la que se truncaron los botones de acción del asistente de configuración de VDS
+
+
+
+
+== Versión de VDS 5.4: Thurs., 5 de noviembre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 5 de noviembre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== VDS
+
+* Introducción del mecanismo de escalado horizontal para sitios en el Centro de comandos: Utilice otra suscripción de Azure con el mismo ID de inquilino y el mismo ID de cliente
+* La creación de máquinas virtuales con el rol de datos ahora implementado como la máquina virtual seleccionada en la interfaz de usuario de VDS, pero se devuelve al valor predeterminado especificado para la implementación si la máquina virtual seleccionada no está disponible
+* Mejoras generales en la programación de cargas de trabajo y el escalado en tiempo real
+* Corrección de errores para aplicar toda la casilla de comprobación para permisos de administrador
+* Corrección de errores para un problema de visualización al mostrar las aplicaciones seleccionadas en un grupo de aplicación RemoteApp
+* Corrección de errores para un mensaje de error un subconjunto de usuarios ve al acceder al Centro de comandos
+* Mejoras de procesos automatizadas para instalaciones manuales de certificados en máquinas virtuales de la puerta de enlace HTML5
+* Medidas de seguridad proactivas constantes
+
+
+
+
+=== Configuración de VDS
+
+* Orquestación de Azure NetApp Files mejorada
+* Mejoras constantes para gestionar perfectamente las variables de implementación de Azure
+* Las nuevas implementaciones de Active Directory tendrán activada automáticamente la función Papelera de reciclaje de Active Directory
+* Mejora de la orquestación de la puesta en marcha para Google Cloud Platform
+
+
+
+
+== Revisión VDS 5.4: Miércoles 28 de octubre de 2020
+
+_Componentes:_ 5.4 Virtual Desktop Service _Cuándo:_ miércoles 28 de octubre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Configuración de VDS
+
+* Corrección de errores para una situación en la que no se pudieron introducir correctamente los detalles de la red en el asistente de implementación
+
+
+
+
+== Versión de VDS 5.4: Thurs, 22 de octubre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 22 de octubre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los servicios de escritorio y aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== VDS
+
+* Si un administrador de VDS elimina un pool de hosts AVD, anule la asignación automática de los usuarios de ese pool de hosts
+* Introducir controlador de automatización mejorado y renombrado – Command Center – en CWMGR1
+* Corrección de errores para el comportamiento de programación de cargas de trabajo en una corrección de errores para actualizar los detalles del sitio cuando reside en AWS
+* Corrección de errores para la activación de Wake on Demand con la configuración específica de Live Scaling aplicada
+* Corrección de errores para crear un segundo sitio cuando se han establecido ajustes incorrectos en el sitio original
+* Mejoras de facilidad de uso para detalles de IP estática en DC Config
+* Actualización de convención de nomenclatura para los permisos de administrador: Actualice los permisos del centro de datos a los permisos de implementación
+* Actualice para reflejar que se necesitan menos entradas de base de datos en compilaciones de implementación de un solo servidor
+* Actualice la actualización manual del proceso de implementación de ADDS para optimizar los permisos
+* Solución de errores para la generación de informes en VDS cuando se cambian las fechas que debe devolver el informe
+* Corrección de errores para crear una plantilla de Windows Server 2012 R2 a través de colecciones de aprovisionamiento
+* Varias mejoras en el rendimiento
+
+
+
+
+=== Configuración de VDS
+
+* Mejoras en la automatización de la puesta en marcha para el controlador de dominio principal y los componentes DNS de una puesta en marcha
+* Diversas actualizaciones para admitir la selección de una lista de redes disponibles en una futura versión
+
+
+
+
+=== Estimadores de costes
+
+* Tratamiento mejorado de la adición de SQL a equipos virtuales
+
+
+
+
+=== API REST
+
+* Nueva llamada a API para identificar qué regiones de Azure son válidas y están disponibles para una suscripción
+* Nueva llamada API para identificar si un cliente tiene acceso a Cloud Insights
+* Nueva llamada a la API para identificar si un cliente tiene Cloud Insights activado para su entorno de espacio de trabajo cloud
+
+
+
+
+== VDS 5.4 hotfix: Miércoles, 13 de octubre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ miércoles 13 de octubre de 2020 a las 22.00 -11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Estimadores de costes
+
+* Corrección de errores por un problema cuando una situación en el estimación de coste de Azure donde las máquinas virtuales de RDS aplicaban un precio incorrecto del SO
+* Corrección de errores en una situación en la que la selección de servicios de PaaS de almacenamiento en Azure Cost Estimator y Google Cost Estimator provocaba un precio inflado por usuario de VDI
+
+
+
+
+== Versión de VDS 5.4: Thurs, 8 de octubre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 8 de octubre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== VDS
+
+* Mejoras de estabilidad al crear una máquina virtual durante horas en las que se aplica la programación de carga de trabajo
+* Corrección de errores para un problema de visualización al crear nuevos Servicios de aplicaciones
+* Confirme de forma dinámica las presencia de .NET y ThinPrint en puestas en marcha que no sean de Azure
+* Corrección de errores para un problema de visualización al revisar el estado de aprovisionamiento de un área de trabajo
+* Corrección de errores para crear una máquina virtual en vSphere con una combinación específica de ajustes
+* Corrección de errores para un error de casilla de verificación con un conjunto de permisos
+* Corrección de errores para un problema de visualización en el que se mostraban puertas de enlace duplicadas en DCConfig
+* Actualizaciones de la Marca
+
+
+
+
+=== Estimadores de costes
+
+* Actualice a la pantalla los detalles de escalado de CPU por tipo de carga de trabajo
+
+
+
+
+== VDS 5.4 hotfix: Miércoles, 30 de septiembre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Wednesday 30th de septiembre de 2020 a 21.00 h -22.00 pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== VDS
+
+* Solución de errores para un problema en el que un subconjunto de equipos virtuales de Servicios de aplicación no se etiquetaron correctamente como equipos virtuales en caché
+* Actualice a la configuración SMTP subyacente para mitigar los problemas de configuración de la cuenta de retransmisión de correo electrónico
++
+** Nota: Como ahora se trata de un servicio en el plano de control, se trata de una puesta en marcha más reducida con menos permisos o componentes en el cliente
+
+
+* Corrección de errores para evitar que un administrador utilice DCConfig restablezca la contraseña de una cuenta de servicio
+
+
+
+
+=== Configuración de VDS
+
+* Tratamiento mejorado de variables de entorno para puestas en marcha de Azure NetApp Files
+* Automatización de puesta en marcha mejorada: Tratamiento mejorado de variables de entorno para garantizar la presencia de los componentes de PowerShell necesarios
+
+
+
+
+=== API REST
+
+* Introducción del soporte de API para implementaciones de Azure para aprovechar un grupo de recursos existente
+* Introducción de compatibilidad de API para implementaciones de AD existentes con nombres de dominio/NetBIOS diferentes
+
+
+
+
+== Versión de VDS 5.4: Thurs, 24 de septiembre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 24 de septiembre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== VDS
+
+* Mejora del rendimiento: La lista de usuarios para los que se pueden activar los entornos de trabajo en la nube se rellena más rápido
+* Corrección de errores para gestionar importaciones de servidor host de sesión AVD específicas del sitio
+* Mejora de la automatización de la implementación: Introducción de un ajuste opcional para dirigir las solicitudes de AD a CWMGR1
+* Manejo mejorado de variables al importar servidores para asegurarse de que CWAgent está instalado correctamente
+* Introducir controles RBAC adicionales sobre TestVDCTools – requerir la membresía en el grupo CW-Infrastructure para el acceso
+* Ajuste preciso de los permisos: Conceda a los administradores del grupo CW-CW-CWMGRAccess acceso a las entradas del registro para la configuración de VDS
+* Actualización de Wake on Demand para grupos de hosts personales AVD para reflejar actualizaciones para la versión de Spring Release, sólo encienda el equipo virtual asignado al usuario
+* Actualizar las convenciones de nomenclatura de código de la empresa en implementaciones de Azure: Esto evita un problema en el que Azure Backup no puede restaurar desde una máquina virtual que comienza con un número
+* Reemplace el uso de la automatización de implementación de Sendgrid para la transmisión SMTP por un plano de control global para resolver un problema con el back-end de SendGrid, lo que da como resultado un espacio de implementación más reducido con menos permisos/componentes
+
+
+
+
+=== Configuración de VDS
+
+* Actualizaciones de las selecciones de cantidad de máquinas virtuales disponibles en implementaciones de varios servidores
+
+
+
+
+=== API REST
+
+* Agregue Windows 2019 para OBTENER el método /DataCenterProvisioning/operatingsystems
+* Nombre y apellidos del administrador de VDS automáticamente al crear administradores mediante el método API
+
+
+
+
+=== Estimadores de costes
+
+* Introducción de Google Cost Estimator y mensaje para el cual proveedores a hiperescala desea utilizar para su presupuesto: Azure o GCP
+* Introducción de instancias reservadas en Azure Cost Estimator
+* Lista actualizada de servicios disponibles por región en los productos de Azure actualizados
+
+
+
+
+== Versión de VDS 5.4: Thurs, 10 de septiembre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 10 de septiembre de 2020 a las 10pm - 11pm Eastern _Impact:_ el acceso a los servicios de escritorio y aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Mecanismo de aplicación mejorado para confirmar que FSLogix está instalado
+* Compatibilidad con configuraciones de varios servidores para implementaciones de AD existentes
+* Reduzca el número de llamadas de API utilizadas para devolver una lista de plantillas de Azure
+* Administración mejorada de usuarios en agrupaciones host AVD Spring Release / v2
+* Actualización de vínculo referencial en el informe nocturno de recursos de servidor
+* Corrección para cambiar contraseñas administrativas para admitir conjuntos de permisos mejorados y más finos en AD
+* Corrección de errores para crear máquinas virtuales a partir de una plantilla mediante herramientas en CWMGR1
+* Las búsquedas en VDS ahora apuntan a un contenido en docs.netapp.com
+* Mejoras en el tiempo de respuesta para usuarios finales que acceden a la interfaz de administrador de VDS con MFA habilitada
+
+
+
+
+=== Configuración de VDS
+
+* El enlace posterior al aprovisionamiento ahora señala las instrucciones aquí
+* Opciones actualizadas para la configuración de la plataforma en puestas en marcha existentes de AD
+* Mejoras en los procesos automatizados para la puesta en marcha de Google Cloud Platform
+
+
+
+
+== VDS 5.4 hotfix: Tues., 1 de septiembre de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Martes 1 de septiembre de 2020 a las 22.00 -10:15pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Configuración de VDS
+
+* Corrección de errores para un vínculo referencial en la ficha AVD
+
+
+
+
+== Versión de VDS 5.4: Thurs, 27 de agosto de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Jueves 27 de agosto de 2020 a las 10pm – 11pm Eastern _Impact:_ el acceso a los servicios de escritorio y aplicaciones para los usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Introducción de la capacidad de utilizar la interfaz VDS para actualizar automáticamente los grupos de hosts AVD desde la versión de otoño hasta la versión de Spring
+* Automatización optimizada para reflejar las actualizaciones recientes, lo que da como resultado un conjunto de permisos más compacto necesario
+* Mejoras en la automatización de la puesta en marcha para puestas en marcha de GCP, AWS y vSphere
+* Corrección de errores para un escenario de eventos con secuencias de comandos en el que la información de fecha y hora se mostraba como fecha y hora actuales
+* Corrección de errores para poner en marcha grandes cantidades de equipos virtuales host de sesiones AVD al mismo tiempo
+* Compatibilidad con una mayor cantidad de tipos de máquinas virtuales de Azure
+* Compatibilidad con una mayor cantidad de tipos de máquinas virtuales de GCP
+* Mejor manejo de variables durante la implementación
+* Corrección de errores para la automatización de la puesta en marcha de vSphere
+* La corrección de errores de un escenario al deshabilitar un área de trabajo en la nube para un usuario devolvió un resultado inesperado
+* Corrección de errores para aplicaciones de terceros y uso de aplicaciones RemoteApp con MFA habilitado
+* Mayor rendimiento de la placa de servicio cuando una implementación está fuera de línea
+* Actualizaciones para reflejar el logotipo o las frases de NetApp
+
+
+
+
+== Configuración de VDS
+
+* Introducción de una opción de despliegue de varios servidores para implementaciones de Active Directory nativas/nuevas
+* Más mejoras en la automatización de la puesta en marcha
+
+
+
+
+=== Estimación de coste de Azure
+
+* Lanzamiento de la funcionalidad de ventajas híbridas de Azure
+* Solución de errores para un problema de visualización al introducir la información de nombres personalizados en los detalles de la máquina virtual
+* Corrección de errores para ajustar los detalles de almacenamiento en una secuencia específica
+
+
+
+
+== VDS 5.4 hotfix: Miércoles, 19 de agosto de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ miércoles 19 de agosto de 2020 a las 5:20pm – 5:25pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Configuración de VDS
+
+* Corrección de errores para el manejo variable para facilitar la automatización flexible
+* Corrección de errores para el tratamiento de DNS en un único escenario de implementación
+* Reducción de los requisitos de membresía del grupo CW-Infrastructure
+
+
+
+
+== VDS 5.4 hotfix: Tues., 18 de agosto de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Martes 18 de agosto de 2020 a las 10pm – 10:15pm Eastern _Impact:_ el acceso a escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Estimación de coste de Azure
+
+* Solución de errores para la gestión de añadir unidades adicionales en ciertos tipos de máquinas virtuales
+
+
+
+
+== Versión de VDS 5.4: Thurs, 13 de agosto de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 13 de agosto de 2020 a las 10pm – 11pm Eastern _Impact:_ el acceso a los equipos de sobremesa y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Agregar la opción conectar al servidor para los hosts de sesión AVD desde el módulo AVD
+* Corrección de errores para un subconjunto de situaciones en las que no es posible crear cuentas de administrador adicionales
+* Actualice la convención de nomenclatura para los valores predeterminados de los recursos: Cambie el usuario avanzado a usuario de VDI
+
+
+
+
+=== Configuración de VDS
+
+* Validación automática de los ajustes de red aprobados previamente, lo que optimiza aún más los flujos de trabajo de puesta en marcha
+* Conjunto de permisos reducido necesario para las implementaciones de AD existentes
+* Permitir nombres de dominio con más de 15 caracteres
+* Corrección de diseño de texto para una combinación única de selecciones
+* Permita que las implementaciones de Azure continúen si el componente Sendgrid presenta un error temporal
+
+
+
+
+=== Herramientas y servicios de VDS
+
+* Mejoras de seguridad proactivas entre bastidores
+* Mejoras adicionales en el rendimiento de Live Scaling
+* Soporte mejorado para puestas en marcha de proveedores a hiperescala con cientos de sitios
+* Corrección de errores para un escenario en el que la puesta en marcha de varias máquinas virtuales en un único comando solo tuvo éxito parcialmente
+* Mensajes mejorados cuando se asignan rutas no válidas como destino para ubicaciones de datos de datos, Inicio y Perfil
+* Corrección de errores para un escenario en el que la creación de máquinas virtuales a través de Azure Backup no funcionó según lo previsto
+* Otros pasos de validación de la puesta en marcha se han añadido al proceso de puesta en marcha de GCP y AWS
+* Opciones adicionales para administrar entradas DNS externas
+* Compatibilidad con grupos de recursos independientes para equipos virtuales, equipos virtuales, servicios como Azure NetApp Files, espacios de trabajo de análisis de registros
+* Pequeñas mejoras en el entorno de administración del proceso de creación de imágenes/recopilación de aprovisionamiento
+
+
+
+
+=== Estimación de coste de Azure
+
+* Añada soporte de disco de SO efímero
+* Herramientas mejoradas para seleccionar el almacenamiento
+* Desactivar un escenario en el que un usuario pudo introducir recuentos de usuarios negativos
+* Muestre el servidor de archivos cuando utilice las selecciones AVD y File Server
+
+
+
+
+== VDS 5.4 hotfix: Mon., 3 de agosto de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Lunes 3 de agosto de 2020 a las 11:05 h Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Herramientas y servicios de VDS
+
+* Tratamiento mejorado de variables durante la automatización de la puesta en marcha
+
+
+
+
+== Versión de VDS 5.4: Thurs., 30 de julio de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 30 de julio de 2020 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Mejoras de seguridad proactivas entre bastidores
+* Supervisión del rendimiento mejorada entre bastidores
+* Corrección de errores para una situación en la que la creación de un nuevo administrador de VDS presenta una alerta de falso positivo
+
+
+
+
+=== Configuración de VDS
+
+* Conjuntos de permisos reducidos aplicados a cuentas administrativas durante el proceso de implementación en Azure
+* Corrección de errores para un subconjunto de firmas de cuenta de prueba
+
+
+
+
+=== Herramientas y servicios de VDS
+
+* Manejo mejorado del proceso de instalación de FSLogix
+* Mejoras de seguridad proactivas entre bastidores
+* Mejora de la recopilación de puntos de datos para un uso simultáneo
+* Tratamiento mejorado de certificados para conexiones HTML5
+* Ajuste a la disposición de la sección DNS para mejorar la claridad
+* Ajuste al flujo de trabajo de monitorización de Solarwinds
+* Se ha actualizado el tratamiento de direcciones IP estáticas
+
+
+
+
+=== Estimación de coste de Azure
+
+* Pregunte si los datos del cliente deben ser ha y, si es así, defina si los ahorros de costes y mano de obra están disponibles aprovechando un servicio PaaS como Azure NetApp Files
+* Actualice y estandarice el tipo de almacenamiento predeterminado para las cargas de trabajo de AVD y RDS en SSD Premium
+* Entre bastidores mejoras de rendimiento * == VDS 5.4 revisión: Thurs, 23 de julio de 2020
+
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Thursday 23 de julio de 2020 a 10pm – 11pm Eastern _Impact:_ el acceso a los equipos de escritorio y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Configuración de VDS
+
+* Mejoras de automatización para la configuración de DNS en implementaciones de Azure
+* Comprobaciones y mejoras generales de la automatización de la puesta en marcha
+
+
+
+
+== Versión de VDS 5.4: Thurs., 16 de julio de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _when:_ Jueves 16 de julio de 2020 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+* Mejoras de seguridad proactivas entre bastidores
+* Simplificación del proceso de aprovisionamiento de AVD App Group seleccionando automáticamente el área de trabajo AVD si sólo hay un área de trabajo AVD presente
+* Mejoras de rendimiento en el módulo Workspace a través de grupos de paginación en la pestaña usuarios y grupos
+* Si los administradores de VDS seleccionan Azure en la pestaña implementando, dirija al usuario para iniciar sesión en VDS Setup
+
+
+
+
+=== Configuración de VDS
+
+* Mejoras de seguridad proactivas entre bastidores
+* Diseño mejorado para agilizar el flujo de trabajo de puesta en marcha
+* Descripciones mejoradas para implementaciones que utilizan una estructura existente de Active Directory
+* Mejoras generales y correcciones de errores para la automatización de la puesta en marcha
+
+
+
+
+=== Herramientas y servicios de VDS
+
+* Corrección de errores para el rendimiento de TestVDCTools en implementaciones de un solo servidor
+
+
+
+
+=== API REST
+
+* Mejora de la facilidad de uso para el consumo de API en puestas en marcha de Azure: Devuelve nombres de usuario recopilados aunque no se hayan definido nombres en el usuario en Azure AD
+
+
+
+
+=== Experiencia de inicio de sesión HTML5
+
+* Corrección de errores para activar a petición para los hosts de sesión que utilicen la versión de resorte AVD (AVD v2)
+* Actualizaciones para reflejar las expresiones/marcas de NetApp
+
+
+
+
+=== Estimación de coste de Azure
+
+* Muestra los precios dinámicamente por región
+* Mostrar si hay servicios relevantes disponibles en la región, seleccione para asegurarse de que los usuarios comprendan si la funcionalidad deseada estará disponible en esa región. Estos servicios son:
++
+** Azure NetApp Files
+** Servicios de dominio de Azure Active Directory
+** Máquinas virtuales de NV y NV v4 (habilitado para GPU)
+
+
+
+
+
+
+== Versión VDS 5.4: Viernes, 26 de junio de 2020
+
+_Components:_ 5.4 Virtual Desktop Service _Cuándo:_ Jueves 26 de junio de 2020 a las 10pm – 11pm Eastern _Impact:_ el acceso a los escritorios y servicios de aplicaciones para usuarios finales permanecerá ininterrumpido. El acceso a Virtual Desktop Service seguirá estando disponible.
+
+
+
+=== Servicio de puestos de trabajo virtuales
+
+A partir del viernes 17 de julio de 2020, el lanzamiento de v5.4 es compatible como versión en producción.

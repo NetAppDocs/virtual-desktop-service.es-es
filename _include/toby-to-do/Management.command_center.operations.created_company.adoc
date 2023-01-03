@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.created_company-da1a3.png[Management.command central.opers.creó la empresa da1a3]

@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.exclude_server_from_monitoring-f1bdb.png[Management.command central.opers.exclude servidor de la supervisión de f1bdb]

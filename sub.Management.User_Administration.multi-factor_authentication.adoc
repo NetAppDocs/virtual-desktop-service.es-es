@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: Management.User_Administration.multi-factor_authentication.html 
+summary: 'Configurar la autenticación multifactor (MFA)' 
+keywords:  
+---
+= Autenticación multifactor (MFA)
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+El servicio de escritorios virtuales (VDS) de NetApp incluye un servicio de MFA basado en SMS/correo electrónico sin coste adicional. Este servicio es independiente de cualquier otro servicio (por ejemplo, Azure Conditional Access) y se puede utilizar para proteger los inicios de sesión de administrador en VDS y los inicios de sesión de usuario en escritorios virtuales.
+
+
+
+== Aspectos básicos de la MFA
+
+* La MFA de VDS puede asignarse a los usuarios administradores, a los usuarios finales individuales o aplicarse a todos los usuarios finales
+* La MFA de VDS puede enviar notificaciones de SMS o por correo electrónico
+* La MFA de VDS tiene una función de configuración y restablecimiento inicial en el autoservicio
+
+
+
+
+== Alcance de la guía
+
+Esta guía le guiará por la configuración de la MFA junto con una ilustración de la experiencia del usuario final
+
+.En esta guía se tratan los siguientes temas:
+. <<Habilitación de MFA para usuarios individuales,Habilitación de MFA para usuarios individuales>>
+. <<Que requiere MFA para todos los usuarios,Que requiere MFA para todos los usuarios>>
+. <<Enabling MFA for Individual Administrators ,Habilitar MFA para administradores individuales>>
+. <<Configuración inicial del usuario final,Configuración inicial del usuario final>>
+
+
+
+
+== Habilitar MFA para usuarios individuales
+
+La MFA se puede habilitar para usuarios individuales en la página de detalles del usuario haciendo clic en _Multi-factor Auth Enabled_
+
+Áreas de trabajo > Nombre de área de trabajo > usuarios y grupos > Nombre de usuario > Auth multifactor activada > Actualizar
+
+La MFA también se puede asignar a todos los usuarios, si esta configuración está en su lugar, se activa la casilla de verificación y se añade _(a través de la configuración del cliente)_ a la etiqueta de la casilla de verificación.
+
+
+
+== Que requiere MFA para todos los usuarios
+
+La MFA se puede habilitar y aplicar en todos los usuarios de la página de detalles del área de trabajo haciendo clic en _MFA para todos los usuarios habilitados_
+
+Áreas de trabajo > Nombre del área de trabajo > MFA para todos los usuarios activados >Actualizar
+
+
+
+== Habilitación de MFA para administradores individuales
+
+La MFA también está disponible para cuentas de administrador que acceden al portal de VDS. Esto se puede habilitar por administrador en la página de detalles admin. Admins > Admin Name > Multi-factor Auth required > Update
+
+
+
+== Configuración inicial
+
+En el primer inicio de sesión después de habilitar la MFA, se solicitará al usuario o al administrador que introduzca una dirección de correo electrónico o un número de teléfono móvil. Recibirán un código de confirmación para introducir y confirmar la inscripción correcta.

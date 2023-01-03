@@ -1,0 +1,29 @@
+= Cambiar datos/Pro/Home Folders Descripción general
+:allow-uri-read: 
+
+
+
+
+== *Descripción general de los cambios de datos/carpetas Pro/Home*
+
+image::Management.command_center.operations.change_data_home_pro_folders-678cd.png[Management.command center.operations.change carpetas de data home pro 678cd]
+
+La ubicación de almacenamiento de las carpetas de datos, perfiles y Inicio de usuarios se gestiona mediante Active Directory. El Centro de comandos incluye una operación para cambiar estas ubicaciones.
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command central.opers.copy template to gallery ed821]
+
+
+
+== Seleccionar un pool de recursos
+
+Cuando la selección del pool de recursos está en blanco, la configuración se aplica globalmente.
+
+La selección de un pool de recursos específico (también conocido como grupo de hosts) permitirá que la ruta de acceso del perfil de los usuarios se defina individualmente para ese pool de recursos
+
+image::Management.command_center.operations.change_data_home_pro_folders-3ac43.png[][]
+
+
+
+== Es Windows Server
+
+La casilla de comprobación "Is Windows Server" debe estar desactivada si se ha seleccionado un servicio de almacenamiento (p. ej., Azure NetApp Files) como ubicación de almacenamiento.

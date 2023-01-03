@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.run_resource_allocation-664d2.png[Management.command center.operations.run asignación de recursos 664d2]

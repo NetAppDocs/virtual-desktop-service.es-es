@@ -1,0 +1,9 @@
+= Descripción general
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+image::Management.command_center.operations.run_daily_actions-4a3cd.png[Management.command center.operations.run acciones diarias 4a3cd]

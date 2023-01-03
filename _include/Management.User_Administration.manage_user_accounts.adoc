@@ -1,0 +1,94 @@
+= Crear nuevos usuarios
+:allow-uri-read: 
+
+
+
+
+== Crear nuevos usuarios
+
+Los administradores pueden agregar usuarios haciendo clic en entornos de trabajo > usuarios y grupos > Agregar o importar
+
+Los usuarios pueden agregarse individualmente o con una importación masiva.
+
+image:add_import_users.png["anchura = 25%"]
+
+
+NOTE: La inclusión del correo electrónico y el número de teléfono móvil precisos en este momento mejora considerablemente el proceso de activación de la MFA más adelante.
+
+Una vez que haya creado usuarios, puede hacer clic en su nombre para ver detalles como cuándo se crearon, su estado de conexión (ya estén o no conectados actualmente) y cuáles son sus configuraciones específicas.
+
+
+
+== Activación del escritorio virtual para los usuarios existentes de AD
+
+Si los usuarios ya están presentes en AD, puede activar fácilmente el escritorio virtual de los usuarios haciendo clic en el equipo situado junto a su nombre y, a continuación, activando su escritorio.image:Enable_desktop.png["anchura = 50%"]
+
+
+NOTE: Únicamente para Azure AD Domain Service: Para que los inicios de sesión funcionen, el hash de contraseña para los usuarios de Azure AD debe sincronizarse para admitir la autenticación NTLM y Kerberos. La forma más sencilla de realizar esta tarea consiste en cambiar la contraseña de usuario en Office.com o en el portal de Azure, lo que obligará a que se produzca la sincronización hash de contraseña. El ciclo de sincronización de los servidores de servicio de dominio puede tardar hasta 20 minutos, por lo que los cambios en las contraseñas de Azure AD suelen tardar 20 minutos en reflejarse en ADDS y, por tanto, en el entorno VDS.
+
+
+
+== Eliminar cuentas de usuario
+
+
+
+== Editar información del usuario
+
+En la página de detalles del usuario se pueden realizar cambios en los datos del usuario, como el nombre de usuario y los datos de contacto. Los valores de correo electrónico y teléfono se utilizan para el proceso de restablecimiento automático de contraseñas (SSPR).
+
+image:user_detail.png[""]
+
+
+
+== Editar la configuración de seguridad del usuario
+
+* Habilitado para el usuario de VDI: Configuración de RDS que, cuando está habilitada, crea un host de sesión de máquina virtual dedicado y asigna este usuario como el único usuario que conecta con él. Como parte de la activación de esta casilla de verificación, se solicita al administrador de CWMS que seleccione la imagen, el tamaño y el tipo de almacenamiento de VM.
++
+** Los usuarios de AVD VDI deben gestionarse en la página AVD como un pool de hosts VDI.
+
+
+* Caducidad de cuenta activada: Permite al administrador de CWMS establecer una fecha de caducidad en la cuenta de usuario final.
+* Forzar restablecimiento de contraseña en el siguiente inicio de sesión: Solicita al usuario final que cambie la contraseña al iniciar sesión.
+* Autenticación multifactor habilitada: Habilita la MFA para el usuario final y los solicita a configurar la MFA en el siguiente inicio de sesión.
+* Unidad móvil activada: Función heredada que no se utiliza en las implementaciones actuales de RDS o AVD.
+* Acceso a la unidad local activado: Permite al usuario final acceder al almacenamiento del dispositivo local desde el entorno de la nube, incluidos copia/pegado, almacenamiento masivo USB y unidades del sistema.
+* Activación a petición activada: Para usuarios de RDS que se conecten a través del cliente CW para Windows, lo que permite al usuario final tener permiso para llevar su entorno cuando se conecta fuera de las horas de trabajo normales definidas por el programa de carga de trabajo.
+
+
+
+
+== Cuenta bloqueada
+
+De forma predeterminada, cinco intentos fallidos de inicio de sesión bloquearán la cuenta de usuario. La cuenta de usuario se desbloqueará después de 30 minutos a menos que se active _Enable Password complicado_. Con la complejidad de la contraseña activada, la cuenta no se desbloqueará automáticamente. En cualquier caso, el administrador de VDS puede desbloquear manualmente la cuenta de usuario desde la página Users/Groups de VDS.
+
+
+
+== Restablecer contraseña de usuario
+
+Restablece la contraseña de usuario.
+
+Nota: Cuando se restablecen las contraseñas de usuario de Azure AD (o se desbloquea una cuenta), puede haber un retraso de hasta 20 minutos a medida que el restablecimiento se propaga a través de Azure AD.
+
+
+
+== Acceso del administrador
+
+Al habilitar esta opción, se proporciona al usuario final un acceso limitado al portal de gestión para su inquilino. Los usos comunes incluyen proporcionar acceso a un empleado in situ para restablecer las contraseñas de sus compañeros, asignar aplicaciones o permitir el acceso de activación manual del servidor. Aquí también se establecen permisos que controlan las áreas de la consola que se pueden ver.
+
+
+
+== Usuario(s) de cierre de sesión
+
+El administrador de VDS puede cerrar la sesión de los usuarios conectados desde la página Users/Groups de VDS.
+
+
+
+== Más grandes
+
+Muestra la aplicación desplegada en este espacio de trabajo. La casilla de verificación proporciona las aplicaciones a este usuario específico. Puede encontrar la documentación completa de Application Management aquí. El acceso a las aplicaciones también se puede otorgar desde la interfaz de la aplicación o a grupos de seguridad.
+
+
+
+== Ver/eliminar procesos de usuario
+
+Muestra los procesos que se están ejecutando actualmente en la sesión de ese usuario. Los procesos también se pueden finalizar desde esta interfaz.

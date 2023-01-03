@@ -1,0 +1,37 @@
+= Proceso de actualización del host de sesión de AVD
+:allow-uri-read: 
+
+
+
+
+=== Proceso de actualización del host de sesión de AVD
+
+VDS proporciona una forma sencilla de actualizar los hosts de sesión en un grupo de hosts AVD mediante Provisioning Collections y la funcionalidad *Add Session Host*. Este proceso se puede realizar sin afectar a los usuarios finales y se puede repetir una y otra vez con las actualizaciones de imagen subsiguientes, basándose en las iteraciones de imagen anteriores.
+
+.El proceso de actualización del host de sesión de AVD es el siguiente:
+. Cree una nueva colección de aprovisionamiento VDI, personalice y valide la colección siguiendo las instrucciones anteriores.
++
+.. Por lo general, esta recopilación de aprovisionamiento se realizará en la plantilla de equipo virtual anterior, emulando un proceso "abierto, guardado como".
+
+
+. Una vez que la colección de aprovisionamiento se ha validado, desplácese a la página _Workspace > AVD > Host Pools_ y haga clic en el nombre del grupo de hosts
+. Desde la página _Host Pool > Session hosts_, haga clic en *+ Add Session Host*
++
+image::Management.Deployments.provisioning_collections-9ed95.png[Management.Deployments.provisioning colecciones 9ed95]
+
+. Seleccione la última *plantilla VM*. Realice las selecciones *Tamaño de máquina* y *Tipo de almacenamiento* adecuadas en función de sus requisitos.
+. Introduzca el *número de instancias* igual al número total de hosts de sesión requeridos. Normalmente, este número será el mismo que el que se encuentra actualmente en el pool de hosts, pero puede ser cualquier número.
++
+.. Tenga en cuenta que los hosts de sesión que se encuentran actualmente en el pool de hosts se retirará en última instancia después de que estos nuevos hosts se conecten. Planificar el *número de instancias* introducido para que sea suficiente para soportar toda la carga de trabajo en este grupo de hosts.
+
+
+. Haga clic en *Guardar*, los hosts de sesión se construirán en función de la plantilla de VM seleccionada y comenzarán a conectarse en tan sólo 10-15 minutos (dependiendo del hipervisor).
+. Cuando un nuevo host se conecta, la configuración predeterminada es permanecer en *no permitir nuevas sesiones*. Para cada host de sesión, se puede utilizar el conmutador *permitir nuevas sesiones* para administrar qué hosts pueden recibir nuevas sesiones de usuario. Una vez que se han creado suficientes hosts nuevos y se ha confirmado la funcionalidad, este ajuste se puede gestionar tanto en los hosts nuevos como antiguos para enrutar todas las sesiones nuevas a los hosts nuevos. Los hosts antiguos, con *permitir nuevas sesiones* establecido en *desactivado*, pueden seguir ejecutándose y alojar sesiones de usuario existentes.
++
+image::Management.Deployments.provisioning_collections-be47e.png[Management.Deployments.provisioning colecciones b47e]
+
+. A medida que los usuarios cierran la sesión del host antiguo y sin nuevas sesiones de usuario que se unan a los hosts antiguos, se pueden eliminar los hosts antiguos donde *sesiones = 0* haciendo clic en el icono *acciones* y seleccionando *borrar*.
++
+image::Management.Deployments.provisioning_collections-cefb9.png[Management.Deployments.provisioning colecciones cefb9]
+
+

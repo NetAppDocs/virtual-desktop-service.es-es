@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.provide_3rd_party_access.html 
+summary: guía de acceso de terceros 
+keywords:  
+---
+= Acceso temporal a terceros
+:allow-uri-read: 
+
+
+
+
+== Descripción general
+
+Ofrecer acceso a terceros es una práctica habitual a la hora de migrar a cualquier solución cloud.
+
+Los administradores de VDS suelen optar por no ofrecer a estos terceros el mismo nivel de acceso que tienen, para seguir una política de acceso de seguridad “menos necesaria”.
+
+Para configurar el acceso de administrador para terceros, inicie sesión en VDS y navegue hasta el módulo Organizations, haga clic en la organización y haga clic en Users & Groups.
+
+A continuación, cree una nueva cuenta de usuario para el tercero y desplácese hacia abajo hasta que vea la sección Admin Access y marque la casilla para habilitar los derechos de administrador.
+
+image:3rdparty1.png[""]
+
+A continuación, se presenta el Administrador de VDS con la pantalla de configuración de Admin Access. No es necesario cambiar el nombre, el inicio de sesión o la contraseña del usuario; sólo tiene que agregar el número de teléfono y/o el correo electrónico si desea aplicar la autenticación multifactor y seleccionar el nivel de acceso que se va a conceder.
+
+Para administradores de bases de datos como VAR o ISV, _Servers_ es normalmente el único módulo de acceso necesario.
+
+image:3rdparty2.png[""]
+
+Una vez guardado, el usuario final tendrá acceso a las funciones de autogestión iniciando sesión en VDS con sus credenciales de usuario estándar de escritorio virtual.
+
+Cuando el usuario recién creado inicie sesión, solo verá los módulos que les haya asignado. Pueden seleccionar la organización, desplazarse hacia abajo hasta la sección servidores y conectarse al nombre de servidor que les indica (por ejemplo, <XYZ> ITM, donde XYZ es el código de su compañía y D1 designa que el servidor es un servidor de datos. En el siguiente ejemplo, les diremos que se conecten al servidor TSD1 para realizar sus asignaciones.
+
+image:3rdparty3.png[""]

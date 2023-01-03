@@ -1,0 +1,53 @@
+= Error
+:allow-uri-read: 
+
+
+
+
+== Error
+
+La impresión en la impresora local desde el escritorio de la nube no funciona.
+
+
+
+== Servicios de escritorio remoto con ThinPrint
+
+VDS incluye de forma opcional ThinPrint para implementaciones de Servicios de Escritorio remoto (RDS). El software y las licencias se configuran automáticamente en la puesta en marcha inicial. Si ThinPrint está en uso, las siguientes secciones pueden ayudar a solucionar problemas relacionados con la impresión.
+
+
+
+=== Causa
+
+Existen varios métodos para conectarse al escritorio en cloud. Este método difiere en la forma en que realizan funciones de impresión y, por lo tanto, es necesario saber qué tipo de acceso se utiliza para solucionar problemas:
+
+. Uso del cliente de acceso de CloudJumper en un dispositivo Windows
++
+.. ThinPrint se ejecuta en el dispositivo local y transmite la comunicación entre la impresora y el escritorio en nube
+
+
+. Uso del explorador HTML5 en cualquier dispositivo
++
+.. El explorador presentará el documento impreso como un PDF para descargar e imprimir localmente
+
+
+. Mediante un cliente RDP configurado manualmente (normalmente) en un equipo Mac o Linux
++
+.. Las impresoras locales se comparten con el escritorio en la nube configurando manualmente “Recursos locales” en el cliente RDP.
+
+
+
+
+
+
+=== Resolución
+
+. Intente imprimir un documento desde el dispositivo local para confirmar que el dispositivo local se conecta correctamente a la impresora.
+. Desinstale y vuelva a instalar ThinPrint si utiliza Access Client en un dispositivo Windows. https://www.thinprint.com/en/resources-support/software/clientsandtools/[]
+. Anote el tipo de acceso y los resultados de los dos primeros pasos en un nuevo caso con el soporte CloudJumper.
+
+
+
+
+== Puesto de trabajo virtual de Azure
+
+VDS no implementa ninguna solución de impresión ni una configuración de impresión única para entornos AVD. Las preguntas de impresión deben dirigirse a Microsoft o (si se implementó uno) al proveedor de tecnología de impresión.
